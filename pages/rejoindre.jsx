@@ -57,8 +57,7 @@ const Rejoindre = () => {
       </p>
 
       <p>
-        <FaUserFriends /> Sur <Link href={FACEBOOK}>Facebook</Link>
-        et <Link href={INSTAGRAM}>Instagram</Link>
+        <FaUserFriends /> Sur <Link href={FACEBOOK}>Facebook</Link> et <Link href={INSTAGRAM}>Instagram</Link>
       </p>
 
       <p>
