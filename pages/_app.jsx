@@ -26,7 +26,7 @@ const App = ({ Component, pageProps }) => {
 
         <link rel="icon" href="/favicon/favicon.ico" />
 
-        {FONTS.map(font => <link href={font} rel="stylesheet" />)}
+        {FONTS.map(font => <link key={font} href={font} rel="stylesheet" />)}
 
         <title>Académie Roncquoïse d'Aïkido</title>
       </Head>
