@@ -1,0 +1,56 @@
+@import '../../vars.scss';
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .4em;
+}
+
+.container small {
+  opacity: .7;
+}
+
+.container textarea {
+  padding: .8em 1em;
+  border-radius: .4em;
+  border: 1px solid rgba(black, .1);
+  transition: 100ms;
+  outline: none;
+  font-family: $fonts;
+  font-size: .9em;
+  min-height: 10em;
+
+  &::placeholder {
+    opacity: .8;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: black;
+  }
+}
+
+.required::after {
+  content: '*';
+  color: red;
+  margin-left: .2em;
+}
+
+.progress {
+  position: relative;
+  width: 100%;
+  border-radius: 10em;
+  box-shadow: 0 0 0 1px rgba(black, .1);
+  height: .8em;
+  overflow: hidden;
+}
+
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: red;
+}
