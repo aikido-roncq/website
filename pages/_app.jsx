@@ -7,10 +7,10 @@ import '../styles/globals.scss'
 import { useRouter } from 'next/router'
 import NotFound from './404'
 
-const fonts = {
-  montserrat: "https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap",
-  carteOne: "https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
-}
+const FONTS = [
+  "https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap",
+  "https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
+]
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -25,8 +25,8 @@ const App = ({ Component, pageProps }) => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
 
         <link rel="icon" href="/favicon/favicon.ico" />
-        <link href={fonts.montserrat} rel="stylesheet" />
-        <link href={fonts.carteOne} rel="stylesheet" />
+
+        {FONTS.map(font => <link href={font} rel="stylesheet" />)}
 
         <title>Académie Roncquoïse d'Aïkido</title>
       </Head>
