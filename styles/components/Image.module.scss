@@ -1,0 +1,27 @@
+.figure {
+  position: relative;
+  margin: 1em 0;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(black, .8);
+  opacity: .8;
+  color: white;
+  padding: .4em;
+  transform: translateY(-.2em);
+  z-index: 1;
+}
+
+@media (max-width: 480px) {
+  .figure figcaption {
+    padding: .2em;
+  }
+}

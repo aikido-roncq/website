@@ -1,0 +1,16 @@
+.mainTitle {
+  padding-bottom: .5em;
+  border-bottom: .2em solid rgb(235, 235, 235);
+}
+
+.articles div {
+  padding-bottom: 1.2em;
+}
+
+.articles div:not(:first-child) {
+  padding-top: 1em;
+}
+
+.articles div:not(:last-child) {
+  border-bottom: 1px solid rgba(black, .1);
+}

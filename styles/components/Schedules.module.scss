@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  text-align: center;
+  border-radius: 1em;
+  overflow: hidden;
+  width: 80%;
+
+  tbody:nth-child(odd) {
+    background: rgba(black, .05);
+  }
+
+  td {
+    padding: .5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper table {
+    width: 100%;
+  }
+}

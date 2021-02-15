@@ -1,0 +1,19 @@
+.kobayashi {
+  float: left;
+  margin: 1em 2em 1em 0;
+}
+
+.firstParagraph::first-letter {
+  font-size: 3.9em;
+  float: left;
+  margin-right: 0.2em;
+}
+
+@media (max-width: 480px) {
+  .kobayashi {
+    float: none;
+    display: block;
+    margin: auto;
+    width: 80%;
+  }
+}

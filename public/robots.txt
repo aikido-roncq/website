@@ -1,0 +1,7 @@
+Sitemap: https://www.aikido-roncq.fr/sitemap.xml
+
+User-agent: *
+Disallow: /dashboard
+Disallow: /create-article
+Disallow: /create-event
+Disallow: /logout
