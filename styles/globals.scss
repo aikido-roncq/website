@@ -65,6 +65,12 @@ figure {
   max-width: 100%;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  filter: saturate(0);
+  opacity: .5;
+}
+
 iframe {
   border: 0;
 }

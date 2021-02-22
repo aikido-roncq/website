@@ -2,53 +2,66 @@ import { FaCheckCircle } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import styles from '../styles/components/ContactForm.module.scss'
 import { useState } from 'react'
+import Input from './inputs/Input'
+import Button from './inputs/Button'
+import TextArea from './inputs/TextArea'
+import Swal from 'sweetalert2'
+import axios from 'axios'
 
 const API_URL = process.env.API_URL
 
 const ContactForm = () => {
 
   const { register, handleSubmit, reset } = useForm()
-  const [error, setError] = useState(false)
-  const [response, setResponse] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  const onSubmit = (body) => {
-    setLoading(true)
-    fetch(API_URL + '/contact', {
-      body: JSON.stringify(body), method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
+  const handleSuccess = () => {
+    reset()
+    Swal.fire({
+      title: 'Message envoyé !',
+      text: 'Nous avons bien reçu votre message.',
+      icon: 'success',
+      confirmButtonColor: 'green'
     })
-      .then(d => d.json())
-      .then(setResponse)
-      .catch(setError)
+  }
+
+  const handleError = (e) => {
+    const text = Object.values(e.response.data)
+      .map(e => e[0] + '.').join(' ')
+
+    Swal.fire({
+      title: 'Une erreur est survenue',
+      icon: 'error',
+      confirmButtonColor: 'red',
+      text,
+    })
+  }
+
+  const onSubmit = (data) => {
+    setLoading(true)
+    axios.post(`${API_URL}/contact`, data)
+      .then(handleSuccess)
+      .catch(handleError)
       .finally(() => setLoading(false))
   }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 
-      <label htmlFor="name" className="required">Prénom</label>
-      <input type="text" name="name" placeholder="John" id="name" required ref={register({ required: true, maxLength: 50 })} />
+      <Input name="name" label="Prénom" placeholder="John" required
+        ref={register({ required: true, maxLength: 50 })} />
 
-      <label className="required" htmlFor="email">Adresse mail</label>
-      <small>Nécessaire pour vous recontacter</small>
-      <input type="email" name="email" id="email" placeholder="john.doe@gmail.com" spellCheck="false" required ref={register({ required: true })} />
+      <Input name="email" label="Adresse mail" type="email" spellCheck="false"
+        placeholder="john.doe@gmail.com" hint="Nécessaire pour vous recontacter"
+        ref={register({ required: true, maxLength: 60 })} required />
 
-      <label className="required" htmlFor="content">Message</label>
-      <small>20 à 500 caractères</small>
-      <textarea name="content" id="content" minLength="20" maxLength="500" required ref={register({ required: true, minLength: 20 })}></textarea>
-      <div className="progress">
-        <div className="bar"></div>
-      </div>
+      <TextArea name="content" label="Message" minLength={20} maxLength={500}
+        hint="20 à 500 caractères" required
+        ref={register({ required: true, minLength: 20, maxLength: 500 })} />
 
-      <div className="g-recaptcha" data-sitekey=""></div>
-
-      <button className="btn btn-primary" disabled={loading}>
+      <Button disabled={loading}>
         <FaCheckCircle /> Envoyer
-      </button>
-
-      {error && <p style={{ color: 'red' }}>{error.message}</p>}
-      {response && <p>{response.message}</p>}
+      </Button>
     </form>
   )
 }
