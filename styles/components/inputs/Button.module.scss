@@ -12,4 +12,8 @@
   &:hover {
     background: darken(red, 10%);
   }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 .3em rgba(red, .2);
+  }
 }
