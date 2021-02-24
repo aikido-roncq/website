@@ -2,6 +2,7 @@ import Link from '../Link'
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
 import styles from '../../styles/components/Navbar.module.scss'
+import ScrollTop from '../ScrollTop'
 
 const Navbar = () => {
 
@@ -28,6 +29,7 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
+      <ScrollTop />
     </nav>
   )
 }

@@ -1,0 +1,14 @@
+.scroll {
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2em;
+  padding: .5em .6em;
+  transition: 150ms;
+
+  &:hover {
+    box-shadow: 2px 2px 5px rgba(black, .2);
+  }
+}
