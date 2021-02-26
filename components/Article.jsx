@@ -6,9 +6,9 @@ const Article = ({ title, content, date, ...props }) => {
   const dateStr = strftime('%d/%m/%Y', new Date(date))
 
   return (
-    <article className={styles.article} {...props}>
-      <h2>{title}</h2>
-      <small>Posté le {dateStr} </small>
+    <article {...props}>
+      <h2 className={styles.title}>{title}</h2>
+      <small className={styles.date}>Posté le {dateStr}</small>
       <p dangerouslySetInnerHTML={{ __html: content }}></p>
     </article>
   )
