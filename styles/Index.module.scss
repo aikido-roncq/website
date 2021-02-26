@@ -6,3 +6,9 @@
   display: flex;
   gap: 2em;
 }
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}

@@ -58,6 +58,21 @@ export default function Home() {
         ) : (
             <span>Aucun événement à venir.</span>
           )}
+
+        <h1>🔗 Liens utiles</h1>
+
+        <ul className={styles.links}>
+          <li>
+            <Link href="https://www.youtube.com/user/aikidoKAKKHH">
+              Chaîne YouTube de la 3aKH
+            </Link>
+          </li>
+          <li>
+            <Link href="https://aikido-kobayashi.org/">
+              Site officiel de la 3aKH
+            </Link>
+          </li>
+        </ul>
       </div>
     </>
   )
