@@ -1,0 +1,8 @@
+.container > h1:not(:first-of-type) {
+  margin-top: 1.5em;
+}
+
+.networks {
+  display: flex;
+  gap: 2em;
+}

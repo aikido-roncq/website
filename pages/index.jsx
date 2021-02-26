@@ -6,6 +6,7 @@ import Link from '../components/Link'
 import Schedules from '../components/Schedules'
 import Head from 'next/head'
 import axios from 'axios'
+import styles from '../styles/Index.module.scss'
 
 const API_URL = process.env.API_URL
 const FACEBOOK = process.env.FACEBOOK
@@ -30,36 +31,33 @@ export default function Home() {
       <Head>
         <title>Accueil | Aïkido Roncq</title>
       </Head>
-      <div className="container">
-        <div className="articles">
-          <h1>📝 Derniers articles</h1>
-          {articles.length ? (
-            articles.map(a => <Article key={a.slug} {...a} />)
-          ) : (
-              <span>Aucun article récent.</span>
-            )}
-        </div>
-        <div className="social-networks">
-          <h1>👥 Réseaux sociaux</h1>
-          <div className="network">
+      <div className={styles.container}>
+        <h1>📝 Derniers articles</h1>
+        {articles.length ? (
+          articles.map(a => <Article key={a.slug} {...a} />)
+        ) : (
+            <span>Aucun article récent.</span>
+          )}
+
+        <h1>👥 Réseaux sociaux</h1>
+        <div className={styles.networks}>
+          <div>
             <FaFacebook /> <Link href={FACEBOOK}>Facebook</Link>
           </div>
-          <div className="network">
+          <div>
             <FaInstagram /> <Link href={INSTAGRAM}>Instagram</Link>
           </div>
         </div>
-        <div className="schedules">
-          <h1>🕙 Horaires</h1>
-          <Schedules />
-        </div>
-        <div className="events">
-          <h1>📅 Évènements</h1>
-          {events.length ? (
-            events.map(event => <Event key={event.id} {...event} />)
-          ) : (
-              <span>Aucun événement à venir.</span>
-            )}
-        </div>
+
+        <h1>🕙 Horaires</h1>
+        <Schedules />
+
+        <h1>📅 Évènements</h1>
+        {events.length ? (
+          events.map(event => <Event key={event.id} {...event} />)
+        ) : (
+            <span>Aucun événement à venir.</span>
+          )}
       </div>
     </>
   )
