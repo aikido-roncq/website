@@ -22,13 +22,9 @@ const Articles = () => {
 
       {error && <Error msg="Une erreur est survenue. Veuillez réessayer plus tard." />}
 
-      {articles && (
-        <div className={styles.articles}>
-          {articles.map(article => (
-            <Article {...article} key={article.slug} />
-          ))}
-        </div>
-      )}
+      {articles?.map(article => (
+        <Article {...article} key={article.slug} className={styles.article} />
+      ))}
     </>
   )
 }
