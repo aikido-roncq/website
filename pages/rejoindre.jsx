@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import ContactForm from '../components/ContactForm'
-import Map from '../components/Map'
+import ContactForm from 'components/ContactForm'
+import Map from 'components/Map'
 import { MdPhone } from 'react-icons/md'
 import { FaCheckCircle, FaAt, FaUserFriends } from 'react-icons/fa'
-import styles from '../styles/Rejoindre.module.scss'
-import Schedules from '../components/Schedules'
+import styles from 'styles/Rejoindre.module.scss'
+import Schedules from 'components/Schedules'
 
 const FACEBOOK = process.env.FACEBOOK
 const INSTAGRAM = process.env.INSTAGRAM

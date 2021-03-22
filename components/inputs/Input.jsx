@@ -1,4 +1,4 @@
-import styles from '../../styles/components/inputs/Input.module.scss'
+import styles from 'styles/components/inputs/Input.module.scss'
 import React from 'react'
 
 const Input = React.forwardRef((props, ref) => {

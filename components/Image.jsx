@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import styles from '../styles/components/Image.module.scss'
+import styles from 'styles/components/Image.module.scss'
 
 const Image = ({ src, caption, ...other }) => {
   return (

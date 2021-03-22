@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
-import Article from '../components/Article'
-import Event from '../components/Event'
-import Link from '../components/Link'
-import Schedules from '../components/Schedules'
+import Article from 'components/Article'
+import Event from 'components/Event'
+import Link from 'components/Link'
+import Schedules from 'components/Schedules'
 import Head from 'next/head'
 import axios from 'axios'
-import styles from '../styles/Index.module.scss'
+import styles from 'styles/Index.module.scss'
 
 const API_URL = process.env.API_URL
 const FACEBOOK = process.env.FACEBOOK
@@ -36,8 +36,8 @@ export default function Home() {
         {articles.length ? (
           articles.map(a => <Article key={a.slug} {...a} />)
         ) : (
-            <span>Aucun article récent.</span>
-          )}
+          <span>Aucun article récent.</span>
+        )}
 
         <h1>👥 Réseaux sociaux</h1>
         <div className={styles.networks}>
@@ -56,8 +56,8 @@ export default function Home() {
         {events.length ? (
           events.map(event => <Event key={event.id} {...event} />)
         ) : (
-            <span>Aucun événement à venir.</span>
-          )}
+          <span>Aucun événement à venir.</span>
+        )}
 
         <h1>🔗 Liens utiles</h1>
 

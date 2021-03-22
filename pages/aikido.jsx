@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Image from '../components/Image'
+import Image from 'components/Image'
 import { useRef } from 'react'
-import styles from '../styles/Aikido.module.scss'
+import styles from 'styles/Aikido.module.scss'
 
 const LINKS = {
   useshiba: "https://fr.wikipedia.org/wiki/Morihei_Ueshiba",

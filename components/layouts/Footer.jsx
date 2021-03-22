@@ -1,5 +1,5 @@
-import Link from '../../components/Link'
-import styles from '../../styles/components/Footer.module.scss'
+import Link from 'components/Link'
+import styles from 'styles/components/Footer.module.scss'
 import {
   FaFacebook,
   FaInstagram,

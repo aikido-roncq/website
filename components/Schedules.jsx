@@ -1,4 +1,4 @@
-import styles from '../styles/components/Schedules.module.scss'
+import styles from 'styles/components/Schedules.module.scss'
 
 const Schedules = () => {
   return (

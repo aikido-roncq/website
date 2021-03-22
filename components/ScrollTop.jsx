@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { FaChevronUp } from 'react-icons/fa'
-import styles from '../styles/components/ScrollTop.module.scss'
+import styles from 'styles/components/ScrollTop.module.scss'
 
 const THRESHOLD = 300
 

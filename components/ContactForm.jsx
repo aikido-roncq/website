@@ -1,6 +1,6 @@
 import { FaCheckCircle } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
-import styles from '../styles/components/ContactForm.module.scss'
+import styles from 'styles/components/ContactForm.module.scss'
 import { useState } from 'react'
 import Input from './inputs/Input'
 import Button from './inputs/Button'

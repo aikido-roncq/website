@@ -1,4 +1,4 @@
-import styles from '../styles/components/Error.module.scss'
+import styles from 'styles/components/Error.module.scss'
 import { MdError } from 'react-icons/md'
 
 const Error = ({ msg }) => {

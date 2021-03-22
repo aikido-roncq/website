@@ -1,8 +1,8 @@
-import Link from '../Link'
+import Link from 'components/Link'
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
-import styles from '../../styles/components/Navbar.module.scss'
-import ScrollTop from '../ScrollTop'
+import styles from 'styles/components/Navbar.module.scss'
+import ScrollTop from 'components/ScrollTop'
 
 const Navbar = () => {
 

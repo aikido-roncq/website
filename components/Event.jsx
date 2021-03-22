@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import strftime from 'strftime'
 import Button from './inputs/Button'
-import styles from '../styles/components/Event.module.scss'
+import styles from 'styles/components/Event.module.scss'
 
 const DATE_FORMAT = '%d %b'
 
@@ -28,9 +28,9 @@ const Event = ({ title, info, start_date, end_date }) => {
 
   return (
     <div className={styles.container}>
+      <Button onClick={toggleHidden} title="Plus d'infos">+</Button>
       <strong>{makeDateMemo(start_date, end_date)}</strong>
       <span>{title}</span>
-      <Button onClick={toggleHidden} title="Plus d'infos">+</Button>
       <div className={styles.info} hidden={hidden}>
         {info}
       </div>

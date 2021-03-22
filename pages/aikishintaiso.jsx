@@ -1,6 +1,6 @@
-import Image from '../components/Image'
+import Image from 'components/Image'
 import Head from 'next/head'
-import styles from '../styles/Aikido.module.scss'
+import styles from 'styles/Aikido.module.scss'
 
 const Aikishintaiso = () => {
   return (
