@@ -6,8 +6,8 @@
   padding: 1em;
   gap: 1em;
   z-index: 2;
-  font-size: .8em;
-  box-shadow: 0 -2px 4px rgba(black, .2);
+  font-size: 0.8em;
+  box-shadow: 0 -2px 4px rgba(black, 0.2);
 }
 
 .footer ul {
@@ -27,8 +27,8 @@
   &:not(:last-child)::after {
     content: '|';
     position: relative;
-    left: .6em;
-    color: rgba(black, .5);
+    left: 0.6em;
+    color: rgba(black, 0.5);
   }
 }
 
@@ -45,7 +45,7 @@
 }
 
 .scrolltop {
-  padding: .8em;
+  padding: 0.8em;
   font-size: 1.2em;
   transition: 100ms;
   border-radius: 50%;
@@ -56,7 +56,6 @@
 }
 
 @media (max-width: 1024px) {
-
   .footer {
     grid-template-columns: auto;
   }

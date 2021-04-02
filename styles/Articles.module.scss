@@ -1,17 +1,17 @@
 .mainTitle {
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
   margin-bottom: 1em;
-  border-bottom: .2em solid rgb(245, 245, 245);
+  border-bottom: 0.2em solid rgb(245, 245, 245);
 }
 
 .article {
   padding-bottom: 1.2em;
-  
+
   &:not(:first-of-type) {
     padding-top: 1em;
   }
 
   &:not(:last-child) {
-    border-bottom: 1px solid rgba(black, .1);
+    border-bottom: 1px solid rgba(black, 0.1);
   }
 }

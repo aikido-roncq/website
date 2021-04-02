@@ -5,7 +5,6 @@ import styles from 'styles/components/Map.module.scss'
 const MAP_URL = 'https://bit.ly/2C5NLLW'
 
 const Map = () => {
-
   const [loading, setLoading] = useState(true)
 
   const handleLoad = () => setLoading(false)

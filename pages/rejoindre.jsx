@@ -12,7 +12,6 @@ const INSTAGRAM = process.env.INSTAGRAM
 const EMAIL = process.env.EMAIL
 
 const Rejoindre = () => {
-
   return (
     <div className={styles.container}>
       <Head>
@@ -21,18 +20,17 @@ const Rejoindre = () => {
           name="description"
           content="Envie de nous rejoindre ? Toutes les informations
           nécessaires se trouvent sur cette page : adresse, horaires,
-          informations de contact..." />
+          informations de contact..."
+        />
       </Head>
-
 
       <h1 className={styles.title}>ℹ️ Informations</h1>
 
       <p>
-        Cours d'essai <strong>gratuit</strong>! Munissez-vous de vêtements
-        amples (jogging, tee-shirt...) et venez essayer gratuitement l'Aïkido
-        (et/ou l'Aïkishintaïso). 🥋
+        Cours d'essai <strong>gratuit</strong>! Munissez-vous de vêtements amples
+        (jogging, tee-shirt...) et venez essayer gratuitement l'Aïkido (et/ou
+        l'Aïkishintaïso). 🥋
       </p>
-
 
       <h1 className={styles.title}>📍 Adresse</h1>
 
@@ -40,11 +38,9 @@ const Rejoindre = () => {
 
       <Map />
 
-
       <h1 className={styles.title}>🕙 Horaires</h1>
 
       <Schedules />
-
 
       <h1 className={styles.title}>📲 Nous contacter</h1>
 
@@ -57,7 +53,8 @@ const Rejoindre = () => {
       </p>
 
       <p>
-        <FaUserFriends /> Sur <Link href={FACEBOOK}>Facebook</Link> et <Link href={INSTAGRAM}>Instagram</Link>
+        <FaUserFriends /> Sur <Link href={FACEBOOK}>Facebook</Link> et{' '}
+        <Link href={INSTAGRAM}>Instagram</Link>
       </p>
 
       <p>

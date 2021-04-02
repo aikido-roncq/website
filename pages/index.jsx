@@ -13,17 +13,18 @@ const FACEBOOK = process.env.FACEBOOK
 const INSTAGRAM = process.env.INSTAGRAM
 
 export default function Home() {
-
   const [articles, setArticles] = useState([])
   const [events, setEvents] = useState([])
 
   useEffect(() => {
-    axios.get(API_URL + '/articles')
-      .then(res => setArticles(res.data))
-      .catch(e => console.log(e))
-    axios.get(API_URL + '/events')
-      .then(res => setEvents(res.data))
-      .catch(e => console.log(e))
+    axios
+      .get(API_URL + '/articles')
+      .then((res) => setArticles(res.data))
+      .catch((e) => console.log(e))
+    axios
+      .get(API_URL + '/events')
+      .then((res) => setEvents(res.data))
+      .catch((e) => console.log(e))
   }, [])
 
   return (
@@ -34,7 +35,7 @@ export default function Home() {
       <div className={styles.container}>
         <h1>📝 Derniers articles</h1>
         {articles.length ? (
-          articles.map(a => <Article key={a.slug} {...a} />)
+          articles.map((a) => <Article key={a.slug} {...a} />)
         ) : (
           <span>Aucun article récent.</span>
         )}
@@ -54,7 +55,7 @@ export default function Home() {
 
         <h1>📅 Évènements</h1>
         {events.length ? (
-          events.map(event => <Event key={event.id} {...event} />)
+          events.map((event) => <Event key={event.id} {...event} />)
         ) : (
           <span>Aucun événement à venir.</span>
         )}
@@ -68,9 +69,7 @@ export default function Home() {
             </Link>
           </li>
           <li>
-            <Link href="https://aikido-kobayashi.org/">
-              Site officiel de la 3aKH
-            </Link>
+            <Link href="https://aikido-kobayashi.org/">Site officiel de la 3aKH</Link>
           </li>
         </ul>
       </div>

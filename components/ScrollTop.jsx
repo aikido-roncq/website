@@ -5,24 +5,20 @@ import styles from 'styles/components/ScrollTop.module.scss'
 const THRESHOLD = 300
 
 const ScrollTop = () => {
-
   const [hidden, setHidden] = useState(true)
 
   const scrollTop = () => window.scrollTo({ top: 0 })
 
   const handleScroll = () => {
-    if (hidden && window.pageYOffset >= THRESHOLD)
-      setHidden(false)
-    else if (!hidden && window.pageYOffset < THRESHOLD)
-      setHidden(true)
+    if (hidden && window.pageYOffset >= THRESHOLD) setHidden(false)
+    else if (!hidden && window.pageYOffset < THRESHOLD) setHidden(true)
   }
 
   useEffect(() => {
-
-    if (window.visualViewport.width < 900)
-      return
+    if (window.visualViewport.width < 900) return
 
     window.addEventListener('scroll', handleScroll)
+
     return () => window.removeEventListener('scroll', handleScroll)
   }, [hidden])
 

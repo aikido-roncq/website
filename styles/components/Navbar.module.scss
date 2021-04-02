@@ -3,8 +3,8 @@
   top: 0;
   background-color: white;
   z-index: 2;
-  padding: .4em 1em;
-  box-shadow: 0 0 4px rgba(black, .3);
+  padding: 0.4em 1em;
+  box-shadow: 0 0 4px rgba(black, 0.3);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -24,7 +24,7 @@
 .nav li {
   list-style: none;
   transition: 150ms;
-  padding: .2em .6em;
+  padding: 0.2em 0.6em;
   text-align: center;
 
   &:hover {

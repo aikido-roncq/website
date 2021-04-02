@@ -13,7 +13,7 @@
 .link {
   background: red;
   color: white;
-  padding: .4em .8em;
+  padding: 0.4em 0.8em;
   border-radius: 10em;
   font-weight: 600;
   transition: 150ms;
@@ -25,6 +25,6 @@
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 .3em rgba(red, .2);
+    box-shadow: 0 0 0 0.3em rgba(red, 0.2);
   }
 }

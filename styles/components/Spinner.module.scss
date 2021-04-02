@@ -15,7 +15,7 @@
     position: absolute;
     width: 3em;
     height: 3em;
-    border: .6em solid rgba(red, .1);
+    border: 0.6em solid rgba(red, 0.1);
     border-top-color: red;
     border-radius: 10em;
     animation: spin 1s linear infinite;
@@ -23,6 +23,10 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0) }
-  to { transform: rotate(360deg) }
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

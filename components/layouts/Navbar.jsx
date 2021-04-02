@@ -5,7 +5,6 @@ import styles from 'styles/components/Navbar.module.scss'
 import ScrollTop from 'components/ScrollTop'
 
 const Navbar = () => {
-
   const router = useRouter()
 
   const routes = useRef({
@@ -16,9 +15,9 @@ const Navbar = () => {
     '/rejoindre': 'Nous rejoindre',
   })
 
-  const getClassName = route => (isActive(route) ? styles.active : '')
+  const getClassName = (route) => (isActive(route) ? styles.active : '')
 
-  const isActive = route => (route == router.pathname)
+  const isActive = (route) => route == router.pathname
 
   return (
     <nav className={styles.nav}>

@@ -3,13 +3,15 @@ import styles from 'styles/components/Schedules.module.scss'
 const Schedules = () => {
   return (
     <>
-      <p>
-        Cours dispensés par :
-      </p>
+      <p>Cours dispensés par :</p>
 
       <ul>
-        <li><strong>Gaëtano LEUCCI</strong> — 3<sup>ème</sup> Dan</li>
-        <li><strong>Benjamin MARESCAUX</strong> — 1<sup>er</sup> Dan</li>
+        <li>
+          <strong>Gaëtano LEUCCI</strong> — 3<sup>ème</sup> Dan
+        </li>
+        <li>
+          <strong>Benjamin MARESCAUX</strong> — 1<sup>er</sup> Dan
+        </li>
       </ul>
 
       <p>Cours enfants à partir de 6 ans.</p>

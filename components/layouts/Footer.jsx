@@ -5,7 +5,7 @@ import {
   FaInstagram,
   FaGithubAlt,
   FaAt,
-  FaMapMarkerAlt
+  FaMapMarkerAlt,
 } from 'react-icons/fa'
 
 const FACEBOOK = process.env.FACEBOOK
@@ -16,41 +16,38 @@ const links = [
   {
     href: 'https://www.github.com/iamludal',
     text: 'Site réalisé par Ludal',
-    icon: <FaGithubAlt />
+    icon: <FaGithubAlt />,
   },
   {
     href: FACEBOOK,
     text: 'Facebook',
-    icon: <FaFacebook />
+    icon: <FaFacebook />,
   },
   {
     href: INSTAGRAM,
     text: 'Instagram',
-    icon: <FaInstagram />
+    icon: <FaInstagram />,
   },
   {
     href: 'mailto:' + EMAIL,
     text: 'Nous contacter',
-    icon: <FaAt />
+    icon: <FaAt />,
   },
   {
     href: '/rejoindre',
     text: 'Nous rejoindre',
-    icon: <FaMapMarkerAlt />
+    icon: <FaMapMarkerAlt />,
   },
 ]
 
 const Footer = () => {
-
   const year = new Date().getFullYear()
 
   return (
     <footer className={styles.footer}>
       <ul>
-        <li>
-          Copyright © {year} Académie Roncquoise d'Aïkido
-        </li>
-        {links.map(link => (
+        <li>Copyright © {year} Académie Roncquoise d'Aïkido</li>
+        {links.map((link) => (
           <li key={link.href}>
             <Link href={link.href}>
               {link.icon} {link.text}
