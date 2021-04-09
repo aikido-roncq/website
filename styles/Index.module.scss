@@ -1,5 +1,6 @@
 .container {
   display: grid;
+  align-items: start;
   grid-template-columns: 1fr auto;
   gap: 5rem;
 }
