@@ -49,14 +49,9 @@ main a {
 
   &:hover,
   &:active,
-  &:focus,
-  &:not(:focus-visible) {
+  &:focus {
     background: red;
     color: white;
-  }
-
-  &:focus-visible {
-    box-shadow: 0 0 0 0.2em red;
   }
 }
 
