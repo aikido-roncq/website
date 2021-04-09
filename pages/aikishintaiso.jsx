@@ -1,10 +1,11 @@
 import Image from 'components/Image'
+import Layout from 'components/layouts/Layout'
 import Head from 'next/head'
 import styles from 'styles/Aikido.module.scss'
 
 const Aikishintaiso = () => {
   return (
-    <>
+    <Layout>
       <Head>
         <title>Découvrir l'Aïkishintaïso | Aïkido Roncq</title>
         <meta
@@ -29,7 +30,7 @@ const Aikishintaiso = () => {
       </p>
 
       <Image src="/images/aikishintaiso.jpg" />
-    </>
+    </Layout>
   )
 }
 

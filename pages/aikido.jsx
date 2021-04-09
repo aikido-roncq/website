@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'components/Image'
 import { useRef } from 'react'
 import styles from 'styles/Aikido.module.scss'
+import Layout from 'components/layouts/Layout'
 
 const LINKS = {
   useshiba: 'https://fr.wikipedia.org/wiki/Morihei_Ueshiba',
@@ -16,7 +17,7 @@ const Aikido = () => {
   const dnbk = useRef(<abbr title="Dai Nippon Butoku Kai">DNBK</abbr>)
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>Découvrir l'Aïkido | Aïkido Roncq</title>
         <meta name="description" content="Découvrir l'Aïkdo : Qu'est-ce que l'Aïkido?" />
@@ -97,7 +98,7 @@ const Aikido = () => {
       </p>
 
       <Image src="/images/kids.jpg" caption="Noah et Gaëtano - Kihon de base." />
-    </>
+    </Layout>
   )
 }
 

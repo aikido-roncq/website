@@ -6,6 +6,7 @@ import { MdPhone } from 'react-icons/md'
 import { FaCheckCircle, FaAt, FaUserFriends } from 'react-icons/fa'
 import styles from 'styles/Rejoindre.module.scss'
 import Schedules from 'components/Schedules'
+import Layout from 'components/layouts/Layout'
 
 const FACEBOOK = process.env.FACEBOOK
 const INSTAGRAM = process.env.INSTAGRAM
@@ -13,7 +14,7 @@ const EMAIL = process.env.EMAIL
 
 const Rejoindre = () => {
   return (
-    <div className={styles.container}>
+    <Layout maxWidth={40}>
       <Head>
         <title>Nous rejoindre | Aïkido Roncq</title>
         <meta
@@ -62,7 +63,7 @@ const Rejoindre = () => {
       </p>
 
       <ContactForm />
-    </div>
+    </Layout>
   )
 }
 

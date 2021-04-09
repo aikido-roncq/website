@@ -1,0 +1,33 @@
+.container {
+  background-color: white;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.main {
+  padding: 2em 1em;
+  margin: auto;
+
+  a,
+  strong {
+    color: red;
+    font-weight: 500;
+  }
+
+  a {
+    background: rgba(red, 0.05);
+    padding: 0.2em 0.4em;
+    border-radius: 0.4em;
+    transition: all 150ms;
+    outline: none;
+    text-align: center;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: red;
+      color: white;
+    }
+  }
+}

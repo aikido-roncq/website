@@ -7,6 +7,7 @@ import Schedules from 'components/Schedules'
 import Head from 'next/head'
 import axios from 'axios'
 import styles from 'styles/Index.module.scss'
+import Layout from 'components/layouts/Layout'
 
 const API_URL = process.env.API_URL
 const FACEBOOK = process.env.FACEBOOK
@@ -18,17 +19,17 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get(API_URL + '/articles')
+      .get(`${API_URL}/articles`)
       .then((res) => setArticles(res.data))
-      .catch((e) => console.log(e))
+      .catch(() => {})
     axios
-      .get(API_URL + '/events')
+      .get(`${API_URL}/events`)
       .then((res) => setEvents(res.data))
-      .catch((e) => console.log(e))
+      .catch(() => {})
   }, [])
 
   return (
-    <>
+    <Layout maxWidth={60}>
       <Head>
         <title>Accueil | Aïkido Roncq</title>
       </Head>
@@ -73,6 +74,6 @@ export default function Home() {
           </li>
         </ul>
       </div>
-    </>
+    </Layout>
   )
 }

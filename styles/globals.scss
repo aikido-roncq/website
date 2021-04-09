@@ -12,46 +12,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  height: 100%;
-}
-
-.container {
-  background-color: white;
-  position: relative;
-  z-index: 1;
-  flex: 1;
 }
 
 .icon {
   vertical-align: -0.13em;
-}
-
-main {
-  padding: 2em 1em;
-  max-width: 45em;
-  margin: auto;
-}
-
-main a,
-strong {
-  color: red;
-  font-weight: 500;
-}
-
-main a {
-  background: rgba(red, 0.05);
-  padding: 0.2em 0.4em;
-  border-radius: 0.4em;
-  transition: all 150ms;
-  outline: none;
-  text-align: center;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: red;
-    color: white;
-  }
 }
 
 img,
