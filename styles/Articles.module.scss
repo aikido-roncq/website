@@ -4,14 +4,8 @@
   border-bottom: 0.2em solid rgb(245, 245, 245);
 }
 
-.article {
-  padding-bottom: 1.2em;
-
-  &:not(:first-of-type) {
-    padding-top: 1em;
-  }
-
-  &:not(:last-child) {
-    border-bottom: 1px solid rgba(black, 0.1);
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
