@@ -1,4 +1,4 @@
-.container {
+.main {
   display: flex;
   gap: 1em;
   align-items: center;
@@ -6,24 +6,26 @@
   width: 100%;
   gap: 0.4em;
   margin: 0.5em 0;
+  background: rgba(rgb(200, 200, 200), 0.1);
+  padding: 0.6em;
+  border-radius: 0.4em;
+  cursor: pointer;
 
-  span {
+  .title {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
   }
 
-  button {
-    padding: 0;
-    font-size: 1.1em;
-    width: 1.8em;
-    height: 1.8em;
+  .button {
+    color: red;
   }
 }
 
 .info {
-  border-left: 0.2em solid red;
-  padding-left: 0.5em;
+  border-left: 2px solid red;
+  margin-left: 1.5em;
+  padding: 0.4em 0.8em;
   color: rgba(black, 0.7);
   grid-column: span 2;
 }
