@@ -16,7 +16,7 @@ const Articles = () => {
         <title>Articles | Aïkido Roncq</title>
       </Head>
 
-      <h1 className={styles.mainTitle}>📝 Articles</h1>
+      <h2 className={styles.mainTitle}>📝 Articles</h2>
 
       {loading && (
         <p>

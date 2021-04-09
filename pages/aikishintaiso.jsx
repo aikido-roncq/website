@@ -14,7 +14,7 @@ const Aikishintaiso = () => {
         />
       </Head>
 
-      <h1>Qu'est-ce que l'Aïkishintaïso? 🈴</h1>
+      <h2>Qu'est-ce que l'Aïkishintaïso? 🈴</h2>
 
       <p className={styles.firstParagraph}>
         L'Aïkishintaïso est une <strong>pratique corporelle</strong> qui permet de

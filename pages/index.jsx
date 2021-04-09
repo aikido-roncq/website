@@ -34,14 +34,14 @@ export default function Home() {
         <title>Accueil | Aïkido Roncq</title>
       </Head>
       <div className={styles.container}>
-        <h1>📝 Derniers articles</h1>
+        <h2>📝 Derniers articles</h2>
         {articles.length ? (
           articles.map((a) => <Article key={a.slug} {...a} />)
         ) : (
           <span>Aucun article récent.</span>
         )}
 
-        <h1>👥 Réseaux sociaux</h1>
+        <h2>👥 Réseaux sociaux</h2>
         <div className={styles.networks}>
           <div>
             <FaFacebook /> <Link href={FACEBOOK}>Facebook</Link>
@@ -51,17 +51,17 @@ export default function Home() {
           </div>
         </div>
 
-        <h1>🕙 Horaires</h1>
+        <h2>🕙 Horaires</h2>
         <Schedules />
 
-        <h1>📅 Évènements</h1>
+        <h2>📅 Évènements</h2>
         {events.length ? (
           events.map((event) => <Event key={event.id} {...event} />)
         ) : (
           <span>Aucun événement à venir.</span>
         )}
 
-        <h1>🔗 Liens utiles</h1>
+        <h2>🔗 Liens utiles</h2>
 
         <ul className={styles.links}>
           <li>

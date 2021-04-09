@@ -25,7 +25,7 @@ const Rejoindre = () => {
         />
       </Head>
 
-      <h1 className={styles.title}>ℹ️ Informations</h1>
+      <h2 className={styles.title}>ℹ️ Informations</h2>
 
       <p>
         Cours d'essai <strong>gratuit</strong>! Munissez-vous de vêtements amples
@@ -33,17 +33,17 @@ const Rejoindre = () => {
         l'Aïkishintaïso). 🥋
       </p>
 
-      <h1 className={styles.title}>📍 Adresse</h1>
+      <h2 className={styles.title}>📍 Adresse</h2>
 
       <p>La Source, Forum Culturel – 293 Rue de Lille, 59223 Roncq.</p>
 
       <Map />
 
-      <h1 className={styles.title}>🕙 Horaires</h1>
+      <h2 className={styles.title}>🕙 Horaires</h2>
 
       <Schedules />
 
-      <h1 className={styles.title}>📲 Nous contacter</h1>
+      <h2 className={styles.title}>📲 Nous contacter</h2>
 
       <p>
         <MdPhone /> Tél : <Link href="tel:+33608991470">06.08.99.14.70</Link>
