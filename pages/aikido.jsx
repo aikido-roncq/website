@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'components/Image'
 import styles from 'styles/Aikido.module.scss'
 import Layout from 'components/layouts/Layout'
+import Title from 'components/Title'
 
 const LINKS = {
   useshiba: 'https://fr.wikipedia.org/wiki/Morihei_Ueshiba',
@@ -19,7 +20,7 @@ const Aikido = () => (
       <meta name="description" content="Découvrir l'Aïkdo : Qu'est-ce que l'Aïkido?" />
     </Head>
 
-    <h2>Qu'est-ce que l'Aïkido ? 🥋</h2>
+    <Title emoji="🥋">Qu'est-ce que l'Aïkido ?</Title>
 
     <p className={styles.firstParagraph}>
       L’Aïkido est un art martial japonais traditionnel non violent, fondé par Ô sensei{' '}
@@ -79,7 +80,7 @@ const Aikido = () => (
       altesse royale le prince Higashi Fushimi Jigo. 🥷🏽
     </p>
 
-    <h2>L'Aïkido et l'enfant 🧒🏻</h2>
+    <Title emoji="🧒🏻">L'Aïkido et l'enfant</Title>
 
     <p>
       <strong>L'Aïkido</strong>, art pacifique par excellence, exclut toute compétition.

@@ -1,7 +1,8 @@
 import Image from 'components/Image'
 import Layout from 'components/layouts/Layout'
+import Title from 'components/Title'
 import Head from 'next/head'
-import styles from 'styles/Aikido.module.scss'
+import styles from 'styles/Aikishintaiso.module.scss'
 
 const Aikishintaiso = () => {
   return (
@@ -14,7 +15,7 @@ const Aikishintaiso = () => {
         />
       </Head>
 
-      <h2>Qu'est-ce que l'Aïkishintaïso? 🈴</h2>
+      <Title emoji="🈴">Qu'est-ce que l'Aïkishintaïso?</Title>
 
       <p className={styles.firstParagraph}>
         L'Aïkishintaïso est une <strong>pratique corporelle</strong> qui permet de

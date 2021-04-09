@@ -4,6 +4,7 @@ import Article from 'components/Article'
 import Head from 'next/head'
 import styles from 'styles/Articles.module.scss'
 import Layout from 'components/layouts/Layout'
+import Title from 'components/Title'
 
 const API_URL = process.env.API_URL
 
@@ -16,7 +17,7 @@ const Articles = () => {
         <title>Articles | Aïkido Roncq</title>
       </Head>
 
-      <h2 className={styles.mainTitle}>📝 Articles</h2>
+      <Title emoji="📝">Articles</Title>
 
       {loading && (
         <p>

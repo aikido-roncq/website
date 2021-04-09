@@ -1,0 +1,12 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  gap: 1rem;
+
+  .line {
+    flex: 1;
+    height: 1px;
+    border-bottom: 1px solid rgba(black, 0.1);
+  }
+}

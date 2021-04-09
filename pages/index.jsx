@@ -8,6 +8,7 @@ import Head from 'next/head'
 import axios from 'axios'
 import styles from 'styles/Index.module.scss'
 import Layout from 'components/layouts/Layout'
+import Title from 'components/Title'
 
 const API_URL = process.env.API_URL
 const FACEBOOK = process.env.FACEBOOK
@@ -35,7 +36,7 @@ export default function Home() {
       </Head>
       <div className={styles.container}>
         <div className={styles.left}>
-          <h2>📝 Derniers articles</h2>
+          <Title emoji="📝">Derniers articles</Title>
           <div className={styles.articles}>
             {articles.length ? (
               articles.map((article) => <Article key={article.slug} {...article} />)
@@ -47,7 +48,7 @@ export default function Home() {
 
         <div className={styles.right}>
           <div>
-            <h2>👥 Réseaux sociaux</h2>
+            <Title emoji="👥">Réseaux sociaux</Title>
             <div className={styles.networks}>
               <div>
                 <FaFacebook /> <Link href={FACEBOOK}>Facebook</Link>
@@ -59,12 +60,12 @@ export default function Home() {
           </div>
 
           <div>
-            <h2>🕙 Horaires</h2>
+            <Title emoji="🕙">Horaires</Title>
             <Schedules />
           </div>
 
           <div>
-            <h2>📅 Évènements</h2>
+            <Title emoji="📅">Évènements</Title>
             {events.length ? (
               events.map((event) => <Event key={event.id} {...event} />)
             ) : (
@@ -73,7 +74,7 @@ export default function Home() {
           </div>
 
           <div>
-            <h2>🔗 Liens utiles</h2>
+            <Title emoji="🔗">Liens utiles</Title>
             <ul className={styles.links}>
               <li>
                 <Link href="https://www.youtube.com/user/aikidoKAKKHH">
