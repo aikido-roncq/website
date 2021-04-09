@@ -21,7 +21,7 @@ const ROUTES = [
   },
   {
     path: '/rejoindre',
-    label: 'Nous Rejoindre',
+    label: 'Nous rejoindre',
   },
 ]
 
