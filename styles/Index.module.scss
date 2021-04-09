@@ -1,5 +1,14 @@
-.container > h1:not(:first-of-type) {
-  margin-top: 1.5em;
+.container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5rem;
+}
+
+.articles,
+.right {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1.5rem;
 }
 
 .networks {

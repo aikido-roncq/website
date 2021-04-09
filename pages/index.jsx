@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     axios
       .get(`${API_URL}/articles`)
-      .then((res) => setArticles(res.data))
+      .then((res) => setArticles(res.data.slice(0, 3)))
       .catch(() => {})
     axios
       .get(`${API_URL}/events`)
@@ -34,45 +34,58 @@ export default function Home() {
         <title>Accueil | Aïkido Roncq</title>
       </Head>
       <div className={styles.container}>
-        <h2>📝 Derniers articles</h2>
-        {articles.length ? (
-          articles.map((a) => <Article key={a.slug} {...a} />)
-        ) : (
-          <span>Aucun article récent.</span>
-        )}
-
-        <h2>👥 Réseaux sociaux</h2>
-        <div className={styles.networks}>
-          <div>
-            <FaFacebook /> <Link href={FACEBOOK}>Facebook</Link>
-          </div>
-          <div>
-            <FaInstagram /> <Link href={INSTAGRAM}>Instagram</Link>
+        <div className={styles.left}>
+          <h2>📝 Derniers articles</h2>
+          <div className={styles.articles}>
+            {articles.length ? (
+              articles.map((article) => <Article key={article.slug} {...article} />)
+            ) : (
+              <span>Aucun article récent.</span>
+            )}
           </div>
         </div>
 
-        <h2>🕙 Horaires</h2>
-        <Schedules />
+        <div className={styles.right}>
+          <div>
+            <h2>👥 Réseaux sociaux</h2>
+            <div className={styles.networks}>
+              <div>
+                <FaFacebook /> <Link href={FACEBOOK}>Facebook</Link>
+              </div>
+              <div>
+                <FaInstagram /> <Link href={INSTAGRAM}>Instagram</Link>
+              </div>
+            </div>
+          </div>
 
-        <h2>📅 Évènements</h2>
-        {events.length ? (
-          events.map((event) => <Event key={event.id} {...event} />)
-        ) : (
-          <span>Aucun événement à venir.</span>
-        )}
+          <div>
+            <h2>🕙 Horaires</h2>
+            <Schedules />
+          </div>
 
-        <h2>🔗 Liens utiles</h2>
+          <div>
+            <h2>📅 Évènements</h2>
+            {events.length ? (
+              events.map((event) => <Event key={event.id} {...event} />)
+            ) : (
+              <span>Aucun événement à venir.</span>
+            )}
+          </div>
 
-        <ul className={styles.links}>
-          <li>
-            <Link href="https://www.youtube.com/user/aikidoKAKKHH">
-              Chaîne YouTube de la 3aKH
-            </Link>
-          </li>
-          <li>
-            <Link href="https://aikido-kobayashi.org/">Site officiel de la 3aKH</Link>
-          </li>
-        </ul>
+          <div>
+            <h2>🔗 Liens utiles</h2>
+            <ul className={styles.links}>
+              <li>
+                <Link href="https://www.youtube.com/user/aikidoKAKKHH">
+                  Chaîne YouTube de la 3aKH
+                </Link>
+              </li>
+              <li>
+                <Link href="https://aikido-kobayashi.org/">Site officiel de la 3aKH</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </Layout>
   )
