@@ -19,6 +19,13 @@
 
   .button {
     color: red;
+    font-family: monospace;
+    font-size: 1.2rem;
+    margin: 0 0.2rem;
+  }
+
+  .date {
+    opacity: 0.5;
   }
 }
 
@@ -28,9 +35,4 @@
   padding: 0.4em 0.8em;
   color: rgba(black, 0.7);
   grid-column: span 2;
-}
-
-.more {
-  width: 2em;
-  height: 2em;
 }
