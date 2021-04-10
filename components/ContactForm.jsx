@@ -17,8 +17,8 @@ const ContactForm = () => {
   const handleSuccess = () => {
     reset()
     Swal.fire({
-      title: 'Message envoyé !',
-      text: 'Nous avons bien reçu votre message.',
+      title: 'Message envoyé',
+      text: 'Nous avons bien reçu votre message !',
       icon: 'success',
       confirmButtonColor: 'green',
     })
@@ -53,6 +53,7 @@ const ContactForm = () => {
         label="Prénom"
         placeholder="John"
         required
+        maxLength={50}
         ref={register({ required: true, maxLength: 50 })}
       />
 
@@ -63,6 +64,7 @@ const ContactForm = () => {
         spellCheck="false"
         placeholder="john.doe@gmail.com"
         hint="Nécessaire pour vous recontacter"
+        maxLength={60}
         ref={register({ required: true, maxLength: 60 })}
         required
       />
