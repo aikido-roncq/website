@@ -1,15 +1,28 @@
 import { FaHourglassHalf } from 'react-icons/fa'
-import useFetch from 'hooks/useFetch'
 import Article from 'components/Article'
 import Head from 'next/head'
 import styles from 'styles/Articles.module.scss'
 import Layout from 'components/layouts/Layout'
 import Title from 'components/Title'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const API_URL = process.env.API_URL
 
 const Articles = () => {
-  const { result: articles, loading, error } = useFetch(`${API_URL}/articles`)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [articles, setArticles] = useState([])
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/articles`)
+      .then((res) => {
+        setArticles(res.data)
+        setLoading(false)
+      })
+      .catch(() => setError(true))
+  }, [])
 
   return (
     <Layout>
