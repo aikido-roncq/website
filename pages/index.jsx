@@ -16,16 +16,20 @@ const INSTAGRAM = process.env.INSTAGRAM
 export default function Home() {
   const [articles, setArticles] = useState([])
   const [events, setEvents] = useState([])
+  const [articlesLoading, setArticlesLoading] = useState(true)
+  const [eventsLoading, setEventsLoading] = useState(true)
 
   useEffect(() => {
     axios
       .get('/articles')
       .then((res) => setArticles(res.data.slice(0, 3)))
       .catch(() => {})
+      .finally(() => setArticlesLoading(false))
     axios
       .get('/events')
       .then((res) => setEvents(res.data))
       .catch(() => {})
+      .finally(() => setEventsLoading(false))
   }, [])
 
   return (
@@ -39,6 +43,8 @@ export default function Home() {
           <div className={styles.articles}>
             {articles.length ? (
               articles.map((article) => <Article key={article.slug} {...article} />)
+            ) : articlesLoading ? (
+              <span>Chargement des articles...</span>
             ) : (
               <span>Aucun article récent.</span>
             )}
@@ -67,6 +73,8 @@ export default function Home() {
             <Title emoji="📅">Évènements</Title>
             {events.length ? (
               events.map((event) => <Event key={event.id} {...event} />)
+            ) : eventsLoading ? (
+              <span>Chargement des événements...</span>
             ) : (
               <span>Aucun événement à venir.</span>
             )}
