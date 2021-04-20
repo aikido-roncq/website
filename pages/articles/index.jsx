@@ -7,8 +7,6 @@ import Title from 'components/Title'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const API_URL = process.env.API_URL
-
 const Articles = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -16,7 +14,7 @@ const Articles = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/articles`)
+      .get('/articles')
       .then((res) => {
         setArticles(res.data)
         setLoading(false)

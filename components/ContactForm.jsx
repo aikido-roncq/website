@@ -8,8 +8,6 @@ import TextArea from './inputs/TextArea'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 
-const API_URL = process.env.API_URL
-
 const ContactForm = () => {
   const { register, handleSubmit, reset } = useForm()
   const [loading, setLoading] = useState(false)
@@ -40,7 +38,7 @@ const ContactForm = () => {
   const onSubmit = (data) => {
     setLoading(true)
     axios
-      .post(`${API_URL}/contact`, data)
+      .post('/contact', data)
       .then(handleSuccess)
       .catch(handleError)
       .finally(() => setLoading(false))

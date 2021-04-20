@@ -10,7 +10,6 @@ import styles from 'styles/Index.module.scss'
 import Layout from 'components/layouts/Layout'
 import Title from 'components/Title'
 
-const API_URL = process.env.API_URL
 const FACEBOOK = process.env.FACEBOOK
 const INSTAGRAM = process.env.INSTAGRAM
 
@@ -20,11 +19,11 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/articles`)
+      .get('/articles')
       .then((res) => setArticles(res.data.slice(0, 3)))
       .catch(() => {})
     axios
-      .get(`${API_URL}/events`)
+      .get('/events')
       .then((res) => setEvents(res.data))
       .catch(() => {})
   }, [])
