@@ -9,9 +9,7 @@ import styles from 'styles/Index.module.scss'
 import Layout from 'components/layouts/Layout'
 import Title from 'components/Title'
 import Head from 'components/layouts/Head'
-
-const FACEBOOK = process.env.FACEBOOK
-const INSTAGRAM = process.env.INSTAGRAM
+import { FACEBOOK, INSTAGRAM } from 'utils/constants'
 
 export default function Home() {
   const [articles, setArticles] = useState([])

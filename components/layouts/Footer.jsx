@@ -7,10 +7,7 @@ import {
   FaAt,
   FaMapMarkerAlt,
 } from 'react-icons/fa'
-
-const FACEBOOK = process.env.FACEBOOK
-const INSTAGRAM = process.env.INSTAGRAM
-const EMAIL = process.env.EMAIL
+import { FACEBOOK, INSTAGRAM, EMAIL } from 'utils/constants'
 
 const links = [
   {

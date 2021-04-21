@@ -8,10 +8,7 @@ import styles from 'styles/Rejoindre.module.scss'
 import Schedules from 'components/Schedules'
 import Layout from 'components/layouts/Layout'
 import Title from 'components/Title'
-
-const FACEBOOK = process.env.FACEBOOK
-const INSTAGRAM = process.env.INSTAGRAM
-const EMAIL = process.env.EMAIL
+import { FACEBOOK, INSTAGRAM, EMAIL } from 'utils/constants'
 
 const Rejoindre = () => {
   return (
