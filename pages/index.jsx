@@ -44,7 +44,7 @@ export default function Home() {
 
       <div className={styles.container}>
         <div className={styles.left}>
-          <Title emoji="📝">Derniers articles</Title>
+          <Title emoji="📰">Derniers articles</Title>
           <div className={styles.articles}>
             {articles.length ? (
               articles.map((article) => <Article key={article.slug} {...article} />)

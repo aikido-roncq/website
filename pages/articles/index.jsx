@@ -29,7 +29,7 @@ const Articles = () => {
         description="Tous les articles de l'Académie Roncquoïse d'Aïkido."
       />
 
-      <Title emoji="📝">Articles</Title>
+      <Title emoji="📰">Articles</Title>
 
       {loading && <p>Chargement des articles...</p>}
 
