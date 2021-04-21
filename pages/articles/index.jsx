@@ -30,11 +30,7 @@ const Articles = () => {
 
       <Title emoji="📝">Articles</Title>
 
-      {loading && (
-        <p>
-          <FaHourglassHalf /> Chargement des articles...
-        </p>
-      )}
+      {loading && <p>Chargement des articles...</p>}
 
       {error && <p>Une erreur est survenue. Veuillez réessayer plus tard.</p>}
 
