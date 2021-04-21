@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'components/layouts/Head'
 import Image from 'components/Image'
 import styles from 'styles/Aikido.module.scss'
 import Layout from 'components/layouts/Layout'
@@ -15,10 +15,7 @@ const LINKS = {
 
 const Aikido = () => (
   <Layout>
-    <Head>
-      <title>Découvrir l'Aïkido | Aïkido Roncq</title>
-      <meta name="description" content="Découvrir l'Aïkdo : Qu'est-ce que l'Aïkido?" />
-    </Head>
+    <Head title="Découvrir l'Aïkido" description="Qu'est-ce que l'Aïkido ?" />
 
     <Title emoji="🥋">Qu'est-ce que l'Aïkido ?</Title>
 

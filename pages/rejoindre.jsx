@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'components/layouts/Head'
 import Link from 'next/link'
 import ContactForm from 'components/ContactForm'
 import Map from 'components/Map'
@@ -16,15 +16,13 @@ const EMAIL = process.env.EMAIL
 const Rejoindre = () => {
   return (
     <Layout maxWidth={40}>
-      <Head>
-        <title>Nous rejoindre | Aïkido Roncq</title>
-        <meta
-          name="description"
-          content="Envie de nous rejoindre ? Toutes les informations
-          nécessaires se trouvent sur cette page : adresse, horaires,
-          informations de contact..."
-        />
-      </Head>
+      <Head
+        title="Nous rejoindre"
+        description={
+          'Envie de nous rejoindre ? Toutes les informations nécessaires se trouvent ' +
+          'sur cette page : adresse, horaires, informations de contact...'
+        }
+      />
 
       <div className={styles.container}>
         <div>

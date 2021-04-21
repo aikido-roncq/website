@@ -4,11 +4,11 @@ import Article from 'components/Article'
 import Event from 'components/Event'
 import Link from 'components/Link'
 import Schedules from 'components/Schedules'
-import Head from 'next/head'
 import axios from 'axios'
 import styles from 'styles/Index.module.scss'
 import Layout from 'components/layouts/Layout'
 import Title from 'components/Title'
+import Head from 'components/layouts/Head'
 
 const FACEBOOK = process.env.FACEBOOK
 const INSTAGRAM = process.env.INSTAGRAM
@@ -34,9 +34,14 @@ export default function Home() {
 
   return (
     <Layout maxWidth={60}>
-      <Head>
-        <title>Accueil | Aïkido Roncq</title>
-      </Head>
+      <Head
+        title="Accueil"
+        description={
+          "Site web officiel de l'Académie Roncquoise d'Aïkido. Soyez informés des " +
+          "dernières actualités du club d'Aïkido de Roncq et des prochains évènements."
+        }
+      />
+
       <div className={styles.container}>
         <div className={styles.left}>
           <Title emoji="📝">Derniers articles</Title>

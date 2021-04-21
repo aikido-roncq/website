@@ -1,21 +1,18 @@
 import Image from 'components/Image'
 import Layout from 'components/layouts/Layout'
 import Title from 'components/Title'
-import Head from 'next/head'
+import Head from 'components/layouts/Head'
 import styles from 'styles/Aikishintaiso.module.scss'
 
 const Aikishintaiso = () => {
   return (
     <Layout>
-      <Head>
-        <title>Découvrir l'Aïkishintaïso | Aïkido Roncq</title>
-        <meta
-          name="description"
-          content="Découvrir l'Aïkishintaïso : Qu'est-ce que l'Aïkishintaïso?"
-        />
-      </Head>
+      <Head
+        title="Découvrir l'Aïkishintaïso"
+        description="Qu'est-ce que l'Aïkishintaïso ?"
+      />
 
-      <Title emoji="🈴">Qu'est-ce que l'Aïkishintaïso?</Title>
+      <Title emoji="🈴">Qu'est-ce que l'Aïkishintaïso ?</Title>
 
       <p className={styles.firstParagraph}>
         L'Aïkishintaïso est une <strong>pratique corporelle</strong> qui permet de
