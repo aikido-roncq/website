@@ -1,5 +1,7 @@
+@import '../../vars';
+
 .btn {
-  background: red;
+  background: $color-main;
   color: white;
   padding: 0.6em 1.2em;
   font-weight: 600;
@@ -9,10 +11,14 @@
   transition: 150ms;
 
   &:hover {
-    background: darken(red, 10%);
+    background: $color-main-darker;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.3em $color-main-transparent;
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 0.3em rgba(red, 0.2);
+    box-shadow: 0 0 0 0.15em black;
   }
 }
