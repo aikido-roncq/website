@@ -1,7 +1,7 @@
 .container {
   display: grid;
   align-items: start;
-  grid-template-columns: 1fr max-content;
+  grid-template-columns: 1fr auto;
   gap: 5rem;
 }
 
@@ -10,6 +10,10 @@
   display: grid;
   grid-auto-flow: row;
   gap: 1.5rem;
+}
+
+.right {
+  max-width: 25em;
 }
 
 .networks {
@@ -31,5 +35,9 @@
     grid-template-columns: 1fr;
     max-width: 40rem;
     gap: 1.5rem;
+  }
+
+  .right {
+    max-width: unset;
   }
 }

@@ -1,7 +1,8 @@
 @import '../vars';
 
 .main {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   gap: 1em;
   align-items: center;
   position: relative;
