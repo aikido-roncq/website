@@ -2,7 +2,12 @@
 
 Website of the Roncq's aïkido club.
 
-## Run the projet
+## 📚 Prerequisites
+
+- [Node.js](https://nodejs.org/en/)
+- [yarn](https://yarnpkg.com/getting-started/install)
+
+## ▶ Run the projet
 
 ```bash
 yarn dev
