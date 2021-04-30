@@ -13,7 +13,7 @@ const Event = ({ title, info, start_date, end_date }) => {
         <span title="Plus d'infos" className={styles.button}>
           {hidden ? '+' : '-'}
         </span>
-        <span className={styles.title}>{title}</span>•
+        <span className={styles.title}>{title}</span>
         <span className={styles.date}>{dateRangeStr}</span>
       </div>
       <div className={styles.info} hidden={hidden}>
