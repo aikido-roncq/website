@@ -1,0 +1,4 @@
+$fonts: 'Montserrat', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+$color-main: rgb(240, 0, 0);
+$color-main-darker: darken($color-main, 5%);
+$color-main-transparent: transparentize($color-main, 0.95);

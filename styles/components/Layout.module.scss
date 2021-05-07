@@ -1,3 +1,5 @@
+@import '../vars';
+
 .container {
   background-color: white;
   position: relative;
@@ -11,12 +13,12 @@
 
   a,
   strong {
-    color: red;
+    color: $color-main;
     font-weight: 500;
   }
 
   a {
-    background: rgba(red, 0.05);
+    background: $color-main-transparent;
     padding: 0.2em 0.4em;
     border-radius: 0.4em;
     transition: all 150ms;
@@ -26,7 +28,7 @@
     &:hover,
     &:active,
     &:focus {
-      background: red;
+      background: $color-main;
       color: white;
     }
   }

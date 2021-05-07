@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import Article from 'components/Article'
 import Event from 'components/Event'
@@ -10,12 +10,25 @@ import Layout from 'components/layouts/Layout'
 import Title from 'components/Title'
 import Head from 'components/layouts/Head'
 import { FACEBOOK, INSTAGRAM } from 'utils/constants'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import SwiperCore, { Autoplay, Keyboard, Mousewheel, Pagination } from 'swiper'
+import Image from 'components/Image'
+import 'swiper/swiper-bundle.min.css'
+
+const API_URL = process.env.API_URL
+
+SwiperCore.use([Keyboard, Mousewheel, Autoplay, Pagination])
 
 export default function Home() {
   const [articles, setArticles] = useState([])
   const [events, setEvents] = useState([])
+  const [gallery, setGallery] = useState([])
+
   const [articlesLoading, setArticlesLoading] = useState(true)
   const [eventsLoading, setEventsLoading] = useState(true)
+  const [galleryLoading, setGalleryLoading] = useState(true)
+
+  const pagination = useRef(null)
 
   useEffect(() => {
     axios
@@ -28,6 +41,11 @@ export default function Home() {
       .then((res) => setEvents(res.data))
       .catch(() => {})
       .finally(() => setEventsLoading(false))
+    axios
+      .get('/gallery')
+      .then((res) => setGallery(res.data))
+      .catch(() => {})
+      .finally(() => setGalleryLoading(false))
   }, [])
 
   return (
@@ -47,9 +65,9 @@ export default function Home() {
             {articles.length ? (
               articles.map((article) => <Article key={article.slug} {...article} />)
             ) : articlesLoading ? (
-              <span>Chargement des articles...</span>
+              <p>Chargement des articles...</p>
             ) : (
-              <span>Aucun article récent.</span>
+              <p>Aucun article récent.</p>
             )}
           </div>
         </div>
@@ -77,9 +95,9 @@ export default function Home() {
             {events.length ? (
               events.map((event) => <Event key={event.id} {...event} />)
             ) : eventsLoading ? (
-              <span>Chargement des événements...</span>
+              <p>Chargement des événements...</p>
             ) : (
-              <span>Aucun événement à venir.</span>
+              <p>Aucun événement à venir.</p>
             )}
           </div>
 
@@ -96,6 +114,35 @@ export default function Home() {
               </li>
             </ul>
           </div>
+        </div>
+        <div className={styles.gallery}>
+          <Title emoji="📸">Galerie</Title>
+          {gallery.length > 0 ? (
+            <Swiper
+              centeredSlides
+              keyboard
+              mousewheel
+              pagination={{ el: pagination.current }}
+              className={styles.swiper}
+              slidesPerView={1}
+              spaceBetween={20}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: true,
+              }}
+            >
+              {gallery.map((image) => (
+                <SwiperSlide key={image.src}>
+                  <Image src={`${API_URL}/${image.src}`} caption={image.caption} />
+                </SwiperSlide>
+              ))}
+              <div className={styles.pagination} ref={pagination}></div>
+            </Swiper>
+          ) : galleryLoading ? (
+            <p>Chargement de la galerie en cours...</p>
+          ) : (
+            <p>Aucune photo.</p>
+          )}
         </div>
       </div>
     </Layout>

@@ -1,4 +1,4 @@
-@import '../../vars.scss';
+@import '../../vars';
 
 .container {
   position: relative;
@@ -52,5 +52,5 @@
   top: 0;
   left: 0;
   bottom: 0;
-  background: red;
+  background: $color-main;
 }

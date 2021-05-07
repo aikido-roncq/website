@@ -1,3 +1,5 @@
+@import 'vars';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -11,9 +13,9 @@
 }
 
 .link {
-  background: red;
+  background: $color-main;
   color: white;
-  padding: 0.4em 0.8em;
+  padding: 0.5em 1em;
   border-radius: 10em;
   font-weight: 600;
   transition: 150ms;
@@ -21,10 +23,10 @@
 
   &:hover,
   &:active {
-    background: rgb(210, 0, 0);
+    background: $color-main-darker;
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 0.3em rgba(red, 0.2);
+    box-shadow: 0 0 0 0.2em black;
   }
 }

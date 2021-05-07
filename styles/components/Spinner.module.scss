@@ -1,3 +1,5 @@
+@import '../vars';
+
 .spinner {
   position: absolute;
   top: 0;
@@ -15,8 +17,8 @@
     position: absolute;
     width: 3em;
     height: 3em;
-    border: 0.6em solid rgba(red, 0.1);
-    border-top-color: red;
+    border: 0.6em solid $color-main-transparent;
+    border-top-color: $color-main;
     border-radius: 10em;
     animation: spin 1s linear infinite;
   }

@@ -1,5 +1,8 @@
+@import '../vars';
+
 .main {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   gap: 1em;
   align-items: center;
   position: relative;
@@ -18,7 +21,7 @@
   }
 
   .button {
-    color: red;
+    color: $color-main;
     font-family: monospace;
     font-size: 1.2rem;
     margin: 0 0.2rem;
@@ -30,7 +33,7 @@
 }
 
 .info {
-  border-left: 2px solid red;
+  border-left: 2px solid $color-main;
   margin-left: 1.5em;
   padding: 0.4em 0.8em;
   color: rgba(black, 0.7);

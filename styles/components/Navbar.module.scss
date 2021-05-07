@@ -1,9 +1,11 @@
+@import '../vars';
+
 .nav {
   position: sticky;
   top: 0;
   background-color: white;
   z-index: 2;
-  padding: 0.4em 1em;
+  padding: 0.2em 1em;
   box-shadow: 0 0 4px rgba(black, 0.2);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -24,15 +26,18 @@
 .nav li {
   list-style: none;
   transition: 150ms;
-  padding: 0.2em 0.6em;
   text-align: center;
 
+  a {
+    padding: 0.4em 0.6em;
+  }
+
   &:hover {
-    color: red;
+    color: $color-main;
   }
 
   &.active {
-    background-color: red;
+    background-color: $color-main;
     color: white;
     font-weight: 600;
     border-radius: 100em;
