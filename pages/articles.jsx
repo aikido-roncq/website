@@ -15,11 +15,9 @@ const Articles = () => {
   useEffect(() => {
     axios
       .get('/articles')
-      .then((res) => {
-        setArticles(res.data)
-        setLoading(false)
-      })
+      .then((res) => setArticles(res.data))
       .catch(() => setError(true))
+      .finally(() => setLoading(false))
   }, [])
 
   return (
