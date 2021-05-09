@@ -34,17 +34,17 @@ export default function Home() {
     axios
       .get('/articles')
       .then((res) => setArticles(res.data.slice(0, 3)))
-      .catch(() => {})
+      .catch(console.error)
       .finally(() => setArticlesLoading(false))
     axios
       .get('/events')
       .then((res) => setEvents(res.data))
-      .catch(() => {})
+      .catch(console.error)
       .finally(() => setEventsLoading(false))
     axios
       .get('/gallery')
       .then((res) => setGallery(res.data))
-      .catch(() => {})
+      .catch(console.error)
       .finally(() => setGalleryLoading(false))
   }, [])
 
