@@ -1,7 +1,6 @@
 @import '../vars';
 
 .nav {
-  position: sticky;
   top: 0;
   background-color: white;
   z-index: 2;
@@ -41,5 +40,11 @@
     color: white;
     font-weight: 600;
     border-radius: 100em;
+  }
+}
+
+@media (min-width: 760px) {
+  .nav {
+    position: sticky;
   }
 }
