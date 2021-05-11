@@ -15,9 +15,9 @@ const Event = ({ title, info, start_date, end_date }) => {
         </span>
         <span className={styles.title}>{title}</span>
         <span className={styles.date}>{dateRangeStr}</span>
-      </div>
-      <div className={styles.info} hidden={hidden}>
-        {info}
+        <div className={styles.info} hidden={hidden}>
+          {info}
+        </div>
       </div>
     </div>
   )
