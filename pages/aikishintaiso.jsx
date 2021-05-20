@@ -1,8 +1,8 @@
-import Image from 'components/Image'
-import Layout from 'components/layouts/Layout'
-import Title from 'components/Title'
-import Head from 'components/layouts/Head'
-import styles from 'styles/Aikishintaiso.module.scss'
+import Image from '@/components/Image'
+import Layout from '@/components/layouts/Layout'
+import Title from '@/components/Title'
+import Head from '@/components/layouts/Head'
+import styles from '@/styles/Aikishintaiso.module.scss'
 
 const Aikishintaiso = () => {
   return (

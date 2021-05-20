@@ -1,8 +1,8 @@
-import Article from 'components/Article'
-import Head from 'components/layouts/Head'
-import styles from 'styles/Articles.module.scss'
-import Layout from 'components/layouts/Layout'
-import Title from 'components/Title'
+import Article from '@/components/Article'
+import Head from '@/components/layouts/Head'
+import styles from '@/styles/Articles.module.scss'
+import Layout from '@/components/layouts/Layout'
+import Title from '@/components/Title'
 import { useEffect, useState } from 'react'
 
 import axios from 'axios'

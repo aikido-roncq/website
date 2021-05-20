@@ -1,4 +1,4 @@
-import styles from 'styles/components/Title.module.scss'
+import styles from '@/styles/components/Title.module.scss'
 
 const Title = ({ emoji, children }) => (
   <h2 className={styles.title}>

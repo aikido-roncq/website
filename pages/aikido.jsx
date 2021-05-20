@@ -1,8 +1,8 @@
-import Head from 'components/layouts/Head'
-import Image from 'components/Image'
-import styles from 'styles/Aikido.module.scss'
-import Layout from 'components/layouts/Layout'
-import Title from 'components/Title'
+import Head from '@/components/layouts/Head'
+import Image from '@/components/Image'
+import styles from '@/styles/Aikido.module.scss'
+import Layout from '@/components/layouts/Layout'
+import Title from '@/components/Title'
 
 const LINKS = {
   useshiba: 'https://fr.wikipedia.org/wiki/Morihei_Ueshiba',

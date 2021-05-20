@@ -1,4 +1,4 @@
-import styles from 'styles/components/inputs/TextArea.module.scss'
+import styles from '@/styles/components/inputs/TextArea.module.scss'
 import React, { useState } from 'react'
 
 const TextArea = (props, ref) => {

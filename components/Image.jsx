@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
-import styles from 'styles/components/Image.module.scss'
+import styles from '@/styles/components/Image.module.scss'
 import Spinner from './Spinner'
 
 const Image = ({ src, caption, ...other }) => {

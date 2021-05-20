@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Spinner from './Spinner'
-import styles from 'styles/components/Map.module.scss'
+import styles from '@/styles/components/Map.module.scss'
 
 const MAP_URL = 'https://bit.ly/2C5NLLW'
 

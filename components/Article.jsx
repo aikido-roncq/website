@@ -1,4 +1,4 @@
-import styles from 'styles/components/Article.module.scss'
+import styles from '@/styles/components/Article.module.scss'
 import strftime from 'strftime'
 
 const Article = ({ title, content, date, ...props }) => {

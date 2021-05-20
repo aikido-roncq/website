@@ -1,4 +1,4 @@
-import styles from 'styles/components/Spinner.module.scss'
+import styles from '@/styles/components/Spinner.module.scss'
 
 const Spinner = () => {
   return <div className={styles.spinner}></div>

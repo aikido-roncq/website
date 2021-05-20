@@ -1,6 +1,6 @@
-import Link from 'components/Link'
+import Link from '@/components/Link'
 import { useRouter } from 'next/router'
-import styles from 'styles/components/Navbar.module.scss'
+import styles from '@/styles/components/Navbar.module.scss'
 
 const ROUTES = [
   {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { dateRangeToStr } from 'utils/date'
-import styles from 'styles/components/Event.module.scss'
+import { dateRangeToStr } from '@/utils/date'
+import styles from '@/styles/components/Event.module.scss'
 
 const Event = ({ title, info, start_date, end_date }) => {
   const [hidden, setHidden] = useState(true)

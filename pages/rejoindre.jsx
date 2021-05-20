@@ -1,14 +1,14 @@
-import Head from 'components/layouts/Head'
+import Head from '@/components/layouts/Head'
 import Link from 'next/link'
-import ContactForm from 'components/ContactForm'
-import Map from 'components/Map'
+import ContactForm from '@/components/ContactForm'
+import Map from '@/components/Map'
 import { MdPhone } from 'react-icons/md'
 import { FaCheckCircle, FaAt, FaUserFriends } from 'react-icons/fa'
-import styles from 'styles/Rejoindre.module.scss'
-import Schedules from 'components/Schedules'
-import Layout from 'components/layouts/Layout'
-import Title from 'components/Title'
-import { FACEBOOK, INSTAGRAM, EMAIL } from 'utils/constants'
+import styles from '@/styles/Rejoindre.module.scss'
+import Schedules from '@/components/Schedules'
+import Layout from '@/components/layouts/Layout'
+import Title from '@/components/Title'
+import { FACEBOOK, INSTAGRAM, EMAIL } from '@/utils/constants'
 
 const Rejoindre = () => {
   return (
