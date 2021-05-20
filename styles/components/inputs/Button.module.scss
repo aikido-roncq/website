@@ -9,6 +9,7 @@
   border: none;
   border-radius: 10em;
   transition: 150ms;
+  font-family: $fonts;
 
   &:hover {
     background: $color-main-darker;
