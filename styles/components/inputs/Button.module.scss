@@ -1,15 +1,20 @@
 @import '../../vars';
 
 .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8em;
   background: $color-main;
   color: white;
-  padding: 0.6em 1.2em;
+  padding: 0.8em 2em;
   font-weight: 600;
   outline: none;
   border: none;
-  border-radius: 10em;
+  border-radius: 1em;
   transition: 150ms;
   font-family: $fonts;
+  align-self: center;
 
   &:hover {
     background: $color-main-darker;
@@ -21,5 +26,23 @@
 
   &:focus-visible {
     box-shadow: 0 0 0 0.15em black;
+  }
+}
+
+.loader {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  border: 0.2rem solid rgba(white, 0.2);
+  border-top-color: white;
+  animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
