@@ -7,6 +7,7 @@ import {
   FaAt,
   FaMapMarkerAlt,
 } from 'react-icons/fa'
+import { MdPowerSettingsNew } from 'react-icons/md'
 import { FACEBOOK, INSTAGRAM, EMAIL } from 'utils/constants'
 
 const links = [
@@ -34,6 +35,11 @@ const links = [
     href: '/rejoindre',
     text: 'Nous rejoindre',
     icon: <FaMapMarkerAlt />,
+  },
+  {
+    href: '/login',
+    text: 'Connexion',
+    icon: <MdPowerSettingsNew />,
   },
 ]
 
