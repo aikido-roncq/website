@@ -1,22 +1,16 @@
 import { useState } from 'react'
-import Cookies from 'js-cookie'
-
-const TOKEN_KEY = 'token'
+import Auth from '@/utils/auth'
 
 const useToken = () => {
-  const getToken = () => {
-    return Cookies.get(TOKEN_KEY)
-  }
-
-  const [token, setToken] = useState(getToken())
+  const [token, setToken] = useState(Auth.token)
 
   const saveToken = (localToken) => {
-    Cookies.set(TOKEN_KEY, localToken, { expires: 7 })
+    Auth.saveToken(localToken)
     setToken(localToken)
   }
 
   const clearToken = () => {
-    Cookies.remove(TOKEN_KEY)
+    Auth.clearToken()
     setToken(null)
   }
 
