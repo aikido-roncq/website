@@ -7,6 +7,7 @@ import axios from 'axios'
 import { MdLock } from 'react-icons/md'
 import Router from 'next/router'
 import useToken from '@/hooks/useToken'
+import Head from '@/components/layouts/Head'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
@@ -42,6 +43,8 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
+      <Head title="Connexion" description="Page de connexion" />
+
       <h1>🔒 Connexion</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
