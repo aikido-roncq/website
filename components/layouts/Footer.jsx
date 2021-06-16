@@ -1,5 +1,8 @@
 import Link from '@/components/Link'
+import AuthContext from '@/contexts/auth-context'
 import styles from '@/styles/components/Footer.module.scss'
+import { useEffect } from 'react'
+import { useContext } from 'react'
 import {
   FaFacebook,
   FaInstagram,
@@ -36,15 +39,21 @@ const links = [
     text: 'Nous rejoindre',
     icon: <FaMapMarkerAlt />,
   },
-  {
-    href: '/login',
-    text: 'Connexion',
-    icon: <MdPowerSettingsNew />,
-  },
 ]
 
 const Footer = () => {
   const year = new Date().getFullYear()
+  const { isLoggedIn } = useContext(AuthContext)
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      links.push({
+        href: '/login',
+        text: 'Connexion',
+        icon: <MdPowerSettingsNew />,
+      })
+    }
+  }, [])
 
   return (
     <footer className={styles.footer}>
