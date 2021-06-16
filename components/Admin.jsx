@@ -1,14 +1,17 @@
+import AuthContext from '@/contexts/auth-context'
 import Router from 'next/router'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 
-const Admin = ({ token, children }) => {
+const Admin = ({ children }) => {
+  const auth = useContext(AuthContext)
+
   useEffect(() => {
-    if (!token) {
+    if (!auth.isLoggedIn) {
       Router.push('/login')
     }
-  })
+  }, [auth])
 
-  if (!token) {
+  if (!auth.isLoggedIn) {
     return null
   }
 

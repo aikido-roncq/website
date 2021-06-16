@@ -1,14 +1,17 @@
 import Admin from '@/components/Admin'
 import Button from '@/components/inputs/Button'
-import useToken from '@/hooks/useToken'
+import AuthContext from '@/contexts/auth-context'
+import Head from '@/components/layouts/Head'
+import { useContext } from 'react'
 
 const Dashboard = () => {
-  const { token, clearToken } = useToken()
+  const auth = useContext(AuthContext)
 
   return (
-    <Admin token={token}>
+    <Admin>
+      <Head title="Tableau de bord" />
       <h1>Dashboard</h1>
-      <Button onClick={clearToken}>Déconnexion</Button>
+      <Button onClick={() => auth.logout()}>Déconnexion</Button>
     </Admin>
   )
 }

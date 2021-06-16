@@ -1,14 +1,16 @@
 import axios from 'axios'
-import Auth from './auth'
+import Cookies from 'js-cookie'
+import { TOKEN_KEY } from './constants'
 
-axios.defaults.baseURL = process.env.API_URL
+const tokenInterceptor = (config) => {
+  const token = Cookies.get(TOKEN_KEY)
 
-axios.interceptors.request.use((config) => {
-  const token = Auth.token
-
-  if (token) {
+  if (token != null) {
     config.headers.Authorization = `Bearer ${token}`
   }
 
   return config
-})
+}
+
+axios.defaults.baseURL = process.env.API_URL
+axios.interceptors.request.use(tokenInterceptor)

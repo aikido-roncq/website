@@ -1,18 +1,20 @@
 import Button from '@/components/inputs/Button'
 import Input from '@/components/inputs/Input'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styles from '@/styles/Login.module.scss'
 import axios from 'axios'
 import { MdLock } from 'react-icons/md'
 import Router from 'next/router'
-import useToken from '@/hooks/useToken'
 import Head from '@/components/layouts/Head'
+import AuthContext from '@/contexts/auth-context'
+import Alert from '@material-ui/lab/Alert'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
-  const { token, saveToken } = useToken()
+  const [error, setError] = useState(null)
   const { register, handleSubmit } = useForm()
+  const auth = useContext(AuthContext)
 
   const onSubmit = (data) => {
     const { login, password } = data
@@ -26,18 +28,24 @@ const Login = () => {
         Authorization: `Basic ${encodedCredentials}`,
       },
     })
-      .then((res) => saveToken(res.data.token))
-      .catch(console.error)
+      .then((res) => auth.setToken(res.data.token))
+      .catch((e) => {
+        if (e.response?.status === 401) {
+          setError("Nom d'utilisateur ou mot de passe incorrect")
+        } else {
+          setError('Une erreur est survenue. Veuillez réessayer plus tard.')
+        }
+      })
       .finally(() => setLoading(false))
   }
 
   useEffect(() => {
-    if (token) {
+    if (auth.isLoggedIn) {
       Router.push('/dashboard')
     }
-  }, [token])
+  }, [auth])
 
-  if (token) {
+  if (auth.isLoggedIn) {
     return null
   }
 
@@ -46,6 +54,12 @@ const Login = () => {
       <Head title="Connexion" description="Page de connexion" />
 
       <h1>🔒 Connexion</h1>
+
+      {error && (
+        <Alert severity="error" className={styles.alert}>
+          {error}
+        </Alert>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <Input name="login" label="Nom d'utilisateur" required ref={register()} />
