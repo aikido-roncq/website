@@ -42,23 +42,22 @@ const LINKS = [
   },
 ]
 
+const LOGIN = [
+  {
+    href: '/login',
+    text: 'Connexion',
+    icon: <MdPowerSettingsNew />,
+  },
+]
+
 const Footer = () => {
   const year = new Date().getFullYear()
   const { isLoggedIn } = useContext(AuthContext)
   const [links, setLinks] = useState(LINKS)
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      setLinks((oldLinks) => [
-        ...oldLinks,
-        {
-          href: '/login',
-          text: 'Connexion',
-          icon: <MdPowerSettingsNew />,
-        },
-      ])
-    }
-  }, [])
+    setLinks(isLoggedIn ? LINKS : LINKS + LOGIN)
+  }, [isLoggedIn])
 
   return (
     <footer className={styles.footer}>
