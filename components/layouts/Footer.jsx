@@ -1,6 +1,7 @@
 import Link from '@/components/Link'
 import AuthContext from '@/contexts/auth-context'
 import styles from '@/styles/components/Footer.module.scss'
+import { useState } from 'react'
 import { useEffect } from 'react'
 import { useContext } from 'react'
 import {
@@ -13,7 +14,7 @@ import {
 import { MdPowerSettingsNew } from 'react-icons/md'
 import { FACEBOOK, INSTAGRAM, EMAIL } from 'utils/constants'
 
-const links = [
+const LINKS = [
   {
     href: 'https://www.github.com/iamludal',
     text: 'Site réalisé par Ludal',
@@ -44,14 +45,18 @@ const links = [
 const Footer = () => {
   const year = new Date().getFullYear()
   const { isLoggedIn } = useContext(AuthContext)
+  const [links, setLinks] = useState(LINKS)
 
   useEffect(() => {
     if (!isLoggedIn) {
-      links.push({
-        href: '/login',
-        text: 'Connexion',
-        icon: <MdPowerSettingsNew />,
-      })
+      setLinks((oldLinks) => [
+        ...oldLinks,
+        {
+          href: '/login',
+          text: 'Connexion',
+          icon: <MdPowerSettingsNew />,
+        },
+      ])
     }
   }, [])
 
