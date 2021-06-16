@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import styles from '@/styles/Login.module.scss'
 import axios from 'axios'
 import { MdLock } from 'react-icons/md'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import Head from '@/components/layouts/Head'
 import AuthContext from '@/contexts/auth-context'
 import Alert from '@material-ui/lab/Alert'
@@ -15,6 +15,7 @@ const Login = () => {
   const [error, setError] = useState(null)
   const { register, handleSubmit } = useForm()
   const auth = useContext(AuthContext)
+  const router = useRouter()
 
   const onSubmit = (data) => {
     const { login, password } = data
@@ -41,7 +42,7 @@ const Login = () => {
 
   useEffect(() => {
     if (auth.isLoggedIn) {
-      Router.push('/dashboard')
+      router.push(router.query.next || '/dashboard')
     }
   }, [auth])
 

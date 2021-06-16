@@ -1,13 +1,15 @@
 import AuthContext from '@/contexts/auth-context'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 
 const Admin = ({ children }) => {
   const auth = useContext(AuthContext)
+  const router = useRouter()
 
   useEffect(() => {
     if (!auth.isLoggedIn) {
-      Router.push('/login')
+      const origin = encodeURI(router.asPath)
+      router.push(`/login?next=${origin}`)
     }
   }, [auth])
 
