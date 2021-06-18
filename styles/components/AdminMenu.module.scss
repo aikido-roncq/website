@@ -15,9 +15,8 @@
   top: 100%;
   left: 50%;
   background: white;
-  box-shadow: 2px 2px 5px rgba(black, 0.1);
+  box-shadow: 2px 2px 5px rgba(black, 0.2);
   border-radius: 0.4rem;
-  padding: 1rem;
   width: max-content;
   opacity: 0;
   pointer-events: none;
@@ -25,11 +24,11 @@
   transition: 150ms;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 
   .option {
     transition: 150ms;
     cursor: pointer;
+    padding: 1em;
 
     .icon {
       padding-right: 0.3rem;
@@ -37,6 +36,10 @@
 
     &:hover {
       color: $color-main;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(black, 0.1);
     }
   }
 }
