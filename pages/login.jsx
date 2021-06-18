@@ -21,6 +21,7 @@ const Login = () => {
     const { login, password } = data
     const encodedCredentials = btoa(`${login}:${password}`)
     setLoading(true)
+    setError(null)
 
     axios({
       url: '/login',
