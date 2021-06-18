@@ -4,7 +4,7 @@ import { TOKEN_KEY } from './constants'
 const tokenInterceptor = (config) => {
   const token = sessionStorage.getItem(TOKEN_KEY)
 
-  if (token != null) {
+  if (config.admin && token != null) {
     config.headers.Authorization = `Bearer ${token}`
   }
 
