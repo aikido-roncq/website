@@ -1,22 +1,25 @@
-import { TOKEN_DURATION, TOKEN_KEY } from '@/utils/constants'
+import { TOKEN_KEY } from '@/utils/constants'
 import { useState } from 'react'
-import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 
 export const useAuth = () => {
-  const [token, setToken] = useState(Cookies.get(TOKEN_KEY))
-  const [isLoggedIn, setIsLoggedIn] = useState(token != null)
+  const [token, setToken] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const logout = () => {
     setToken(null)
-    Cookies.remove(TOKEN_KEY)
+    sessionStorage.removeItem(TOKEN_KEY)
   }
+
+  useEffect(() => {
+    setToken(sessionStorage.getItem(TOKEN_KEY))
+  }, [])
 
   useEffect(() => {
     setIsLoggedIn(token != null)
 
     if (token != null) {
-      Cookies.set(TOKEN_KEY, token, { expires: TOKEN_DURATION })
+      sessionStorage.setItem(TOKEN_KEY, token)
     }
   }, [token])
 
