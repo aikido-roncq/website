@@ -42,8 +42,8 @@ const Navbar = () => {
             <Link href={path}>{label}</Link>
           </li>
         ))}
+        {isLoggedIn && <AdminMenu />}
       </ul>
-      {isLoggedIn && <AdminMenu />}
     </nav>
   )
 }
