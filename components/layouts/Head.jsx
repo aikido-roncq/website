@@ -10,11 +10,11 @@ const Head = ({ title, description }) => (
 
     {/* HTML meta */}
     <title>{title} | Aïkido Roncq</title>
-    <meta name="description" content={description} />
+    {description && <meta name="description" content={description} />}
 
     {/* OG meta */}
     <meta property="og:title" content={`${title} | Aïkido Roncq`} />
-    <meta property="og:description" content={description} />
+    {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={BASE_URL} />
     <meta property="og:image" content={`${BASE_URL}/images/katatedori.jpg`} />
     <meta property="og:type" content="website" />

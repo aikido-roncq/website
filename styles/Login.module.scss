@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  width: 15rem;
+  margin: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.alert {
+  margin-bottom: 1em;
+}

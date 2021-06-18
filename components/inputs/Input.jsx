@@ -11,7 +11,7 @@ const Input = (props, ref) => {
       <label htmlFor={name} className={className}>
         {label}
       </label>
-      {hint && <small>{hint}</small>}
+      {hint && <small className={styles.hint}>{hint}</small>}
       <input
         id={name}
         required={required}

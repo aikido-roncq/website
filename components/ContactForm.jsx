@@ -77,8 +77,8 @@ const ContactForm = () => {
         ref={register({ required: true, minLength: 20, maxLength: 500 })}
       />
 
-      <Button disabled={loading}>
-        <FaCheckCircle /> Envoyer
+      <Button loading={loading} icon={<FaCheckCircle />}>
+        Envoyer
       </Button>
     </form>
   )
