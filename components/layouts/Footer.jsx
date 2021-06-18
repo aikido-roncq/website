@@ -42,13 +42,11 @@ const LINKS = [
   },
 ]
 
-const LOGIN = [
-  {
-    href: '/login',
-    text: 'Connexion',
-    icon: <MdPowerSettingsNew />,
-  },
-]
+const LOGIN = {
+  href: '/login',
+  text: 'Connexion',
+  icon: <MdPowerSettingsNew />,
+}
 
 const Footer = () => {
   const year = new Date().getFullYear()
@@ -56,7 +54,7 @@ const Footer = () => {
   const [links, setLinks] = useState(LINKS)
 
   useEffect(() => {
-    setLinks(isLoggedIn ? LINKS : LINKS + LOGIN)
+    setLinks(isLoggedIn ? LINKS : [...LINKS, LOGIN])
   }, [isLoggedIn])
 
   return (
