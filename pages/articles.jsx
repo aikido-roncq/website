@@ -6,16 +6,21 @@ import Title from '@/components/Title'
 import { useEffect, useState } from 'react'
 
 import axios from 'axios'
+import Alert from '@material-ui/lab/Alert'
 
 const Articles = () => {
   const [loading, setLoading] = useState(true)
   const [articles, setArticles] = useState([])
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     axios
       .get('/articles')
       .then((res) => setArticles(res.data))
-      .catch(console.error)
+      .catch((e) => {
+        setError('Une erreur est survenue. Veuillez réessayer plus tard.')
+        console.error(e)
+      })
       .finally(() => setLoading(false))
   }, [])
 
@@ -27,6 +32,8 @@ const Articles = () => {
       />
 
       <Title emoji="📰">Articles</Title>
+
+      {error && <Alert severity="error">{error}</Alert>}
 
       <div className={styles.container}>
         {loading ? (

@@ -14,6 +14,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Autoplay, Keyboard, Mousewheel, Pagination } from 'swiper'
 import Image from '@/components/Image'
 import 'swiper/swiper-bundle.min.css'
+import Alert from '@material-ui/lab/Alert'
 
 const API_URL = process.env.API_URL
 
@@ -29,22 +30,32 @@ export default function Home() {
   const [galleryLoading, setGalleryLoading] = useState(true)
 
   const pagination = useRef(null)
+  const [errors, setErrors] = useState({ articles: null, events: null, gallery: null })
 
   useEffect(() => {
     axios
       .get('/articles')
       .then((res) => setArticles(res.data.slice(0, 3)))
-      .catch(console.error)
+      .catch((error) => {
+        setErrors((e) => ({ ...e, articles: 'Échec du chargement des articles' }))
+        console.error(error)
+      })
       .finally(() => setArticlesLoading(false))
     axios
       .get('/events')
       .then((res) => setEvents(res.data))
-      .catch(console.error)
+      .catch((error) => {
+        setErrors((e) => ({ ...e, events: 'Échec du chargement des événements' }))
+        console.error(error)
+      })
       .finally(() => setEventsLoading(false))
     axios
       .get('/gallery')
       .then((res) => setGallery(res.data))
-      .catch(console.error)
+      .catch((error) => {
+        setErrors((e) => ({ ...e, gallery: 'Échec du chargement de la galerie' }))
+        console.error(error)
+      })
       .finally(() => setGalleryLoading(false))
   }, [])
 
@@ -66,6 +77,8 @@ export default function Home() {
               articles.map((article) => <Article key={article.slug} {...article} />)
             ) : articlesLoading ? (
               <p>Chargement des articles...</p>
+            ) : errors.articles ? (
+              <Alert severity="error">{errors.articles}</Alert>
             ) : (
               <p>Aucun article récent.</p>
             )}
@@ -96,6 +109,8 @@ export default function Home() {
               events.map((event) => <Event key={event.id} {...event} />)
             ) : eventsLoading ? (
               <p>Chargement des événements...</p>
+            ) : errors.events ? (
+              <Alert severity="error">{errors.events}</Alert>
             ) : (
               <p>Aucun événement à venir.</p>
             )}
@@ -140,6 +155,8 @@ export default function Home() {
             </Swiper>
           ) : galleryLoading ? (
             <p>Chargement de la galerie en cours...</p>
+          ) : errors.gallery ? (
+            <Alert severity="error">{errors.gallery}</Alert>
           ) : (
             <p>Aucune photo.</p>
           )}
