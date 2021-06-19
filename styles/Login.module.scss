@@ -16,3 +16,16 @@
 .alert {
   margin-bottom: 1em;
 }
+
+.home {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  transition: 200ms;
+  padding: 0.5em;
+  border-radius: 0.2em;
+
+  &:hover {
+    box-shadow: 0 0 0 1px black;
+  }
+}
