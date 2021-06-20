@@ -10,7 +10,7 @@ import Head from '@/components/layouts/Head'
 import AuthContext from '@/contexts/auth-context'
 import Alert from '@material-ui/lab/Alert'
 import Link from '@/components/Link'
-import { BsArrowLeft } from 'react-icons/bs'
+import { ChevronLeftIcon } from '@chakra-ui/icons'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
@@ -80,7 +80,7 @@ const Login = () => {
       </form>
 
       <Link href="/" className={styles.home}>
-        <BsArrowLeft /> Page d'accueil
+        <ChevronLeftIcon /> Page d'accueil
       </Link>
     </div>
   )
