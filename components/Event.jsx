@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { dateRangeToStr } from '@/utils/date'
+import { formatDateRange } from '@/utils/date'
 import styles from '@/styles/components/Event.module.scss'
 
 const Event = ({ title, info, start_date, end_date }) => {
   const [hidden, setHidden] = useState(true)
   const toggleHidden = () => setHidden((h) => !h)
-  const dateRangeStr = dateRangeToStr(start_date, end_date)
+  const dateRangeStr = formatDateRange(start_date, end_date)
 
   return (
     <div className={styles.container}>
