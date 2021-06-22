@@ -32,6 +32,10 @@ export default function Home() {
   const pagination = useRef(null)
   const [errors, setErrors] = useState({ articles: null, events: null, gallery: null })
 
+  const removeImage = (image) => {
+    setGallery((images) => images.filter((i) => i.src != image.src))
+  }
+
   useEffect(() => {
     axios
       .get('/articles')
@@ -148,7 +152,11 @@ export default function Home() {
             >
               {gallery.map((image) => (
                 <SwiperSlide key={image.src}>
-                  <Image src={`${API_URL}/${image.src}`} caption={image.caption} />
+                  <Image
+                    src={`${API_URL}/${image.src}`}
+                    caption={image.caption}
+                    onError={() => removeImage(image)}
+                  />
                 </SwiperSlide>
               ))}
               <div className={styles.pagination} ref={pagination}></div>
