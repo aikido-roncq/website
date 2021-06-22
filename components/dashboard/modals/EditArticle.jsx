@@ -1,5 +1,5 @@
 import { ModalBody, ModalHeader, ModalFooter } from '@chakra-ui/modal'
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, useBoolean } from '@chakra-ui/react'
 import { useState } from 'react'
 import Modal from '@/components/Modal'
 import { useEffect } from 'react'
@@ -11,7 +11,7 @@ const Editor = dynamic(() => import('@/components/Editor'), { ssr: false })
 const EditArticle = ({ isOpen, onClose, onSubmit, article }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useBoolean(true)
   const [submitting, setSubmitting] = useState(false)
 
   const handleSubmit = async () => {
@@ -44,11 +44,7 @@ const EditArticle = ({ isOpen, onClose, onSubmit, article }) => {
           </FormControl>
           <FormControl>
             <FormLabel>Contenu</FormLabel>
-            <Editor
-              value={content}
-              onChange={setContent}
-              onReady={() => setLoading(false)}
-            />
+            <Editor value={content} onChange={setContent} onReady={setLoading.off} />
           </FormControl>
         </div>
       </ModalBody>

@@ -2,9 +2,10 @@ import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import styles from '@/styles/components/Image.module.scss'
 import Spinner from './Spinner'
+import { useBoolean } from '@chakra-ui/react'
 
 const Image = ({ src, caption, onError, ...other }) => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useBoolean(true)
   const [opacity, setOpacity] = useState(0)
   const image = useRef()
 
@@ -13,14 +14,16 @@ const Image = ({ src, caption, onError, ...other }) => {
   }, [loading])
 
   useEffect(() => {
-    if (image.current.complete) setLoading(false)
+    if (image.current.complete) {
+      setLoading.off()
+    }
   }, [])
 
   return (
     <figure {...other} className={classNames(styles.figure, other.className)}>
       <img
         src={src}
-        onLoad={() => setLoading(false)}
+        onLoad={setLoading.off}
         style={{ opacity }}
         ref={image}
         onError={onError}

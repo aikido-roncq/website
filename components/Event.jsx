@@ -1,15 +1,14 @@
-import { useState } from 'react'
 import { formatDateRange } from '@/utils/date'
 import styles from '@/styles/components/Event.module.scss'
+import { useBoolean } from '@chakra-ui/react'
 
 const Event = ({ title, info, start_date, end_date }) => {
-  const [hidden, setHidden] = useState(true)
-  const toggleHidden = () => setHidden((h) => !h)
+  const [hidden, setHidden] = useBoolean(true)
   const dateRangeStr = formatDateRange(start_date, end_date)
 
   return (
     <div className={styles.container}>
-      <div className={styles.main} onClick={toggleHidden}>
+      <div className={styles.main} onClick={setHidden.toggle}>
         <span title="Plus d'infos" className={styles.button}>
           {hidden ? '+' : '-'}
         </span>

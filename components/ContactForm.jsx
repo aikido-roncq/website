@@ -1,8 +1,7 @@
 import { useForm } from 'react-hook-form'
 import styles from '@/styles/components/ContactForm.module.scss'
-import { useState } from 'react'
 import Input from './inputs/Input'
-import { Button } from '@chakra-ui/react'
+import { Button, useBoolean } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import TextArea from './inputs/TextArea'
 import Swal from 'sweetalert2'
@@ -10,7 +9,7 @@ import axios from 'axios'
 
 const ContactForm = () => {
   const { register, handleSubmit, reset } = useForm()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useBoolean(false)
 
   const handleSuccess = () => {
     reset()
@@ -36,12 +35,12 @@ const ContactForm = () => {
   }
 
   const onSubmit = (data) => {
-    setLoading(true)
+    setLoading.on()
     axios
       .post('/contact', data)
       .then(handleSuccess)
       .catch(handleError)
-      .finally(() => setLoading(false))
+      .finally(setLoading.off)
   }
 
   return (

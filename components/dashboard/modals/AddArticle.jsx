@@ -1,5 +1,5 @@
 import { ModalBody, ModalHeader, ModalFooter } from '@chakra-ui/modal'
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, useBoolean } from '@chakra-ui/react'
 import { useState } from 'react'
 import Modal from '@/components/Modal'
 import Spinner from '@/components/Spinner'
@@ -11,7 +11,7 @@ const AddArticle = ({ isOpen, onClose, onSubmit }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useBoolean(true)
 
   const handleSubmit = async () => {
     setSubmitting(true)
@@ -43,11 +43,7 @@ const AddArticle = ({ isOpen, onClose, onSubmit }) => {
           </FormControl>
           <FormControl>
             <FormLabel>Contenu</FormLabel>
-            <Editor
-              value={content}
-              onChange={setContent}
-              onReady={() => setIsLoading(false)}
-            />
+            <Editor value={content} onChange={setContent} onReady={setIsLoading.off} />
           </FormControl>
         </div>
       </ModalBody>
