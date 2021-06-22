@@ -1,10 +1,9 @@
-import Button from '@/components/inputs/Button'
+import { Button } from '@chakra-ui/react'
 import Input from '@/components/inputs/Input'
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styles from '@/styles/Login.module.scss'
 import axios from 'axios'
-import { MdLock } from 'react-icons/md'
 import { useRouter } from 'next/router'
 import Head from '@/components/layouts/Head'
 import AuthContext from '@/contexts/auth-context'
@@ -19,7 +18,7 @@ const Login = () => {
   const auth = useContext(AuthContext)
   const router = useRouter()
 
-  const onSubmit = (data) => {
+  const onLogin = (data) => {
     const { login, password } = data
     const encodedCredentials = btoa(`${login}:${password}`)
     setLoading(true)
@@ -65,7 +64,7 @@ const Login = () => {
         </Alert>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form className={styles.form}>
         <Input name="login" label="Nom d'utilisateur" required ref={register()} />
         <Input
           name="password"
@@ -74,13 +73,15 @@ const Login = () => {
           required
           ref={register()}
         />
-        <Button loading={loading} icon={<MdLock />}>
+        <Button isLoading={loading} colorScheme="red" onClick={handleSubmit(onLogin)}>
           Connexion
         </Button>
       </form>
 
       <Link href="/" className={styles.home}>
-        <ChevronLeftIcon /> Page d'accueil
+        <Button variant="ghost">
+          <ChevronLeftIcon /> Page d'accueil
+        </Button>
       </Link>
     </div>
   )

@@ -26,12 +26,8 @@ figure {
 
 button {
   cursor: pointer;
-
-  &:disabled {
-    cursor: not-allowed;
-    filter: saturate(0);
-    opacity: 0.5;
-  }
+  border: none;
+  background: none;
 }
 
 iframe {

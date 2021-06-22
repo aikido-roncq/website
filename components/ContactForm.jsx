@@ -1,9 +1,9 @@
-import { FaCheckCircle } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import styles from '@/styles/components/ContactForm.module.scss'
 import { useState } from 'react'
 import Input from './inputs/Input'
-import Button from './inputs/Button'
+import { Button } from '@chakra-ui/react'
+import { CheckCircleIcon } from '@chakra-ui/icons'
 import TextArea from './inputs/TextArea'
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -45,7 +45,7 @@ const ContactForm = () => {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form}>
       <Input
         name="name"
         label="Prénom"
@@ -77,7 +77,12 @@ const ContactForm = () => {
         ref={register({ required: true, minLength: 20, maxLength: 500 })}
       />
 
-      <Button loading={loading} icon={<FaCheckCircle />}>
+      <Button
+        isLoading={loading}
+        leftIcon={<CheckCircleIcon />}
+        colorScheme="red"
+        onClick={handleSubmit(onSubmit)}
+      >
         Envoyer
       </Button>
     </form>
