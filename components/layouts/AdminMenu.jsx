@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import AuthContext from '@/contexts/auth-context'
 
 const AdminMenu = () => {
-  const auth = useContext(AuthContext)
+  const { logout } = useContext(AuthContext)
 
   return (
     <div className={styles.container}>
@@ -21,7 +21,7 @@ const AdminMenu = () => {
             Tableau de bord
           </Link>
         </div>
-        <div className={styles.option} onClick={() => auth.logout()}>
+        <div className={styles.option} onClick={logout}>
           <FiLogOut className={styles.icon} />
           Déconnexion
         </div>
