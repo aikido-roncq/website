@@ -1,31 +1,44 @@
-import { Grid, Button, Heading, useBreakpointValue, IconButton } from '@chakra-ui/react'
-import { ChevronLeftIcon } from '@chakra-ui/icons'
+import {
+  Grid,
+  Button,
+  Heading,
+  useBreakpointValue,
+  IconButton,
+  Box,
+} from '@chakra-ui/react'
+import { ArrowBackIcon, Icon } from '@chakra-ui/icons'
 import Link from '@/components/Link'
-import { TiHome } from 'react-icons/ti'
+import { FiHome, FiLogOut } from 'react-icons/fi'
+import { useContext } from 'react'
+import AuthContext from '@/contexts/auth-context'
 
 const Header = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true })
+  const { logout } = useContext(AuthContext)
 
   return (
-    <Grid
-      templateColumns="1fr auto 1fr"
-      alignItems="center"
-      justifyItems="start"
-      mb={4}
-      gap={4}
-    >
+    <Grid templateColumns="1fr auto 1fr" alignItems="center" mb={4} gap={4}>
       <Link href="/">
         {isDesktop ? (
           <Button variant="ghost">
-            <ChevronLeftIcon /> Page d'accueil
+            <ArrowBackIcon mr={2} /> Page d'accueil
           </Button>
         ) : (
-          <IconButton icon={<TiHome />} />
+          <IconButton icon={<FiHome />} />
         )}
       </Link>
-      <Heading as="h1" size="xl" my={4}>
+      <Heading as="h1" size="xl" my={4} textAlign="center">
         Tableau de bord
       </Heading>
+      <Box onClick={logout} justifySelf="end">
+        {isDesktop ? (
+          <Button variant="ghost">
+            <Icon as={FiLogOut} mr={2} /> Déconnexion
+          </Button>
+        ) : (
+          <IconButton icon={<FiLogOut />} />
+        )}
+      </Box>
     </Grid>
   )
 }
