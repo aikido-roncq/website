@@ -1,4 +1,5 @@
 import { TOKEN_KEY } from '@/utils/constants'
+import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
@@ -6,7 +7,8 @@ export const useAuth = () => {
   const [token, setToken] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const logout = () => {
+  const logout = async () => {
+    await axios.post('/logout', {}, { admin: true })
     setToken(null)
     sessionStorage.removeItem(TOKEN_KEY)
   }
