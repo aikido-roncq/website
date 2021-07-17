@@ -175,7 +175,6 @@ const Articles = () => {
         onSubmit={addArticle}
         onClose={addArticleModal.onClose}
         isOpen={addArticleModal.isOpen}
-        article={currentArticle}
       />
       <ViewArticle
         isOpen={viewArticleModal.isOpen}
