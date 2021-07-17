@@ -9,14 +9,16 @@ import {
   Button,
   useToast,
   useDisclosure,
+  Box,
+  Flex,
 } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon, AddIcon, ViewIcon } from '@chakra-ui/icons'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import DeleteArticle from './modals/DeleteArticle'
-import AddArticle from './modals/AddArticle'
-import ViewArticle from './modals/ViewArticle'
-import EditArticle from './modals/EditArticle'
+import DeleteArticle from './modals/articles/DeleteArticle'
+import AddArticle from './modals/articles/AddArticle'
+import ViewArticle from './modals/articles/ViewArticle'
+import EditArticle from './modals/articles/EditArticle'
 import Action from './Action'
 import { formatDate } from '@/utils/date'
 
@@ -124,14 +126,16 @@ const Articles = () => {
   }
 
   return (
-    <>
-      <Heading as="h2" size="lg" mb={4}>
-        📰 Articles
-      </Heading>
-      <Button onClick={addArticleModal.onOpen} mb={2}>
-        <AddIcon mr={3} /> Ajouter un article
-      </Button>
-      <Table>
+    <Box>
+      <Flex alignItems="baseline">
+        <Heading as="h2" size="lg" mb={4} mr={4}>
+          📰 Articles
+        </Heading>
+        <Button onClick={addArticleModal.onOpen} mb={2}>
+          <AddIcon mr={3} /> Ajouter un article
+        </Button>
+      </Flex>
+      <Table size="md">
         <Thead>
           <Tr>
             <Th>Titre</Th>
@@ -190,7 +194,7 @@ const Articles = () => {
         onClose={deleteArticleModal.onClose}
         article={currentArticle}
       />
-    </>
+    </Box>
   )
 }
 
