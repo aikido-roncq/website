@@ -30,6 +30,11 @@ button {
   background: none;
 }
 
+input,
+textarea {
+  font-family: $fonts;
+}
+
 iframe {
   border: 0;
 }
