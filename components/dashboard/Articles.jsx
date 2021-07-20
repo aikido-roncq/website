@@ -1,18 +1,18 @@
 import {
+  Box,
+  Button,
+  Flex,
+  Heading,
   Table,
-  Thead,
   Tbody,
-  Tr,
   Td,
   Th,
-  Heading,
-  Button,
-  useToast,
+  Thead,
+  Tr,
   useDisclosure,
-  Box,
-  Flex,
+  useToast,
 } from '@chakra-ui/react'
-import { DeleteIcon, EditIcon, AddIcon, ViewIcon } from '@chakra-ui/icons'
+import { AddIcon, DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import DeleteArticle from './modals/articles/DeleteArticle'
@@ -33,7 +33,7 @@ const Articles = () => {
   const deleteArticleModal = useDisclosure()
 
   useEffect(() => {
-    axios.get('/articles').then((res) => setArticles(res.data))
+    axios.get('/articles').then(res => setArticles(res.data))
   }, [])
 
   const handleClick = (article, modal) => {
@@ -44,7 +44,7 @@ const Articles = () => {
   const addArticle = async ({ title, content }) => {
     try {
       const res = await axios.post('/articles', { title, content }, { admin: true })
-      setArticles((oldArticles) => [res.data, ...oldArticles])
+      setArticles(oldArticles => [res.data, ...oldArticles])
     } catch (e) {
       toast({
         title: 'Article non ajouté',
@@ -68,7 +68,7 @@ const Articles = () => {
     return true
   }
 
-  const editArticle = async (article) => {
+  const editArticle = async article => {
     try {
       await axios.put(`/articles/${article.id}`, article, {
         admin: true,
@@ -84,7 +84,7 @@ const Articles = () => {
       return
     }
 
-    const articleIndex = articles.findIndex((a) => a.id === article.id)
+    const articleIndex = articles.findIndex(a => a.id === article.id)
     const newArticles = [...articles]
     newArticles[articleIndex] = article
 
@@ -99,7 +99,7 @@ const Articles = () => {
     })
   }
 
-  const deleteArticle = async (article) => {
+  const deleteArticle = async article => {
     try {
       await axios.delete(`/articles/${article.id}`, { admin: true })
     } catch (e) {
@@ -114,7 +114,7 @@ const Articles = () => {
       return
     }
 
-    setArticles((oldArticles) => oldArticles.filter((a) => a.id != article.id))
+    setArticles(oldArticles => oldArticles.filter(a => a.id !== article.id))
     deleteArticleModal.onClose()
 
     toast({
@@ -144,7 +144,7 @@ const Articles = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {articles.map((article) => (
+          {articles.map(article => (
             <Tr key={article.id}>
               <Td>{article.title}</Td>
               <Td>{formatDate(article.date)}</Td>
