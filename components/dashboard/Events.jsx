@@ -9,7 +9,6 @@ import {
   Th,
   Thead,
   Tr,
-  useBoolean,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
@@ -24,7 +23,6 @@ import { formatDateRange } from '@/utils/date';
 
 const Events = () => {
   const [currentEvent, setCurrentEvent] = useState(null);
-  const [editing, setEditing] = useBoolean(false);
   const [events, setEvents] = useState([]);
   const toast = useToast();
 
@@ -134,7 +132,7 @@ const Events = () => {
         </Heading>
         <Button
           onClick={() => {
-            setEditing.off();
+            setCurrentEvent(null);
             addEventModal.onOpen();
           }}
           mb={2}
@@ -164,10 +162,7 @@ const Events = () => {
                 <Action
                   label="Éditer"
                   icon={<EditIcon />}
-                  onClick={() => {
-                    setEditing.on();
-                    handleClick(event, addEventModal);
-                  }}
+                  onClick={() => handleClick(event, addEventModal)}
                 />
                 <Action
                   label="Supprimer"
@@ -182,11 +177,10 @@ const Events = () => {
         </Tbody>
       </Table>
       <AddEvent
-        submitCallback={editing ? editEvent : addEvent}
+        submitCallback={currentEvent != null ? editEvent : addEvent}
         onClose={addEventModal.onClose}
         isOpen={addEventModal.isOpen}
         event={currentEvent}
-        edit={editing}
       />
       <ViewEvent
         isOpen={viewEventModal.isOpen}

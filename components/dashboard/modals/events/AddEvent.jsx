@@ -7,7 +7,8 @@ import { useEffect } from 'react';
 
 const DATE_FORMAT = '%Y-%m-%d';
 
-const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
+const AddEvent = ({ isOpen, onClose, submitCallback, event }) => {
+  const [edit, setEdit] = useBoolean(event != null);
   const [submitting, setSubmitting] = useBoolean(false);
   const { register, reset, handleSubmit, watch, setValue } = useForm({ shouldUnregister: false });
   const startDate = watch('start_date', strftime(DATE_FORMAT));
@@ -23,9 +24,12 @@ const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
 
   useEffect(() => {
     if (event) {
+      setEdit.on();
       Object.entries(event).forEach(([key, value]) => {
         setValue(key, value);
       });
+    } else {
+      setEdit.off();
     }
   }, [event]);
 
