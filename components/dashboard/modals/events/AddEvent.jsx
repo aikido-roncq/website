@@ -9,9 +9,7 @@ const DATE_FORMAT = '%Y-%m-%d'
 const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
   const [submitting, setSubmitting] = useBoolean(false)
   const { register, reset, handleSubmit, watch } = useForm(event || {})
-  const watching = watch('start_date', strftime(DATE_FORMAT))
-
-  console.log(watching)
+  const startDate = watch('start_date', strftime(DATE_FORMAT))
 
   const onSubmit = async (data) => {
     setSubmitting.on()
@@ -47,7 +45,7 @@ const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
         </FormControl>
         <FormControl mb={4}>
           <FormLabel>Date de fin</FormLabel>
-          <Input name="end_date" type="date" min={watching} ref={register} required />
+          <Input name="end_date" type="date" min={startDate} ref={register} required />
         </FormControl>
         <FormControl>
           <FormLabel>Informations</FormLabel>
