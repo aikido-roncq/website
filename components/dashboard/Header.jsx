@@ -1,11 +1,4 @@
-import {
-  Grid,
-  Button,
-  Heading,
-  useBreakpointValue,
-  IconButton,
-  Box,
-} from '@chakra-ui/react'
+import { Box, Button, Grid, Heading, IconButton, useBreakpointValue } from '@chakra-ui/react'
 import { ArrowBackIcon, Icon } from '@chakra-ui/icons'
 import Link from '@/components/Link'
 import { FiHome, FiLogOut } from 'react-icons/fi'
@@ -24,7 +17,7 @@ const Header = () => {
             <ArrowBackIcon mr={2} /> Page d'accueil
           </Button>
         ) : (
-          <IconButton icon={<FiHome />} />
+          <IconButton icon={<FiHome />} rounded={5} aria-label="Accueil" />
         )}
       </Link>
       <Heading as="h1" size="xl" my={4} textAlign="center">
@@ -36,7 +29,7 @@ const Header = () => {
             <Icon as={FiLogOut} mr={2} /> Déconnexion
           </Button>
         ) : (
-          <IconButton icon={<FiLogOut />} />
+          <IconButton icon={<FiLogOut />} rounded={5} aria-label="Déconnexion" />
         )}
       </Box>
     </Grid>
