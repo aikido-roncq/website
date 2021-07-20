@@ -3,12 +3,13 @@ import { Button, FormControl, FormLabel, Input, Textarea, useBoolean } from '@ch
 import Modal from '@/components/Modal';
 import strftime from 'strftime';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 const DATE_FORMAT = '%Y-%m-%d';
 
 const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
   const [submitting, setSubmitting] = useBoolean(false);
-  const { register, reset, handleSubmit, watch } = useForm(event || {});
+  const { register, reset, handleSubmit, watch, setValue } = useForm({ shouldUnregister: false });
   const startDate = watch('start_date', strftime(DATE_FORMAT));
 
   const onSubmit = async data => {
@@ -19,6 +20,14 @@ const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
     }
     setSubmitting.off();
   };
+
+  useEffect(() => {
+    if (event) {
+      Object.entries(event).forEach(([key, value]) => {
+        setValue(key, value);
+      });
+    }
+  }, [event]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
