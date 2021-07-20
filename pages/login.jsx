@@ -19,16 +19,16 @@ const Login = () => {
   const router = useRouter()
 
   const onLogin = (data) => {
-    const { login, password } = data
-    const encodedCredentials = btoa(`${login}:${password}`)
+    const { username, password } = data
     setLoading(true)
     setError(null)
 
     axios({
       url: '/login',
       method: 'POST',
-      headers: {
-        Authorization: `Basic ${encodedCredentials}`,
+      auth: {
+        username,
+        password,
       },
     })
       .then((res) => auth.setToken(res.data.token))
@@ -65,14 +65,8 @@ const Login = () => {
       )}
 
       <form className={styles.form}>
-        <Input name="login" label="Nom d'utilisateur" required ref={register()} />
-        <Input
-          name="password"
-          type="password"
-          label="Mot de passe"
-          required
-          ref={register()}
-        />
+        <Input name="username" label="Nom d'utilisateur" required ref={register} />
+        <Input name="password" type="password" label="Mot de passe" required ref={register} />
         <Button isLoading={loading} colorScheme="red" onClick={handleSubmit(onLogin)}>
           Connexion
         </Button>
