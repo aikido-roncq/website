@@ -1,17 +1,17 @@
-import { ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/modal'
-import { Button, FormControl, FormLabel, Input, Textarea, useBoolean } from '@chakra-ui/react'
-import Modal from '@/components/Modal'
-import strftime from 'strftime'
-import { useForm } from 'react-hook-form'
+import { ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/modal';
+import { Button, FormControl, FormLabel, Input, Textarea, useBoolean } from '@chakra-ui/react';
+import Modal from '@/components/Modal';
+import strftime from 'strftime';
+import { useForm } from 'react-hook-form';
 
-const DATE_FORMAT = '%Y-%m-%d'
+const DATE_FORMAT = '%Y-%m-%d';
 
 const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
   const [submitting, setSubmitting] = useBoolean(false)
   const { register, reset, handleSubmit, watch } = useForm(event || {})
   const startDate = watch('start_date', strftime(DATE_FORMAT))
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     setSubmitting.on()
     const posted = await submitCallback(data)
     if (posted) {
