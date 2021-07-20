@@ -1,6 +1,7 @@
-import NextHead from 'next/head'
+import NextHead from 'next/head';
+import process from '@/next.config';
 
-const BASE_URL = process.env.BASE_URL
+const BASE_URL = process.env.BASE_URL;
 
 const Head = ({ title, description }) => (
   <NextHead>
@@ -35,6 +36,6 @@ const Head = ({ title, description }) => (
       href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
     />
   </NextHead>
-)
+);
 
-export default Head
+export default Head;

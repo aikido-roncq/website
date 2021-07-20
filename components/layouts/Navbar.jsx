@@ -1,9 +1,9 @@
-import Link from '@/components/Link'
-import { useRouter } from 'next/router'
-import styles from '@/styles/components/Navbar.module.scss'
-import { useContext } from 'react'
-import AuthContext from '@/contexts/auth-context'
-import AdminMenu from './AdminMenu'
+import Link from '@/components/Link';
+import { useRouter } from 'next/router';
+import styles from '@/styles/components/Navbar.module.scss';
+import { useContext } from 'react';
+import AuthContext from '@/contexts/auth-context';
+import AdminMenu from './AdminMenu';
 
 const ROUTES = [
   {
@@ -26,13 +26,13 @@ const ROUTES = [
     path: '/rejoindre',
     label: 'Nous rejoindre',
   },
-]
+];
 
 const Navbar = () => {
-  const router = useRouter()
-  const getClassName = (route) => (isActive(route) ? styles.active : '')
-  const isActive = (route) => route == router.pathname
-  const { isLoggedIn } = useContext(AuthContext)
+  const router = useRouter();
+  const getClassName = route => (isActive(route) ? styles.active : '');
+  const isActive = route => route === router.pathname;
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <nav className={styles.nav}>
@@ -45,7 +45,7 @@ const Navbar = () => {
         {isLoggedIn && <AdminMenu />}
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import styles from '@/styles/404.module.scss'
+import Head from 'next/head';
+import Link from 'next/link';
+import styles from '@/styles/404.module.scss';
 
 const NotFound = () => {
   return (
@@ -18,7 +18,7 @@ const NotFound = () => {
         </Link>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

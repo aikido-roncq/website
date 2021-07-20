@@ -1,130 +1,130 @@
 import {
+  Box,
+  Button,
+  Flex,
+  Heading,
   Table,
-  Thead,
   Tbody,
-  Tr,
   Td,
   Th,
-  Heading,
-  Button,
-  useToast,
-  useDisclosure,
-  Box,
-  Flex,
+  Thead,
+  Tr,
   useBoolean,
-} from '@chakra-ui/react'
-import { DeleteIcon, EditIcon, AddIcon, ViewIcon } from '@chakra-ui/icons'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import DeleteEvent from './modals/events/DeleteEvent'
-import AddEvent from './modals/events/AddEvent'
-import ViewEvent from './modals/events/ViewEvent'
-import Action from './Action'
-import { formatDateRange } from '@/utils/date'
+  useDisclosure,
+  useToast,
+} from '@chakra-ui/react';
+import { AddIcon, DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import DeleteEvent from './modals/events/DeleteEvent';
+import AddEvent from './modals/events/AddEvent';
+import ViewEvent from './modals/events/ViewEvent';
+import Action from './Action';
+import { formatDateRange } from '@/utils/date';
 
 const Events = () => {
-  const [currentEvent, setCurrentEvent] = useState(null)
-  const [editing, setEditing] = useBoolean(false)
-  const [events, setEvents] = useState([])
-  const toast = useToast()
+  const [currentEvent, setCurrentEvent] = useState(null);
+  const [editing, setEditing] = useBoolean(false);
+  const [events, setEvents] = useState([]);
+  const toast = useToast();
 
-  const addEventModal = useDisclosure()
-  const viewEventModal = useDisclosure()
-  const deleteEventModal = useDisclosure()
+  const addEventModal = useDisclosure();
+  const viewEventModal = useDisclosure();
+  const deleteEventModal = useDisclosure();
 
   useEffect(() => {
-    axios.get('/events').then((res) => setEvents(res.data))
-  }, [])
+    axios.get('/events').then(res => setEvents(res.data));
+  }, []);
 
   const handleClick = (event, modal) => {
-    setCurrentEvent(event)
-    modal.onOpen()
-  }
+    setCurrentEvent(event);
+    modal.onOpen();
+  };
 
-  const addEvent = async (event) => {
+  const addEvent = async event => {
     try {
-      await axios.post('/events', event, { admin: true })
+      await axios.post('/events', event, { admin: true });
     } catch (e) {
       toast({
         title: 'Événement non ajouté',
         description: "Une erreur est survenue lors de l'ajout de l'événément.",
         status: 'error',
         isClosable: true,
-      })
+      });
 
-      return false
+      return false;
     }
 
-    setEvents((await axios.get('/events')).data)
+    setEvents((await axios.get('/events')).data);
 
-    addEventModal.onClose()
+    addEventModal.onClose();
 
     toast({
       title: 'Événement ajouté',
       description: "L'événement a été ajouté avec succès !",
       status: 'success',
       isClosable: true,
-    })
+    });
 
-    return true
-  }
+    return true;
+  };
 
-  const editEvent = async (event) => {
+  const editEvent = async event => {
     try {
       await axios.put(`/events/${event.id}`, event, {
         admin: true,
-      })
+      });
     } catch (e) {
       toast({
         title: 'Événement non mis à jour',
         description: "Une erreur est survenue lors de la mise à jour de l'événement.",
         status: 'error',
         isClosable: true,
-      })
+      });
 
-      return
+      return;
     }
 
-    const eventIndex = events.findIndex((e) => e.id == event.id)
-    const newEvents = [...events]
-    newEvents[eventIndex] = event
+    const eventIndex = events.findIndex(e => e.id === event.id);
+    const newEvents = [...events];
+    newEvents[eventIndex] = event;
 
-    setEvents(newEvents)
-    addEventModal.onClose()
+    setEvents(newEvents);
+    addEventModal.onClose();
 
     toast({
       title: 'Événément mis à jour',
       description: "L'événément a été mis à jour avec succès !",
       status: 'success',
       isClosable: true,
-    })
-  }
+    });
+  };
 
-  const deleteEvent = async (event) => {
+  const deleteEvent = async event => {
     try {
-      await axios.delete(`/events/${event.id}`, { admin: true })
+      await axios.delete(`/events/${event.id}`, { admin: true });
     } catch (e) {
       toast({
         title: 'Événement non supprimé',
         description: "Une erreur est survenue lors de la suppression de l'événément.",
         status: 'error',
         isClosable: true,
-      })
-      console.error(e)
+      });
+      console.error(e);
 
-      return
+      return;
     }
 
-    setEvents((oldEvents) => oldEvents.filter((e) => e.id != event.id))
-    deleteEventModal.onClose()
+    setEvents(oldEvents => oldEvents.filter(e => e.id !== event.id));
+    deleteEventModal.onClose();
 
     toast({
       title: 'Événement supprimé',
       description: "L'événement a été supprimé avec succès !",
       status: 'success',
       isClosable: true,
-    })
-  }
+    });
+  };
 
   return (
     <Box>
@@ -134,8 +134,8 @@ const Events = () => {
         </Heading>
         <Button
           onClick={() => {
-            setEditing.off()
-            addEventModal.onOpen()
+            setEditing.off();
+            addEventModal.onOpen();
           }}
           mb={2}
         >
@@ -151,7 +151,7 @@ const Events = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {events.map((event) => (
+          {events.map(event => (
             <Tr key={event.id} gridTemplateColumns="1fr auto auto">
               <Td>{event.title}</Td>
               <Td>{formatDateRange(event.start_date, event.end_date)}</Td>
@@ -165,8 +165,8 @@ const Events = () => {
                   label="Éditer"
                   icon={<EditIcon />}
                   onClick={() => {
-                    setEditing.on()
-                    handleClick(event, addEventModal)
+                    setEditing.on();
+                    handleClick(event, addEventModal);
                   }}
                 />
                 <Action
@@ -200,7 +200,7 @@ const Events = () => {
         event={currentEvent}
       />
     </Box>
-  )
-}
+  );
+};
 
-export default Events
+export default Events;

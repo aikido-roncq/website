@@ -1,14 +1,14 @@
-import Head from '@/components/layouts/Head'
-import Link from 'next/link'
-import ContactForm from '@/components/ContactForm'
-import Map from '@/components/Map'
-import { MdPhone } from 'react-icons/md'
-import { FaCheckCircle, FaAt, FaUserFriends } from 'react-icons/fa'
-import styles from '@/styles/Rejoindre.module.scss'
-import Schedules from '@/components/Schedules'
-import Layout from '@/components/layouts/Layout'
-import Title from '@/components/Title'
-import { FACEBOOK, INSTAGRAM, EMAIL } from '@/utils/constants'
+import Head from '@/components/layouts/Head';
+import Link from 'next/link';
+import ContactForm from '@/components/ContactForm';
+import Map from '@/components/Map';
+import { MdPhone } from 'react-icons/md';
+import { FaAt, FaCheckCircle, FaUserFriends } from 'react-icons/fa';
+import styles from '@/styles/Rejoindre.module.scss';
+import Schedules from '@/components/Schedules';
+import Layout from '@/components/layouts/Layout';
+import Title from '@/components/Title';
+import { EMAIL, FACEBOOK, INSTAGRAM } from '@/utils/constants';
 
 const Rejoindre = () => {
   return (
@@ -25,9 +25,8 @@ const Rejoindre = () => {
         <div>
           <Title emoji="ℹ️">Informations</Title>
           <p>
-            Cours d'essai <strong>gratuit</strong>! Munissez-vous de vêtements amples
-            (jogging, tee-shirt...) et venez essayer gratuitement l'Aïkido (et/ou
-            l'Aïkishintaïso). 🥋
+            Cours d'essai <strong>gratuit</strong>! Munissez-vous de vêtements amples (jogging,
+            tee-shirt...) et venez essayer gratuitement l'Aïkido (et/ou l'Aïkishintaïso). 🥋
           </p>
         </div>
 
@@ -65,7 +64,7 @@ const Rejoindre = () => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Rejoindre
+export default Rejoindre;

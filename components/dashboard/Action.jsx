@@ -1,4 +1,4 @@
-import { Tooltip, Button } from '@chakra-ui/react'
+import { Button, Tooltip } from '@chakra-ui/react';
 
 const Action = ({ label, icon, onClick, isLast, color }) => (
   <Tooltip hasArrow label={label}>
@@ -6,6 +6,6 @@ const Action = ({ label, icon, onClick, isLast, color }) => (
       {icon}
     </Button>
   </Tooltip>
-)
+);
 
-export default Action
+export default Action;

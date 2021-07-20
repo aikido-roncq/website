@@ -1,30 +1,30 @@
-import { ModalBody, ModalHeader, ModalFooter } from '@chakra-ui/modal'
-import { Button, FormControl, FormLabel, Input, useBoolean } from '@chakra-ui/react'
-import { useState } from 'react'
-import Modal from '@/components/Modal'
-import Spinner from '@/components/Spinner'
-import dynamic from 'next/dynamic'
+import { ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/modal';
+import { Button, FormControl, FormLabel, Input, useBoolean } from '@chakra-ui/react';
+import { useState } from 'react';
+import Modal from '@/components/Modal';
+import Spinner from '@/components/Spinner';
+import dynamic from 'next/dynamic';
 
-const Editor = dynamic(() => import('@/components/Editor'), { ssr: false })
+const Editor = dynamic(() => import('@/components/Editor'), { ssr: false });
 
 const AddArticle = ({ isOpen, onClose, onSubmit }) => {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [submitting, setSubmitting] = useState(false)
-  const [isLoading, setIsLoading] = useBoolean(true)
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useBoolean(true);
 
   const handleSubmit = async () => {
-    setSubmitting(true)
+    setSubmitting(true);
 
-    const posted = await onSubmit({ title, content })
+    const posted = await onSubmit({ title, content });
 
     if (posted) {
-      setTitle('')
-      setContent('')
+      setTitle('');
+      setContent('');
     }
 
-    setSubmitting(false)
-  }
+    setSubmitting(false);
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -36,7 +36,7 @@ const AddArticle = ({ isOpen, onClose, onSubmit }) => {
             <FormLabel>Titre</FormLabel>
             <Input
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={e => setTitle(e.target.value)}
               placeholder="Rentrée, Reprise des cours..."
               required
             />
@@ -56,7 +56,7 @@ const AddArticle = ({ isOpen, onClose, onSubmit }) => {
         </Button>
       </ModalFooter>
     </Modal>
-  )
-}
+  );
+};
 
-export default AddArticle
+export default AddArticle;

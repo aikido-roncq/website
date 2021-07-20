@@ -1,6 +1,6 @@
-import { ModalHeader, ModalBody, ModalFooter, Button } from '@chakra-ui/react'
-import Modal from '@/components/Modal'
-import Article from '@/components/Article'
+import { Button, ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/react';
+import Modal from '@/components/Modal';
+import Article from '@/components/Article';
 
 const ViewArticle = ({ isOpen, onClose, article }) => (
   <Modal isOpen={isOpen} onClose={onClose}>
@@ -14,6 +14,6 @@ const ViewArticle = ({ isOpen, onClose, article }) => (
       </Button>
     </ModalFooter>
   </Modal>
-)
+);
 
-export default ViewArticle
+export default ViewArticle;

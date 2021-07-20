@@ -1,27 +1,27 @@
-import { Button } from '@chakra-ui/react'
-import Input from '@/components/inputs/Input'
-import { useContext, useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import styles from '@/styles/Login.module.scss'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import Head from '@/components/layouts/Head'
-import AuthContext from '@/contexts/auth-context'
-import Alert from '@material-ui/lab/Alert'
-import Link from '@/components/Link'
-import { ChevronLeftIcon } from '@chakra-ui/icons'
+import { Button } from '@chakra-ui/react';
+import Input from '@/components/inputs/Input';
+import { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import styles from '@/styles/Login.module.scss';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import Head from '@/components/layouts/Head';
+import AuthContext from '@/contexts/auth-context';
+import Alert from '@material-ui/lab/Alert';
+import Link from '@/components/Link';
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 
 const Login = () => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const { register, handleSubmit } = useForm()
-  const auth = useContext(AuthContext)
-  const router = useRouter()
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { register, handleSubmit } = useForm();
+  const auth = useContext(AuthContext);
+  const router = useRouter();
 
-  const onLogin = (data) => {
-    const { username, password } = data
-    setLoading(true)
-    setError(null)
+  const onLogin = data => {
+    const { username, password } = data;
+    setLoading(true);
+    setError(null);
 
     axios({
       url: '/login',
@@ -31,25 +31,25 @@ const Login = () => {
         password,
       },
     })
-      .then((res) => auth.setToken(res.data.token))
-      .catch((e) => {
+      .then(res => auth.setToken(res.data.token))
+      .catch(e => {
         if (e.response?.status === 401) {
-          setError("Nom d'utilisateur ou mot de passe incorrect")
+          setError("Nom d'utilisateur ou mot de passe incorrect");
         } else {
-          setError('Une erreur est survenue. Veuillez réessayer plus tard.')
+          setError('Une erreur est survenue. Veuillez réessayer plus tard.');
         }
       })
-      .finally(() => setLoading(false))
-  }
+      .finally(() => setLoading(false));
+  };
 
   useEffect(() => {
     if (auth.isLoggedIn) {
-      router.push(router.query.next || '/dashboard')
+      router.push(router.query.next || '/dashboard');
     }
-  }, [auth])
+  }, [auth]);
 
   if (auth.isLoggedIn) {
-    return null
+    return null;
   }
 
   return (
@@ -78,7 +78,7 @@ const Login = () => {
         </Button>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

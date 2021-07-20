@@ -1,18 +1,10 @@
-import Link from '@/components/Link'
-import AuthContext from '@/contexts/auth-context'
-import styles from '@/styles/components/Footer.module.scss'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { useContext } from 'react'
-import {
-  FaFacebook,
-  FaInstagram,
-  FaGithubAlt,
-  FaAt,
-  FaMapMarkerAlt,
-} from 'react-icons/fa'
-import { MdPowerSettingsNew } from 'react-icons/md'
-import { FACEBOOK, INSTAGRAM, EMAIL } from 'utils/constants'
+import Link from '@/components/Link';
+import AuthContext from '@/contexts/auth-context';
+import styles from '@/styles/components/Footer.module.scss';
+import { useContext, useEffect, useState } from 'react';
+import { FaAt, FaFacebook, FaGithubAlt, FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';
+import { MdPowerSettingsNew } from 'react-icons/md';
+import { EMAIL, FACEBOOK, INSTAGRAM } from 'utils/constants';
 
 const LINKS = [
   {
@@ -40,28 +32,28 @@ const LINKS = [
     text: 'Nous rejoindre',
     icon: <FaMapMarkerAlt />,
   },
-]
+];
 
 const LOGIN = {
   href: '/login',
   text: 'Connexion',
   icon: <MdPowerSettingsNew />,
-}
+};
 
 const Footer = () => {
-  const year = new Date().getFullYear()
-  const { isLoggedIn } = useContext(AuthContext)
-  const [links, setLinks] = useState(LINKS)
+  const year = new Date().getFullYear();
+  const { isLoggedIn } = useContext(AuthContext);
+  const [links, setLinks] = useState(LINKS);
 
   useEffect(() => {
-    setLinks(isLoggedIn ? LINKS : [...LINKS, LOGIN])
-  }, [isLoggedIn])
+    setLinks(isLoggedIn ? LINKS : [...LINKS, LOGIN]);
+  }, [isLoggedIn]);
 
   return (
     <footer className={styles.footer}>
       <ul>
         <li>Copyright © {year} Académie Roncquoise d'Aïkido</li>
-        {links.map((link) => (
+        {links.map(link => (
           <li key={link.href}>
             <Link href={link.href}>
               {link.icon} {link.text}
@@ -70,7 +62,7 @@ const Footer = () => {
         ))}
       </ul>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

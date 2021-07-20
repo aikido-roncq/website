@@ -1,9 +1,9 @@
 import {
+  Modal as ChakraModal,
+  ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  ModalCloseButton,
-  Modal as ChakraModal,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
 const Modal = ({ isOpen, onClose, children }) => (
   <ChakraModal isOpen={isOpen} onClose={onClose}>
@@ -13,6 +13,6 @@ const Modal = ({ isOpen, onClose, children }) => (
       {children}
     </ModalContent>
   </ChakraModal>
-)
+);
 
-export default Modal
+export default Modal;

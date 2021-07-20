@@ -1,10 +1,10 @@
-import { ModalHeader, ModalBody, ModalFooter, Button } from '@chakra-ui/react'
-import Modal from '@/components/Modal'
-import { formatDateRange } from '@/utils/date'
+import { Button, ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/react';
+import Modal from '@/components/Modal';
+import { formatDateRange } from '@/utils/date';
 
 const ViewArticle = ({ isOpen, onClose, event }) => {
   if (!event) {
-    return null
+    return null;
   }
 
   return (
@@ -21,7 +21,7 @@ const ViewArticle = ({ isOpen, onClose, event }) => {
         </Button>
       </ModalFooter>
     </Modal>
-  )
-}
+  );
+};
 
-export default ViewArticle
+export default ViewArticle;

@@ -1,31 +1,30 @@
-import { ModalBody, ModalHeader, ModalFooter } from '@chakra-ui/modal'
-import { Button, FormControl, FormLabel, Input, useBoolean } from '@chakra-ui/react'
-import { useState } from 'react'
-import Modal from '@/components/Modal'
-import { useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import Spinner from '@/components/Spinner'
+import { ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/modal';
+import { Button, FormControl, FormLabel, Input, useBoolean } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import Modal from '@/components/Modal';
+import dynamic from 'next/dynamic';
+import Spinner from '@/components/Spinner';
 
-const Editor = dynamic(() => import('@/components/Editor'), { ssr: false })
+const Editor = dynamic(() => import('@/components/Editor'), { ssr: false });
 
 const EditArticle = ({ isOpen, onClose, onSubmit, article }) => {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [loading, setLoading] = useBoolean(true)
-  const [submitting, setSubmitting] = useState(false)
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [loading, setLoading] = useBoolean(true);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
-    setSubmitting(true)
+    setSubmitting(true);
 
-    await onSubmit({ ...article, title, content })
+    await onSubmit({ ...article, title, content });
 
-    setSubmitting(false)
-  }
+    setSubmitting(false);
+  };
 
   useEffect(() => {
-    setTitle(article?.title || '')
-    setContent(article?.content || '')
-  }, [article])
+    setTitle(article?.title || '');
+    setContent(article?.content || '');
+  }, [article]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -37,7 +36,7 @@ const EditArticle = ({ isOpen, onClose, onSubmit, article }) => {
             <FormLabel>Titre</FormLabel>
             <Input
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={e => setTitle(e.target.value)}
               placeholder="Rentrée, Reprise des cours..."
               required
             />
@@ -57,7 +56,7 @@ const EditArticle = ({ isOpen, onClose, onSubmit, article }) => {
         </Button>
       </ModalFooter>
     </Modal>
-  )
-}
+  );
+};
 
-export default EditArticle
+export default EditArticle;

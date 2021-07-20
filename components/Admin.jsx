@@ -1,23 +1,23 @@
-import AuthContext from '@/contexts/auth-context'
-import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
+import AuthContext from '@/contexts/auth-context';
+import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 
 const Admin = ({ children }) => {
-  const auth = useContext(AuthContext)
-  const router = useRouter()
+  const auth = useContext(AuthContext);
+  const router = useRouter();
 
   useEffect(() => {
     if (!auth.isLoggedIn) {
-      const origin = encodeURI(router.asPath)
-      router.push(`/login?next=${origin}`)
+      const origin = encodeURI(router.asPath);
+      router.push(`/login?next=${origin}`);
     }
-  }, [auth])
+  }, [auth]);
 
   if (!auth.isLoggedIn) {
-    return null
+    return null;
   }
 
-  return children
-}
+  return children;
+};
 
-export default Admin
+export default Admin;

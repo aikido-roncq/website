@@ -1,4 +1,4 @@
-import styles from '@/styles/components/Schedules.module.scss'
+import styles from '@/styles/components/Schedules.module.scss';
 
 const Schedules = () => (
   <>
@@ -50,6 +50,6 @@ const Schedules = () => (
       </table>
     </div>
   </>
-)
+);
 
-export default Schedules
+export default Schedules;

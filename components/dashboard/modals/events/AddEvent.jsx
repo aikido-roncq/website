@@ -7,18 +7,18 @@ import { useForm } from 'react-hook-form';
 const DATE_FORMAT = '%Y-%m-%d';
 
 const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
-  const [submitting, setSubmitting] = useBoolean(false)
-  const { register, reset, handleSubmit, watch } = useForm(event || {})
-  const startDate = watch('start_date', strftime(DATE_FORMAT))
+  const [submitting, setSubmitting] = useBoolean(false);
+  const { register, reset, handleSubmit, watch } = useForm(event || {});
+  const startDate = watch('start_date', strftime(DATE_FORMAT));
 
   const onSubmit = async data => {
-    setSubmitting.on()
-    const posted = await submitCallback(data)
+    setSubmitting.on();
+    const posted = await submitCallback(data);
     if (posted) {
-      reset()
+      reset();
     }
-    setSubmitting.off()
-  }
+    setSubmitting.off();
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -61,7 +61,7 @@ const AddEvent = ({ isOpen, onClose, submitCallback, edit, event }) => {
         </Button>
       </ModalFooter>
     </Modal>
-  )
-}
+  );
+};
 
-export default AddEvent
+export default AddEvent;

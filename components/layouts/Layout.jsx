@@ -1,7 +1,7 @@
-import Header from './Header'
-import Footer from './Footer'
-import Navbar from './Navbar'
-import styles from '@/styles/components/Layout.module.scss'
+import Header from './Header';
+import Footer from './Footer';
+import Navbar from './Navbar';
+import styles from '@/styles/components/Layout.module.scss';
 
 const Layout = ({ maxWidth = 45, children }) => (
   <>
@@ -14,6 +14,6 @@ const Layout = ({ maxWidth = 45, children }) => (
     </div>
     <Footer />
   </>
-)
+);
 
-export default Layout
+export default Layout;

@@ -1,13 +1,12 @@
-import Link from '@/components/Link'
-import { FiUser } from 'react-icons/fi'
-import styles from '@/styles/components/AdminMenu.module.scss'
-import { FaTable } from 'react-icons/fa'
-import { FiLogOut } from 'react-icons/fi'
-import { useContext } from 'react'
-import AuthContext from '@/contexts/auth-context'
+import Link from '@/components/Link';
+import { FiLogOut, FiUser } from 'react-icons/fi';
+import styles from '@/styles/components/AdminMenu.module.scss';
+import { FaTable } from 'react-icons/fa';
+import { useContext } from 'react';
+import AuthContext from '@/contexts/auth-context';
 
 const AdminMenu = () => {
-  const { logout } = useContext(AuthContext)
+  const { logout } = useContext(AuthContext);
 
   return (
     <div className={styles.container}>
@@ -27,7 +26,7 @@ const AdminMenu = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminMenu
+export default AdminMenu;

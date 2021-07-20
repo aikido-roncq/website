@@ -1,8 +1,8 @@
-import Head from '@/components/layouts/Head'
-import Articles from './Articles'
-import Events from './Events'
-import Header from './Header'
-import { Tab, TabPanels, TabPanel, Tabs, TabList, Box } from '@chakra-ui/react'
+import Head from '@/components/layouts/Head';
+import Articles from './Articles';
+import Events from './Events';
+import Header from './Header';
+import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 
 const Dashboard = () => (
   <>
@@ -26,6 +26,6 @@ const Dashboard = () => (
       </Tabs>
     </Box>
   </>
-)
+);
 
-export default Dashboard
+export default Dashboard;
