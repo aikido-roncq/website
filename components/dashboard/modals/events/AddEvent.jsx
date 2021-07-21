@@ -25,9 +25,20 @@ const AddEvent = ({ isOpen, onClose, submitCallback, event }) => {
     setSubmitting(false);
   };
 
+  const validateInfo = info => {
+    const trimmed = info.trim();
+
+    if (trimmed.length < 5) {
+      return 'Le champ doit contenir au moins 5 caractères';
+    } else if (trimmed.length > 250) {
+      return 'Le champ ne peut pas dépasser 250 caractères';
+    }
+  };
+
   // Update form fields when event is updated
   useEffect(() => {
     if (event) {
+      form.clearErrors();
       hydrateForm(form, event);
       setEdit(true);
     } else {
@@ -98,8 +109,7 @@ const AddEvent = ({ isOpen, onClose, submitCallback, event }) => {
             placeholder="Tarifs, lieu, horaires..."
             ref={form.register({
               required: { value: true, message: 'Ce champ est obligatoire' },
-              minLength: { value: 5, message: 'Le texte doit faire au moins 5 caractères' },
-              maxLength: { value: 250, message: 'Le texte doit faire au plus 250 caractères' },
+              validate: validateInfo,
             })}
             isInvalid={'info' in form.errors}
           />
