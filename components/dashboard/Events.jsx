@@ -177,7 +177,7 @@ const Events = () => {
         </Tbody>
       </Table>
       <AddEvent
-        submitCallback={currentEvent != null ? editEvent : addEvent}
+        submitCallback={currentEvent ? editEvent : addEvent}
         onClose={addEventModal.onClose}
         isOpen={addEventModal.isOpen}
         event={currentEvent}
