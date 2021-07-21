@@ -41,7 +41,7 @@ const ContactForm = () => {
 
   const onSubmit = data => {
     setLoading.on();
-    axios.post('/contacdt', data).then(handleSuccess).catch(handleError).finally(setLoading.off);
+    axios.post('/contact', data).then(handleSuccess).catch(handleError).finally(setLoading.off);
   };
 
   return (
