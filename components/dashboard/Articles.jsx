@@ -18,7 +18,6 @@ import { useEffect, useState } from 'react';
 import DeleteArticle from './modals/articles/DeleteArticle';
 import AddArticle from './modals/articles/AddArticle';
 import ViewArticle from './modals/articles/ViewArticle';
-import EditArticle from './modals/articles/EditArticle';
 import Action from './Action';
 import { formatDate } from '@/utils/date';
 
@@ -29,7 +28,6 @@ const Articles = () => {
 
   const addArticleModal = useDisclosure();
   const viewArticleModal = useDisclosure();
-  const editArticleModal = useDisclosure();
   const deleteArticleModal = useDisclosure();
 
   useEffect(() => {
@@ -89,7 +87,7 @@ const Articles = () => {
     newArticles[articleIndex] = article;
 
     setArticles(newArticles);
-    editArticleModal.onClose();
+    addArticleModal.onClose();
 
     toast({
       title: 'Article mis à jour',
@@ -157,7 +155,7 @@ const Articles = () => {
                 <Action
                   label="Éditer"
                   icon={<EditIcon />}
-                  onClick={() => handleClick(article, editArticleModal)}
+                  onClick={() => handleClick(article, addArticleModal)}
                 />
                 <Action
                   label="Supprimer"
@@ -172,19 +170,14 @@ const Articles = () => {
         </Tbody>
       </Table>
       <AddArticle
-        onSubmit={addArticle}
+        submitCallback={currentArticle ? editArticle : addArticle}
         onClose={addArticleModal.onClose}
         isOpen={addArticleModal.isOpen}
+        article={currentArticle}
       />
       <ViewArticle
         isOpen={viewArticleModal.isOpen}
         onClose={viewArticleModal.onClose}
-        article={currentArticle}
-      />
-      <EditArticle
-        onSubmit={editArticle}
-        isOpen={editArticleModal.isOpen}
-        onClose={editArticleModal.onClose}
         article={currentArticle}
       />
       <DeleteArticle
