@@ -1,51 +1,46 @@
-import { FaCheckCircle } from 'react-icons/fa'
-import { useForm } from 'react-hook-form'
-import styles from 'styles/components/ContactForm.module.scss'
-import { useState } from 'react'
-import Input from './inputs/Input'
-import Button from './inputs/Button'
-import TextArea from './inputs/TextArea'
-import Swal from 'sweetalert2'
-import axios from 'axios'
+import { useForm } from 'react-hook-form';
+import styles from '@/styles/components/ContactForm.module.scss';
+import Input from './inputs/Input';
+import { Button, useBoolean } from '@chakra-ui/react';
+import { CheckCircleIcon } from '@chakra-ui/icons';
+import TextArea from './inputs/TextArea';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const ContactForm = () => {
-  const { register, handleSubmit, reset } = useForm()
-  const [loading, setLoading] = useState(false)
+  const { register, handleSubmit, reset } = useForm();
+  const [loading, setLoading] = useBoolean(false);
 
   const handleSuccess = () => {
-    reset()
+    reset();
     Swal.fire({
       title: 'Message envoyé',
       text: 'Nous avons bien reçu votre message !',
       icon: 'success',
       confirmButtonColor: 'green',
-    })
-  }
+    });
+  };
 
-  const handleError = (e) => {
+  const handleError = e => {
     const text = Object.values(e.response.data)
-      .map((e) => e[0] + '.')
-      .join(' ')
+      .map(e => e[0] + '.')
+      .join(' ');
 
     Swal.fire({
       title: 'Une erreur est survenue',
       icon: 'error',
       confirmButtonColor: 'red',
       text,
-    })
-  }
+    });
+  };
 
-  const onSubmit = (data) => {
-    setLoading(true)
-    axios
-      .post('/contact', data)
-      .then(handleSuccess)
-      .catch(handleError)
-      .finally(() => setLoading(false))
-  }
+  const onSubmit = data => {
+    setLoading.on();
+    axios.post('/contact', data).then(handleSuccess).catch(handleError).finally(setLoading.off);
+  };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form}>
       <Input
         name="name"
         label="Prénom"
@@ -77,11 +72,16 @@ const ContactForm = () => {
         ref={register({ required: true, minLength: 20, maxLength: 500 })}
       />
 
-      <Button disabled={loading}>
-        <FaCheckCircle /> Envoyer
+      <Button
+        isLoading={loading}
+        leftIcon={<CheckCircleIcon />}
+        colorScheme="red"
+        onClick={handleSubmit(onSubmit)}
+      >
+        Envoyer
       </Button>
     </form>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

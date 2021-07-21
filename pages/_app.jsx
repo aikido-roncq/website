@@ -1,13 +1,11 @@
-import AppContext from 'components/AppContext'
-import axios from 'axios'
-import 'styles/globals.scss'
-
-axios.defaults.baseURL = process.env.API_URL
+import AppContext from '@/components/AppContext';
+import '@/styles/globals.scss';
+import '@/utils/axios';
 
 const App = ({ Component, pageProps }) => (
   <AppContext>
     <Component {...pageProps} />
   </AppContext>
-)
+);
 
-export default App
+export default App;

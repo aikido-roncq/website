@@ -15,6 +15,7 @@ body {
 }
 
 .icon {
+  display: inline-block;
   vertical-align: -0.13em;
 }
 
@@ -25,12 +26,13 @@ figure {
 
 button {
   cursor: pointer;
+  border: none;
+  background: none;
+}
 
-  &:disabled {
-    cursor: not-allowed;
-    filter: saturate(0);
-    opacity: 0.5;
-  }
+input,
+textarea {
+  font-family: $fonts;
 }
 
 iframe {

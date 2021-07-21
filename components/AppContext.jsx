@@ -1,9 +1,26 @@
-import { IconContext } from 'react-icons'
+import AuthContext from '@/contexts/auth-context';
+import { IconContext } from 'react-icons';
+import { useAuth } from '@/hooks/useAuth';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+
+const theme = extendTheme({
+  fonts: {
+    body: 'Montserrat',
+  },
+});
 
 const AppContext = ({ children }) => {
-  return (
-    <IconContext.Provider value={{ className: 'icon' }}>{children}</IconContext.Provider>
-  )
-}
+  const auth = useAuth();
 
-export default AppContext
+  return (
+    <AuthContext.Provider value={auth}>
+      <IconContext.Provider value={{ className: 'icon' }}>
+        <ChakraProvider theme={theme} resetCSS={false}>
+          {children}
+        </ChakraProvider>
+      </IconContext.Provider>
+    </AuthContext.Provider>
+  );
+};
+
+export default AppContext;
