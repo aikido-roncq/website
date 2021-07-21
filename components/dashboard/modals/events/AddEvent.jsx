@@ -1,26 +1,27 @@
 import { ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/modal';
-import { Button, FormControl, FormLabel, Input, Textarea, useBoolean } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Textarea } from '@chakra-ui/react';
 import Modal from '@/components/Modal';
 import strftime from 'strftime';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import ErrorMessage from '@/components/ErrorMessage';
+import { useState } from 'react';
 
 const DATE_FORMAT = '%Y-%m-%d';
 
 const AddEvent = ({ isOpen, onClose, submitCallback, event }) => {
-  const [edit, setEdit] = useBoolean(event != null);
-  const [submitting, setSubmitting] = useBoolean(false);
+  const [edit, setEdit] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const form = useForm({ shouldUnregister: false, shouldFocusError: false });
   const startDate = form.watch('start_date', strftime(DATE_FORMAT));
 
   const onSubmit = async data => {
-    setSubmitting.on();
+    setSubmitting(true);
     const posted = await submitCallback(data);
     if (posted) {
       form.reset();
     }
-    setSubmitting.off();
+    setSubmitting(false);
   };
 
   // Update form fields when event is updated
@@ -29,10 +30,10 @@ const AddEvent = ({ isOpen, onClose, submitCallback, event }) => {
       Object.entries(event).forEach(([key, value]) => {
         form.setValue(key, value);
       });
-      setEdit.on();
+      setEdit(true);
     } else {
       form.reset();
-      setEdit.off();
+      setEdit(false);
     }
   }, [event]);
 
