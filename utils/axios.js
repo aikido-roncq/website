@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { TOKEN_KEY } from './constants';
-import process from '@/next.config';
 
 const tokenInterceptor = config => {
   const token = sessionStorage.getItem(TOKEN_KEY);

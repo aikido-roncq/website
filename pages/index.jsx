@@ -15,7 +15,6 @@ import SwiperCore, { Autoplay, Keyboard, Mousewheel, Pagination } from 'swiper';
 import Image from '@/components/Image';
 import 'swiper/swiper-bundle.min.css';
 import Alert from '@material-ui/lab/Alert';
-import process from '@/next.config';
 
 const API_URL = process.env.API_URL;
 

@@ -1,5 +1,4 @@
 import NextHead from 'next/head';
-import process from '@/next.config';
 
 const BASE_URL = process.env.BASE_URL;
 
