@@ -38,8 +38,8 @@ const AddArticle = ({ isOpen, onClose, submitCallback, article }) => {
 
   useEffect(() => {
     if (article) {
+      form.clearErrors();
       hydrateForm(form, article);
-      form.setValue('title', article.title);
       setEdit(true);
     } else {
       form.reset();
