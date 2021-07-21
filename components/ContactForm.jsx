@@ -1,15 +1,24 @@
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/components/ContactForm.module.scss';
-import Input from './inputs/Input';
-import { Button, useBoolean } from '@chakra-ui/react';
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  Input,
+  Textarea,
+  useBoolean,
+} from '@chakra-ui/react';
 import { CheckCircleIcon } from '@chakra-ui/icons';
-import TextArea from './inputs/TextArea';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import ErrorMessage from './ErrorMessage';
 
 const ContactForm = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, errors } = useForm({ shouldFocusError: false });
   const [loading, setLoading] = useBoolean(false);
+
+  const isInvalid = field => field in errors;
 
   const handleSuccess = () => {
     reset();
@@ -21,63 +30,69 @@ const ContactForm = () => {
     });
   };
 
-  const handleError = e => {
-    const text = Object.values(e.response.data)
-      .map(e => e[0] + '.')
-      .join(' ');
-
+  const handleError = () => {
     Swal.fire({
       title: 'Une erreur est survenue',
       icon: 'error',
       confirmButtonColor: 'red',
-      text,
+      text: `Veuillez réessayer plus tard. Si l'erreur persiste, contactez-nous par mail.`,
     });
   };
 
   const onSubmit = data => {
     setLoading.on();
-    axios.post('/contact', data).then(handleSuccess).catch(handleError).finally(setLoading.off);
+    axios.post('/contacdt', data).then(handleSuccess).catch(handleError).finally(setLoading.off);
   };
 
   return (
-    <form className={styles.form}>
-      <Input
-        name="name"
-        label="Prénom"
-        placeholder="John"
-        required
-        maxLength={50}
-        ref={register({ required: true, maxLength: 50 })}
-      />
-
-      <Input
-        name="email"
-        label="Adresse mail"
-        type="email"
-        spellCheck="false"
-        placeholder="john.doe@gmail.com"
-        hint="Nécessaire pour vous recontacter"
-        maxLength={60}
-        ref={register({ required: true, maxLength: 60 })}
-        required
-      />
-
-      <TextArea
-        name="content"
-        label="Message"
-        minLength={20}
-        maxLength={500}
-        hint="20 à 500 caractères"
-        required
-        ref={register({ required: true, minLength: 20, maxLength: 500 })}
-      />
-
-      <Button
-        isLoading={loading}
-        leftIcon={<CheckCircleIcon />}
-        colorScheme="red"
-        onClick={handleSubmit(onSubmit)}
-      >
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <FormControl>
+        <FormLabel mb={1}>Prénom</FormLabel>
+        <Input
+          name="name"
+          placeholder="John"
+          isInvalid={isInvalid('name')}
+          ref={register({
+            required: { value: true, message: 'Ce champ est obligatoire' },
+            minLength: { value: 3, message: 'Votre prénom doit contenir au moins 3 caractères' },
+            maxLength: { value: 50, message: 'Votre prénom ne peut pas dépasser 50 caractères' },
+          })}
+        />
+        <ErrorMessage error={errors.name} />
+      </FormControl>
+      <FormControl>
+        <FormLabel mb={0}>Adresse mail</FormLabel>
+        <FormHelperText my={1}>Nécessaire pour votre recontacter</FormHelperText>
+        <Input
+          name="email"
+          type="email"
+          placeholder="john.doe@gmail.com"
+          spellCheck={false}
+          isInvalid={isInvalid('email')}
+          ref={register({
+            required: { value: true, message: 'Ce champ est obligatoire' },
+            maxLength: { value: 50, message: '50 caractères maximum' },
+          })}
+        />
+        <ErrorMessage error={errors.email} />
+      </FormControl>
+      <FormControl>
+        <FormLabel mb={0}>Message</FormLabel>
+        <FormHelperText my={1}>20 à 500 caractères</FormHelperText>
+        <Textarea
+          name="content"
+          label="Message"
+          minHeight={150}
+          isInvalid={isInvalid('content')}
+          ref={register({
+            required: { value: true, message: 'Ce champ est obligatoire' },
+            minLength: { value: 20, message: 'Le message doit contenir au moins 20 caractères' },
+            maxLength: { value: 500, message: 'Le message doit contenir au plus 500 caractères' },
+          })}
+        />
+        <ErrorMessage error={errors.content} />
+      </FormControl>
+      <Button type="submit" isLoading={loading} leftIcon={<CheckCircleIcon />} colorScheme="red">
         Envoyer
       </Button>
     </form>
