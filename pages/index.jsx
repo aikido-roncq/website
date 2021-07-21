@@ -64,7 +64,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout maxWidth={60}>
+    <Layout maxWidth={70}>
       <Head
         title="Accueil"
         description={
