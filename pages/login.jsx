@@ -1,5 +1,4 @@
-import { Button } from '@chakra-ui/react';
-import Input from '@/components/inputs/Input';
+import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/Login.module.scss';
@@ -64,10 +63,16 @@ const Login = () => {
         </Alert>
       )}
 
-      <form className={styles.form}>
-        <Input name="username" label="Nom d'utilisateur" required ref={register} />
-        <Input name="password" type="password" label="Mot de passe" required ref={register} />
-        <Button isLoading={loading} colorScheme="red" onClick={handleSubmit(onLogin)}>
+      <form className={styles.form} onSubmit={handleSubmit(onLogin)}>
+        <FormControl>
+          <FormLabel>Nom d'utilisateur</FormLabel>
+          <Input name="username" label="Nom d'utilisateur" required ref={register} />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Mot de passe</FormLabel>
+          <Input name="password" type="password" label="Mot de passe" required ref={register} />
+        </FormControl>
+        <Button type="submit" isLoading={loading} colorScheme="red">
           Connexion
         </Button>
       </form>
