@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import ErrorMessage from '@/components/ErrorMessage';
 import { useState } from 'react';
+import { hydrateForm } from '@/utils/form';
 
 const DATE_FORMAT = '%Y-%m-%d';
 
@@ -27,9 +28,7 @@ const AddEvent = ({ isOpen, onClose, submitCallback, event }) => {
   // Update form fields when event is updated
   useEffect(() => {
     if (event) {
-      Object.entries(event).forEach(([key, value]) => {
-        form.setValue(key, value);
-      });
+      hydrateForm(form, event);
       setEdit(true);
     } else {
       form.reset();
