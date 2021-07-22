@@ -11,7 +11,7 @@ const Admin = ({ children }) => {
       const origin = encodeURI(router.asPath);
       router.push(`/login?next=${origin}`);
     }
-  }, [auth]);
+  }, [auth.isLoggedIn]);
 
   if (!auth.isLoggedIn) {
     return null;
