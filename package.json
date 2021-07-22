@@ -9,7 +9,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.14.8",
     "@chakra-ui/icons": "^1.0.13",
     "@chakra-ui/react": "^1.6.4",
     "@ckeditor/ckeditor5-build-classic": "^28.0.0",
