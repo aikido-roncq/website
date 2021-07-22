@@ -8,22 +8,31 @@ export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const logout = async () => {
-    await axios.post('/logout', {}, { admin: true });
+    await axios({ method: 'POST', url: '/logout' }, { admin: true });
     setToken(null);
-    sessionStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(TOKEN_KEY);
     await Router.push('/');
   };
 
   useEffect(() => {
-    setToken(sessionStorage.getItem(TOKEN_KEY));
+    setToken(localStorage.getItem(TOKEN_KEY));
   }, []);
 
-  useEffect(() => {
-    setIsLoggedIn(token != null);
-
-    if (token != null) {
-      sessionStorage.setItem(TOKEN_KEY, token);
+  useEffect(async () => {
+    if (!token) {
+      setIsLoggedIn(false);
+      return;
     }
+
+    try {
+      await axios.get('/validate', { headers: { authorization: `Bearer ${token}` } });
+    } catch {
+      setIsLoggedIn(false);
+      return;
+    }
+
+    setIsLoggedIn(true);
+    localStorage.setItem(TOKEN_KEY, token);
   }, [token]);
 
   return { token, setToken, isLoggedIn, logout };

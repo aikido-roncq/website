@@ -9,19 +9,21 @@ import {
   Th,
   Thead,
   Tr,
+  useBreakpointValue,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
-import { AddIcon, DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DeleteEvent from './modals/events/DeleteEvent';
 import AddEvent from './modals/events/AddEvent';
 import ViewEvent from './modals/events/ViewEvent';
-import Action from './Action';
 import { formatDateRange } from '@/utils/date';
+import Actions from './Actions';
 
 const Events = () => {
+  const isDesktop = useBreakpointValue({ base: false, md: true });
   const [currentEvent, setCurrentEvent] = useState(null);
   const [events, setEvents] = useState([]);
   const toast = useToast();
@@ -126,7 +128,7 @@ const Events = () => {
 
   return (
     <Box>
-      <Flex alignItems="baseline">
+      <Flex alignItems="baseline" direction={isDesktop ? 'row' : 'column'}>
         <Heading as="h2" size="lg" mb={4} mr={4}>
           📅 Événements
         </Heading>
@@ -144,7 +146,7 @@ const Events = () => {
         <Thead>
           <Tr>
             <Th>Titre</Th>
-            <Th>Date</Th>
+            {isDesktop && <Th>Date</Th>}
             <Th>Actions</Th>
           </Tr>
         </Thead>
@@ -152,24 +154,13 @@ const Events = () => {
           {events.map(event => (
             <Tr key={event.id} gridTemplateColumns="1fr auto auto">
               <Td>{event.title}</Td>
-              <Td>{formatDateRange(event.start_date, event.end_date)}</Td>
+              {isDesktop && <Td>{formatDateRange(event.start_date, event.end_date)}</Td>}
               <Td>
-                <Action
-                  label="Voir"
-                  icon={<ViewIcon />}
-                  onClick={() => handleClick(event, viewEventModal)}
-                />
-                <Action
-                  label="Éditer"
-                  icon={<EditIcon />}
-                  onClick={() => handleClick(event, addEventModal)}
-                />
-                <Action
-                  label="Supprimer"
-                  icon={<DeleteIcon />}
-                  onClick={() => handleClick(event, deleteEventModal)}
-                  color="red"
-                  isLast
+                <Actions
+                  element={event}
+                  isDesktop={isDesktop}
+                  callback={handleClick}
+                  modals={{ show: viewEventModal, edit: addEventModal, delete: deleteEventModal }}
                 />
               </Td>
             </Tr>
