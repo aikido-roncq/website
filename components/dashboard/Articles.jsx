@@ -9,19 +9,21 @@ import {
   Th,
   Thead,
   Tr,
+  useBreakpointValue,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
-import { AddIcon, DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DeleteArticle from './modals/articles/DeleteArticle';
 import AddArticle from './modals/articles/AddArticle';
 import ViewArticle from './modals/articles/ViewArticle';
-import Action from './Action';
-import { formatDate } from '@/utils/date';
+import Actions from './Actions';
+import { relativeDateString } from '@/utils/date';
 
 const Articles = () => {
+  const isDesktop = useBreakpointValue({ base: false, md: true });
   const [currentArticle, setCurrentArticle] = useState(null);
   const [articles, setArticles] = useState([]);
   const toast = useToast();
@@ -125,7 +127,7 @@ const Articles = () => {
 
   return (
     <Box>
-      <Flex alignItems="baseline">
+      <Flex alignItems="baseline" direction={isDesktop ? 'row' : 'column'}>
         <Heading as="h2" size="lg" mb={4} mr={4}>
           📰 Articles
         </Heading>
@@ -137,7 +139,7 @@ const Articles = () => {
         <Thead>
           <Tr>
             <Th>Titre</Th>
-            <Th>Posté le</Th>
+            {isDesktop && <Th>Posté</Th>}
             <Th>Actions</Th>
           </Tr>
         </Thead>
@@ -145,24 +147,17 @@ const Articles = () => {
           {articles.map(article => (
             <Tr key={article.id}>
               <Td>{article.title}</Td>
-              <Td>{formatDate(article.date)}</Td>
+              {isDesktop && <Td>{relativeDateString(new Date(article.date))}</Td>}
               <Td>
-                <Action
-                  label="Voir"
-                  icon={<ViewIcon />}
-                  onClick={() => handleClick(article, viewArticleModal)}
-                />
-                <Action
-                  label="Éditer"
-                  icon={<EditIcon />}
-                  onClick={() => handleClick(article, addArticleModal)}
-                />
-                <Action
-                  label="Supprimer"
-                  icon={<DeleteIcon />}
-                  onClick={() => handleClick(article, deleteArticleModal)}
-                  color="red"
-                  isLast
+                <Actions
+                  element={article}
+                  isDesktop={isDesktop}
+                  callback={handleClick}
+                  modals={{
+                    show: viewArticleModal,
+                    edit: addArticleModal,
+                    delete: deleteArticleModal,
+                  }}
                 />
               </Td>
             </Tr>
