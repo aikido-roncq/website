@@ -27,6 +27,7 @@ export const useAuth = () => {
     try {
       await axios.get('/validate', { headers: { authorization: `Bearer ${token}` } });
     } catch {
+      setIsLoggedIn(false);
       return;
     }
 
