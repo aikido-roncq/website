@@ -2,6 +2,12 @@ import strftime from 'strftime';
 
 const DATE_FORMAT = '%d %b';
 
+/**
+ * Formats 2 date strings as a date range string
+ * @param {String} startStr the start date
+ * @param {String} endStr the end date
+ * @returns {String} the formatted date range
+ */
 export const formatDateRange = (startStr, endStr) => {
   const start = new Date(startStr);
   const end = new Date(endStr);
@@ -17,7 +23,12 @@ export const formatDateRange = (startStr, endStr) => {
   return formatDateRange(start) + ' - ' + formatDateRange(endStr);
 };
 
-export const formatDate = date => new Date(date).toLocaleDateString();
+/**
+ * Formats a date as a locale date string
+ * @param {String} dateStr the date to format
+ * @returns {String} the locale formatted date
+ */
+export const formatDate = dateStr => new Date(dateStr).toLocaleDateString();
 
 /**
  * Handle the plural of the singular word passed as a parameter depending on the count
