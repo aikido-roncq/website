@@ -32,7 +32,6 @@
     "react/prop-types": "off",
     "no-var": "error",
     "prefer-const": "error",
-    "newline-before-return": "error",
     "padding-line-between-statements": [
       "error",
       {
