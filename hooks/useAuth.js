@@ -18,12 +18,20 @@ export const useAuth = () => {
     setToken(localStorage.getItem(TOKEN_KEY));
   }, []);
 
-  useEffect(() => {
-    setIsLoggedIn(token != null);
-
-    if (token != null) {
-      localStorage.setItem(TOKEN_KEY, token);
+  useEffect(async () => {
+    if (!token) {
+      setIsLoggedIn(false);
+      return;
     }
+
+    try {
+      await axios.get('/validate', { headers: { authorization: `Bearer ${token}` } });
+    } catch {
+      return;
+    }
+
+    setIsLoggedIn(true);
+    localStorage.setItem(TOKEN_KEY, token);
   }, [token]);
 
   return { token, setToken, isLoggedIn, logout };
