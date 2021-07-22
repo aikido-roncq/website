@@ -1,4 +1,4 @@
-const { WarningTwoIcon } = require('@chakra-ui/icons');
+import { WarningTwoIcon } from '@chakra-ui/icons';
 
 const ErrorMessage = ({ error }) => {
   if (!error) {
