@@ -1,4 +1,4 @@
-import { formatDate, relativeDateString } from './date';
+import { formatDate, relativeDateString } from '@/utils/date';
 
 describe(`relativeDateString`, () => {
   it('is just now', () => {

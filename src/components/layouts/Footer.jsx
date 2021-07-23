@@ -4,7 +4,7 @@ import styles from '@/styles/components/Footer.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import { FaAt, FaFacebook, FaGithubAlt, FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';
 import { MdPowerSettingsNew } from 'react-icons/md';
-import { EMAIL, FACEBOOK, INSTAGRAM } from 'utils/constants';
+import { EMAIL, FACEBOOK, INSTAGRAM } from '@/utils/constants';
 
 const LINKS = [
   {
