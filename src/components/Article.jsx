@@ -1,9 +1,7 @@
 import styles from '@/styles/components/Article.module.scss';
-import { relativeDateString } from '@/utils/date';
 
-const Article = ({ title, content, date: dateStr, ...props }) => {
-  const date = new Date(dateStr);
-  const relativeDate = relativeDateString(date);
+const Article = ({ article, ...props }) => {
+  const { title, content, relativeDate } = article;
   return (
     <article {...props} className={styles.article}>
       <h2 className={styles.title}>{title}</h2>

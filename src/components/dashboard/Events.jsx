@@ -14,13 +14,13 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DeleteEvent from './modals/events/DeleteEvent';
 import AddEvent from './modals/events/AddEvent';
 import ViewEvent from './modals/events/ViewEvent';
 import { formatDateRange } from '@/utils/date';
 import Actions from './Actions';
+import EventService from '@/services/event.service';
 
 const Events = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
@@ -33,7 +33,7 @@ const Events = () => {
   const deleteEventModal = useDisclosure();
 
   useEffect(() => {
-    axios.get('/events').then(res => setEvents(res.data));
+    EventService.getEvents().then(setEvents);
   }, []);
 
   const handleClick = (event, modal) => {
@@ -50,7 +50,7 @@ const Events = () => {
 
   const addEvent = async event => {
     try {
-      await axios.post('/events', event, { admin: true });
+      await EventService.postEvent(event);
     } catch (e) {
       toast({
         title: 'Événement non ajouté',
@@ -62,7 +62,8 @@ const Events = () => {
       return false;
     }
 
-    setEvents((await axios.get('/events')).data);
+    const updatedEvents = await EventService.getEvents();
+    setEvents(updatedEvents);
 
     addEventModal.onClose();
 
@@ -77,10 +78,10 @@ const Events = () => {
   };
 
   const editEvent = async event => {
+    let editedEvent;
+
     try {
-      await axios.put(`/events/${event.id}`, event, {
-        admin: true,
-      });
+      editedEvent = await EventService.editEvent(event);
     } catch (e) {
       toast({
         title: 'Événement non mis à jour',
@@ -94,7 +95,7 @@ const Events = () => {
 
     const eventIndex = events.findIndex(e => e.id === event.id);
     const newEvents = [...events];
-    newEvents[eventIndex] = event;
+    newEvents[eventIndex] = editedEvent;
 
     setEvents(newEvents);
     addEventModal.onClose();
@@ -109,7 +110,7 @@ const Events = () => {
 
   const deleteEvent = async event => {
     try {
-      await axios.delete(`/events/${event.id}`, { admin: true });
+      await EventService.deleteEvent(event);
     } catch (e) {
       toast({
         title: 'Événement non supprimé',

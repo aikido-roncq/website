@@ -14,13 +14,13 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DeleteArticle from './modals/articles/DeleteArticle';
 import AddArticle from './modals/articles/AddArticle';
 import ViewArticle from './modals/articles/ViewArticle';
 import Actions from './Actions';
 import { relativeDateString } from '@/utils/date';
+import ArticleService from '@/services/article.service';
 
 const Articles = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
@@ -33,7 +33,7 @@ const Articles = () => {
   const deleteArticleModal = useDisclosure();
 
   useEffect(() => {
-    axios.get('/articles').then(res => setArticles(res.data));
+    ArticleService.getArticles().then(setArticles);
   }, []);
 
   const handleClick = (article, modal) => {
@@ -48,10 +48,10 @@ const Articles = () => {
     addArticleModal.onOpen();
   };
 
-  const addArticle = async ({ title, content }) => {
+  const addArticle = async article => {
     try {
-      const res = await axios.post('/articles', { title, content }, { admin: true });
-      setArticles(oldArticles => [res.data, ...oldArticles]);
+      const newArticle = await ArticleService.postArticle(article);
+      setArticles(oldArticles => [newArticle, ...oldArticles]);
     } catch (e) {
       toast({
         title: 'Article non ajouté',
@@ -76,10 +76,10 @@ const Articles = () => {
   };
 
   const editArticle = async article => {
+    let updatedArticle;
+
     try {
-      await axios.put(`/articles/${article.id}`, article, {
-        admin: true,
-      });
+      updatedArticle = await ArticleService.editArticle(article);
     } catch (e) {
       toast({
         title: 'Article non mis à jour',
@@ -91,9 +91,9 @@ const Articles = () => {
       return;
     }
 
-    const articleIndex = articles.findIndex(a => a.id === article.id);
+    const articleIndex = articles.findIndex(a => a.id === updatedArticle.id);
     const newArticles = [...articles];
-    newArticles[articleIndex] = article;
+    newArticles[articleIndex] = updatedArticle;
 
     setArticles(newArticles);
     addArticleModal.onClose();
@@ -108,7 +108,7 @@ const Articles = () => {
 
   const deleteArticle = async article => {
     try {
-      await axios.delete(`/articles/${article.id}`, { admin: true });
+      await ArticleService.deleteArticle(article);
     } catch (e) {
       toast({
         title: 'Article non supprimé',

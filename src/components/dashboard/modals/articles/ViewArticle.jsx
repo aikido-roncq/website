@@ -6,7 +6,7 @@ const ViewArticle = ({ isOpen, onClose, article }) => (
   <Modal isOpen={isOpen} onClose={onClose}>
     <ModalHeader>Voir l'article</ModalHeader>
     <ModalBody>
-      <Article {...article} />
+      <Article article={article} />
     </ModalBody>
     <ModalFooter>
       <Button variant="ghost" onClick={onClose}>

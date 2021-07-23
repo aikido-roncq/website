@@ -4,24 +4,17 @@ import styles from '@/styles/Articles.module.scss';
 import Layout from '@/components/layouts/Layout';
 import Title from '@/components/Title';
 import { useEffect, useState } from 'react';
-
-import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
+import ArticleService from '@/services/article.service';
+import { useBoolean } from '@chakra-ui/react';
 
 const Articles = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useBoolean(true);
   const [articles, setArticles] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useBoolean(false);
 
   useEffect(() => {
-    axios
-      .get('/articles')
-      .then(res => setArticles(res.data))
-      .catch(e => {
-        setError('Une erreur est survenue. Veuillez réessayer plus tard.');
-        console.error(e);
-      })
-      .finally(() => setLoading(false));
+    ArticleService.getArticles().then(setArticles).catch(setError.on).finally(setLoading.off);
   }, []);
 
   return (
@@ -37,8 +30,10 @@ const Articles = () => {
           <p>Chargement des articles...</p>
         ) : articles.length > 0 ? (
           articles?.map(article => (
-            <Article {...article} key={article.slug} className={styles.article} />
+            <Article key={article.slug} article={article} className={styles.article} />
           ))
+        ) : error ? (
+          <p>Une erreur est survenue. Veuillez réessayer plus tard.</p>
         ) : (
           <p>Aucun article.</p>
         )}

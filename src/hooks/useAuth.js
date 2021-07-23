@@ -1,5 +1,5 @@
+import AuthService from '@/services/auth.service';
 import { TOKEN_KEY } from '@/utils/constants';
-import axios from 'axios';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -8,9 +8,8 @@ export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const logout = async () => {
-    await axios({ method: 'POST', url: '/logout' }, { admin: true });
+    await AuthService.logout();
     setToken(null);
-    localStorage.removeItem(TOKEN_KEY);
     await Router.push('/');
   };
 
@@ -21,11 +20,12 @@ export const useAuth = () => {
   useEffect(async () => {
     if (!token) {
       setIsLoggedIn(false);
+      localStorage.removeItem(TOKEN_KEY);
       return;
     }
 
     try {
-      await axios.get('/validate', { headers: { authorization: `Bearer ${token}` } });
+      await AuthService.validate(token);
     } catch {
       setIsLoggedIn(false);
       return;

@@ -4,7 +4,6 @@ import Article from '@/components/Article';
 import Event from '@/components/Event';
 import Link from '@/components/Link';
 import Schedules from '@/components/Schedules';
-import axios from 'axios';
 import styles from '@/styles/Index.module.scss';
 import Layout from '@/components/layouts/Layout';
 import Title from '@/components/Title';
@@ -15,6 +14,10 @@ import SwiperCore, { Autoplay, Keyboard, Mousewheel, Pagination } from 'swiper';
 import Image from '@/components/Image';
 import 'swiper/swiper-bundle.min.css';
 import Alert from '@material-ui/lab/Alert';
+import ArticleService from '@/services/article.service';
+import { useBoolean } from '@chakra-ui/react';
+import EventService from '@/services/event.service';
+import GalleryService from '@/services/gallery.service';
 
 const API_URL = process.env.API_URL;
 
@@ -25,42 +28,32 @@ export default function Home() {
   const [events, setEvents] = useState([]);
   const [gallery, setGallery] = useState([]);
 
-  const [articlesLoading, setArticlesLoading] = useState(true);
-  const [eventsLoading, setEventsLoading] = useState(true);
-  const [galleryLoading, setGalleryLoading] = useState(true);
+  const [articlesLoading, setArticlesLoading] = useBoolean(true);
+  const [eventsLoading, setEventsLoading] = useBoolean(true);
+  const [galleryLoading, setGalleryLoading] = useBoolean(true);
 
   const pagination = useRef(null);
-  const [errors, setErrors] = useState({ articles: null, events: null, gallery: null });
+  const [errors, setErrors] = useState({ articles: false, events: false, gallery: null });
 
   const removeImage = image => {
     setGallery(images => images.filter(i => i.src !== image.src));
   };
 
   useEffect(() => {
-    axios
-      .get('/articles')
-      .then(res => setArticles(res.data.slice(0, 3)))
-      .catch(error => {
-        setErrors(e => ({ ...e, articles: 'Échec du chargement des articles' }));
-        console.error(error);
-      })
-      .finally(() => setArticlesLoading(false));
-    axios
-      .get('/events')
-      .then(res => setEvents(res.data))
-      .catch(error => {
-        setErrors(e => ({ ...e, events: 'Échec du chargement des événements' }));
-        console.error(error);
-      })
-      .finally(() => setEventsLoading(false));
-    axios
-      .get('/gallery')
-      .then(res => setGallery(res.data))
-      .catch(error => {
-        setErrors(e => ({ ...e, gallery: 'Échec du chargement de la galerie' }));
-        console.error(error);
-      })
-      .finally(() => setGalleryLoading(false));
+    ArticleService.getArticles()
+      .then(setArticles)
+      .catch(() => setErrors(e => ({ ...e, articles: true })))
+      .finally(setArticlesLoading.off);
+
+    EventService.getEvents()
+      .then(setEvents)
+      .catch(() => setErrors(e => ({ ...e, events: true })))
+      .finally(setEventsLoading.off);
+
+    GalleryService.getGallery()
+      .then(setGallery)
+      .catch(() => setErrors({ ...e, gallery: true }))
+      .finally(setGalleryLoading.off);
   }, []);
 
   return (
@@ -78,11 +71,11 @@ export default function Home() {
           <Title emoji="📰">Derniers articles</Title>
           <div className={styles.articles}>
             {articles.length ? (
-              articles.map(article => <Article key={article.slug} {...article} />)
+              articles.map(article => <Article key={article.slug} article={article} />)
             ) : articlesLoading ? (
               <p>Chargement des articles...</p>
             ) : errors.articles ? (
-              <Alert severity="error">{errors.articles}</Alert>
+              <Alert severity="error">Échec lors du chargement des articles</Alert>
             ) : (
               <p>Aucun article récent.</p>
             )}
@@ -114,7 +107,7 @@ export default function Home() {
             ) : eventsLoading ? (
               <p>Chargement des événements...</p>
             ) : errors.events ? (
-              <Alert severity="error">{errors.events}</Alert>
+              <Alert severity="error">Échec lors du chargement des événements</Alert>
             ) : (
               <p>Aucun événement à venir.</p>
             )}
@@ -163,7 +156,7 @@ export default function Home() {
           ) : galleryLoading ? (
             <p>Chargement de la galerie en cours...</p>
           ) : errors.gallery ? (
-            <Alert severity="error">{errors.gallery}</Alert>
+            <Alert severity="error">Échec lors du chargement de la galerie</Alert>
           ) : (
             <p>Aucune photo.</p>
           )}

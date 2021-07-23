@@ -1,17 +1,17 @@
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, useBoolean } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/Login.module.scss';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import Head from '@/components/layouts/Head';
 import AuthContext from '@/contexts/auth-context';
 import Alert from '@material-ui/lab/Alert';
 import Link from '@/components/Link';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
+import AuthService from '@/services/auth.service';
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useBoolean(false);
   const [error, setError] = useState(null);
   const { register, handleSubmit } = useForm();
   const auth = useContext(AuthContext);
@@ -19,26 +19,19 @@ const Login = () => {
 
   const onLogin = data => {
     const { username, password } = data;
-    setLoading(true);
+    setLoading.on();
     setError(null);
 
-    axios({
-      url: '/login',
-      method: 'POST',
-      auth: {
-        username,
-        password,
-      },
-    })
-      .then(res => auth.setToken(res.data.token))
+    AuthService.login(username, password)
+      .then(auth.setToken)
       .catch(e => {
         if (e.response?.status === 401) {
-          setError("Nom d'utilisateur ou mot de passe incorrect");
+          setError(`Nom d'utilisateur ou mot de passe incorrect`);
         } else {
           setError('Une erreur est survenue. Veuillez réessayer plus tard.');
         }
       })
-      .finally(() => setLoading(false));
+      .finally(setLoading.off);
   };
 
   useEffect(() => {
