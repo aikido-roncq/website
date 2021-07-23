@@ -29,7 +29,7 @@ const Image = ({ src, caption, onError, ...other }) => {
         alt={caption}
         onError={onError}
       />
-      {caption && <figcaption>{caption}</figcaption>}
+      {caption && <figcaption style={{ opacity }}>{caption}</figcaption>}
       {loading && <Spinner />}
     </figure>
   );
