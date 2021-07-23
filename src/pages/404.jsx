@@ -1,6 +1,6 @@
-import Head from 'next/head';
+import Head from '@/components/layouts/Head';
 import Link from 'next/link';
-import styles from '@/styles/404.module.scss';
+import { Button, Flex, Heading, Text } from '@chakra-ui/react';
 
 const NotFound = () => {
   return (
@@ -10,13 +10,15 @@ const NotFound = () => {
         description="Désolé, la page que vous recherchez n'existe pas."
       />
 
-      <div className={styles.container}>
-        <h1 className={styles.title}>Erreur 404</h1>
-        <p>La page que vous recherchez n'existe pas. ☹️</p>
-        <Link href="/">
-          <a className={styles.link}>Retour à la page d'accueil</a>
-        </Link>
-      </div>
+      <Flex height="100vh" alignItems="center" justifyContent="center">
+        <Flex direction="column" alignItems="center" justifyContent="center">
+          <Heading m={0}>Erreur 404</Heading>
+          <Text>La page que vous recherchez n'existe pas. ☹️</Text>
+          <Link href="/">
+            <Button colorScheme="red">Retour à la page d'accueil</Button>
+          </Link>
+        </Flex>
+      </Flex>
     </>
   );
 };
