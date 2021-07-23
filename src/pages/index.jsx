@@ -13,11 +13,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Keyboard, Mousewheel, Pagination } from 'swiper';
 import Image from '@/components/Image';
 import 'swiper/swiper-bundle.min.css';
-import Alert from '@material-ui/lab/Alert';
 import ArticleService from '@/services/article.service';
 import { useBoolean } from '@chakra-ui/react';
 import EventService from '@/services/event.service';
 import GalleryService from '@/services/gallery.service';
+import Error from '@/components/Error';
 
 const API_URL = process.env.API_URL;
 
@@ -52,7 +52,7 @@ export default function Home() {
 
     GalleryService.getGallery()
       .then(setGallery)
-      .catch(() => setErrors({ ...e, gallery: true }))
+      .catch(() => setErrors(e => ({ ...e, gallery: true })))
       .finally(setGalleryLoading.off);
   }, []);
 
@@ -75,7 +75,7 @@ export default function Home() {
             ) : articlesLoading ? (
               <p>Chargement des articles...</p>
             ) : errors.articles ? (
-              <Alert severity="error">Échec lors du chargement des articles</Alert>
+              <Error>Échec lors du chargement des articles</Error>
             ) : (
               <p>Aucun article récent.</p>
             )}
@@ -107,7 +107,7 @@ export default function Home() {
             ) : eventsLoading ? (
               <p>Chargement des événements...</p>
             ) : errors.events ? (
-              <Alert severity="error">Échec lors du chargement des événements</Alert>
+              <Error>Échec lors du chargement des événements</Error>
             ) : (
               <p>Aucun événement à venir.</p>
             )}
@@ -156,7 +156,7 @@ export default function Home() {
           ) : galleryLoading ? (
             <p>Chargement de la galerie en cours...</p>
           ) : errors.gallery ? (
-            <Alert severity="error">Échec lors du chargement de la galerie</Alert>
+            <Error>Échec lors du chargement de la galerie</Error>
           ) : (
             <p>Aucune photo.</p>
           )}

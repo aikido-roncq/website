@@ -5,10 +5,10 @@ import styles from '@/styles/Login.module.scss';
 import { useRouter } from 'next/router';
 import Head from '@/components/layouts/Head';
 import AuthContext from '@/contexts/auth-context';
-import Alert from '@material-ui/lab/Alert';
 import Link from '@/components/Link';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 import AuthService from '@/services/auth.service';
+import Error from '@/components/Error';
 
 const Login = () => {
   const [loading, setLoading] = useBoolean(false);
@@ -50,11 +50,7 @@ const Login = () => {
 
       <h1>🔒 Connexion</h1>
 
-      {error && (
-        <Alert severity="error" className={styles.alert}>
-          {error}
-        </Alert>
-      )}
+      {error && <Error mb={4}>{error}</Error>}
 
       <form className={styles.form} onSubmit={handleSubmit(onLogin)}>
         <FormControl>

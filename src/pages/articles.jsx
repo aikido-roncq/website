@@ -4,9 +4,9 @@ import styles from '@/styles/Articles.module.scss';
 import Layout from '@/components/layouts/Layout';
 import Title from '@/components/Title';
 import { useEffect, useState } from 'react';
-import Alert from '@material-ui/lab/Alert';
 import ArticleService from '@/services/article.service';
 import { useBoolean } from '@chakra-ui/react';
+import Error from '@/components/Error';
 
 const Articles = () => {
   const [loading, setLoading] = useBoolean(true);
@@ -23,8 +23,6 @@ const Articles = () => {
 
       <Title emoji="📰">Articles</Title>
 
-      {error && <Alert severity="error">{error}</Alert>}
-
       <div className={styles.container}>
         {loading ? (
           <p>Chargement des articles...</p>
@@ -33,7 +31,7 @@ const Articles = () => {
             <Article key={article.slug} article={article} className={styles.article} />
           ))
         ) : error ? (
-          <p>Une erreur est survenue. Veuillez réessayer plus tard.</p>
+          <Error>Une erreur est survenue. Veuillez réessayer plus tard.</Error>
         ) : (
           <p>Aucun article.</p>
         )}
