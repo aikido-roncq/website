@@ -41,6 +41,13 @@ const Articles = () => {
     modal.onOpen();
   };
 
+  const handleAddButtonClick = () => {
+    if (currentArticle) {
+      setCurrentArticle(null);
+    }
+    addArticleModal.onOpen();
+  };
+
   const addArticle = async ({ title, content }) => {
     try {
       const res = await axios.post('/articles', { title, content }, { admin: true });
@@ -131,7 +138,7 @@ const Articles = () => {
         <Heading as="h2" size="lg" mb={4} mr={4}>
           📰 Articles
         </Heading>
-        <Button onClick={addArticleModal.onOpen} mb={2}>
+        <Button onClick={handleAddButtonClick} mb={2}>
           <AddIcon mr={3} /> Ajouter un article
         </Button>
       </Flex>

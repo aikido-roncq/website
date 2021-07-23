@@ -41,6 +41,13 @@ const Events = () => {
     modal.onOpen();
   };
 
+  const handleAddButtonClick = () => {
+    if (currentEvent) {
+      setCurrentEvent(null);
+    }
+    addEventModal.onOpen();
+  };
+
   const addEvent = async event => {
     try {
       await axios.post('/events', event, { admin: true });
@@ -132,13 +139,7 @@ const Events = () => {
         <Heading as="h2" size="lg" mb={4} mr={4}>
           📅 Événements
         </Heading>
-        <Button
-          onClick={() => {
-            setCurrentEvent(null);
-            addEventModal.onOpen();
-          }}
-          mb={2}
-        >
+        <Button onClick={handleAddButtonClick} mb={2}>
           <AddIcon mr={3} /> Ajouter un événement
         </Button>
       </Flex>
