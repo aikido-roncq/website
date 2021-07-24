@@ -30,7 +30,7 @@ class AuthService {
    * @returns {Promise}
    */
   static async validate(token) {
-    return axios.get('/validate', { headers: { authorization: `Bearer ${token}` } });
+    return axios.get('/validate', { headers: { Authorization: `Bearer ${token}` } });
   }
 }
 
