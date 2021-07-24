@@ -9,23 +9,21 @@ const AdminMenu = () => {
   const { logout } = useContext(AuthContext);
 
   return (
-    <div className={styles.container}>
+    <li className={styles.container}>
       <div className={styles.admin}>
         <FiUser /> Admin
       </div>
       <div className={styles.options}>
-        <div className={styles.option}>
-          <Link href="/dashboard">
-            <FaTable className={styles.icon} />
-            Tableau de bord
-          </Link>
-        </div>
+        <Link href="/dashboard" className={styles.option}>
+          <FaTable className={styles.icon} />
+          Tableau de bord
+        </Link>
         <div className={styles.option} onClick={logout}>
           <FiLogOut className={styles.icon} />
           Déconnexion
         </div>
       </div>
-    </div>
+    </li>
   );
 };
 

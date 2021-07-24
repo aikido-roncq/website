@@ -3,11 +3,20 @@
 .container {
   position: relative;
 
+  &:hover .admin {
+    color: black;
+  }
+
   &:hover .options {
     opacity: 1;
     pointer-events: all;
     transform: translate(-50%, 0);
   }
+}
+
+.admin {
+  padding: 0.8rem;
+  transition: 150ms;
 }
 
 .options {
@@ -24,6 +33,7 @@
   transition: 150ms;
   display: flex;
   flex-direction: column;
+  color: black;
 
   .option {
     transition: 150ms;
@@ -41,14 +51,5 @@
     &:not(:last-child) {
       border-bottom: 1px solid rgba(black, 0.1);
     }
-  }
-}
-
-.admin {
-  padding: 0.8rem;
-  transition: 150ms;
-
-  &:hover {
-    color: $color-main;
   }
 }
