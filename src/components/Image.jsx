@@ -26,7 +26,7 @@ const Image = ({ src, caption, onError, ...other }) => {
         onLoad={setLoading.off}
         style={{ opacity }}
         ref={image}
-        alt={caption}
+        alt={caption || ''}
         onError={onError}
       />
       {caption && <figcaption style={{ opacity }}>{caption}</figcaption>}
