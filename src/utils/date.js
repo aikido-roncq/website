@@ -1,4 +1,5 @@
 import strftime from 'strftime';
+import { handlePlural } from './string';
 
 const DATE_FORMAT = '%d %b';
 
@@ -29,14 +30,6 @@ export const formatDateRange = (startStr, endStr) => {
  * @returns {String} the locale formatted date
  */
 export const formatDate = dateStr => new Date(dateStr).toLocaleDateString();
-
-/**
- * Handle the plural of the singular word passed as a parameter depending on the count
- * @param {Number} count the count
- * @param {String} singular the singular word
- * @returns {String} the singular or plural word, depending on the count
- */
-const handlePlural = (count, singular) => (count === 1 ? singular : singular + 's');
 
 /**
  * Get the relative date string of a date from today

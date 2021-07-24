@@ -13,15 +13,17 @@ import { CheckCircleIcon } from '@chakra-ui/icons';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import ErrorMessage from './ErrorMessage';
+import { charactersCountText } from '@/utils/form';
 
 const ContactForm = () => {
-  const { register, handleSubmit, reset, errors } = useForm({ shouldFocusError: false });
+  const form = useForm({ shouldFocusError: false });
   const [loading, setLoading] = useBoolean(false);
+  const content = form.watch('content', '');
 
-  const isInvalid = field => field in errors;
+  const isInvalid = field => field in form.errors;
 
   const handleSuccess = () => {
-    reset();
+    form.reset();
     Swal.fire({
       title: 'Message envoyé',
       text: 'Nous avons bien reçu votre message !',
@@ -45,20 +47,20 @@ const ContactForm = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={form.handleSubmit(onSubmit)}>
       <FormControl>
         <FormLabel mb={1}>Prénom</FormLabel>
         <Input
           name="name"
           placeholder="John"
           isInvalid={isInvalid('name')}
-          ref={register({
+          ref={form.register({
             required: { value: true, message: 'Ce champ est obligatoire' },
             minLength: { value: 3, message: 'Votre prénom doit contenir au moins 3 caractères' },
             maxLength: { value: 50, message: 'Votre prénom ne peut pas dépasser 50 caractères' },
           })}
         />
-        <ErrorMessage error={errors.name} />
+        <ErrorMessage error={form.errors.name} />
       </FormControl>
       <FormControl>
         <FormLabel mb={0}>Adresse mail</FormLabel>
@@ -69,12 +71,12 @@ const ContactForm = () => {
           placeholder="john.doe@gmail.com"
           spellCheck={false}
           isInvalid={isInvalid('email')}
-          ref={register({
+          ref={form.register({
             required: { value: true, message: 'Ce champ est obligatoire' },
             maxLength: { value: 50, message: '50 caractères maximum' },
           })}
         />
-        <ErrorMessage error={errors.email} />
+        <ErrorMessage error={form.errors.email} />
       </FormControl>
       <FormControl>
         <FormLabel mb={0}>Message</FormLabel>
@@ -84,13 +86,14 @@ const ContactForm = () => {
           label="Message"
           minHeight={150}
           isInvalid={isInvalid('content')}
-          ref={register({
+          ref={form.register({
             required: { value: true, message: 'Ce champ est obligatoire' },
             minLength: { value: 20, message: 'Le message doit contenir au moins 20 caractères' },
             maxLength: { value: 500, message: 'Le message doit contenir au plus 500 caractères' },
           })}
         />
-        <ErrorMessage error={errors.content} />
+        <FormHelperText>{charactersCountText(content, 20, 500)}</FormHelperText>
+        <ErrorMessage error={form.errors.content} />
       </FormControl>
       <Button type="submit" isLoading={loading} leftIcon={<CheckCircleIcon />} colorScheme="red">
         Envoyer
