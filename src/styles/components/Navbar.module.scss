@@ -10,6 +10,11 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   justify-items: center;
+  transform: translateY(-1px);
+
+  &.reduced ul {
+    margin: 0.2em;
+  }
 }
 
 .nav ul {
@@ -20,6 +25,7 @@
   justify-content: center;
   flex-wrap: wrap;
   padding: 0;
+  transition: margin 200ms;
 }
 
 .nav li {

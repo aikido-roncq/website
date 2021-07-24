@@ -1,7 +1,7 @@
 import Link from '@/components/Link';
 import { useRouter } from 'next/router';
 import styles from '@/styles/components/Navbar.module.scss';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import AuthContext from '@/contexts/auth-context';
 import AdminMenu from './AdminMenu';
 
@@ -33,9 +33,29 @@ const Navbar = () => {
   const getClassName = route => (isActive(route) ? styles.active : '');
   const isActive = route => route === router.pathname;
   const { isLoggedIn } = useContext(AuthContext);
+  const navbar = useRef();
+
+  const handleScroll = () => {
+    const offsetTop = navbar.current.offsetTop;
+    const classList = navbar.current.classList;
+
+    if (offsetTop > 100 && !classList.contains(styles.reduced)) {
+      classList.add(styles.reduced);
+    } else if (offsetTop < 20 && classList.contains(styles.reduced)) {
+      classList.remove(styles.reduced);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} ref={navbar}>
       <ul>
         {ROUTES.map(({ path, label }) => (
           <li className={getClassName(path)} key={path}>
