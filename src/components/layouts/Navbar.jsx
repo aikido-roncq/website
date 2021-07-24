@@ -36,8 +36,8 @@ const Navbar = () => {
   const navbar = useRef();
 
   const handleScroll = () => {
-    const offsetTop = navbar.current.offsetTop;
-    const classList = navbar.current.classList;
+    const offsetTop = navbar.current?.offsetTop;
+    const classList = navbar.current?.classList;
 
     if (offsetTop > 100 && !classList.contains(styles.reduced)) {
       classList.add(styles.reduced);
