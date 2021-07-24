@@ -1,5 +1,5 @@
 import Link from '@/components/Link';
-import AuthContext from '@/contexts/auth-context';
+import AuthContext from '@/contexts/auth';
 import styles from '@/styles/components/Footer.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import { FaAt, FaFacebook, FaGithubAlt, FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';

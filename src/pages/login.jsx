@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import styles from '@/styles/Login.module.scss';
 import { useRouter } from 'next/router';
 import Head from '@/components/layouts/Head';
-import AuthContext from '@/contexts/auth-context';
+import AuthContext from '@/contexts/auth';
 import Link from '@/components/Link';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 import AuthService from '@/services/auth.service';

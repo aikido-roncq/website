@@ -2,7 +2,7 @@ import Link from '@/components/Link';
 import { useRouter } from 'next/router';
 import styles from '@/styles/components/Navbar.module.scss';
 import { useContext, useEffect, useRef } from 'react';
-import AuthContext from '@/contexts/auth-context';
+import AuthContext from '@/contexts/auth';
 import AdminMenu from './AdminMenu';
 
 const ROUTES = [

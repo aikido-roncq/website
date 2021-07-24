@@ -1,4 +1,4 @@
-import AuthContext from '@/contexts/auth-context';
+import AuthContext from '@/contexts/auth';
 import { IconContext } from 'react-icons';
 import { useAuth } from '@/hooks/useAuth';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';

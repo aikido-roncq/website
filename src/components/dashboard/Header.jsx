@@ -3,7 +3,7 @@ import { ArrowBackIcon, Icon } from '@chakra-ui/icons';
 import Link from '@/components/Link';
 import { FiHome, FiLogOut } from 'react-icons/fi';
 import { useContext } from 'react';
-import AuthContext from '@/contexts/auth-context';
+import AuthContext from '@/contexts/auth';
 
 const Header = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });

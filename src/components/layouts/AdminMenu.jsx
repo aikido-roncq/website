@@ -3,7 +3,7 @@ import { FiLogOut, FiUser } from 'react-icons/fi';
 import styles from '@/styles/components/AdminMenu.module.scss';
 import { FaTable } from 'react-icons/fa';
 import { useContext } from 'react';
-import AuthContext from '@/contexts/auth-context';
+import AuthContext from '@/contexts/auth';
 
 const AdminMenu = () => {
   const { logout } = useContext(AuthContext);
