@@ -11,5 +11,13 @@ const tokenInterceptor = config => {
   return config;
 };
 
+const errorInterceptor = error => {
+  if (error.response?.status === 401) {
+    window.dispatchEvent(new Event('logout'));
+  }
+  return Promise.reject(error);
+};
+
 axios.defaults.baseURL = process.env.API_URL;
 axios.interceptors.request.use(tokenInterceptor);
+axios.interceptors.response.use(null, errorInterceptor);

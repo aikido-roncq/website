@@ -15,6 +15,12 @@ export const useAuth = () => {
 
   useEffect(() => {
     setToken(localStorage.getItem(TOKEN_KEY));
+
+    window.addEventListener('logout', logout);
+
+    return () => {
+      window.removeEventListener('logout', logout);
+    };
   }, []);
 
   useEffect(async () => {
