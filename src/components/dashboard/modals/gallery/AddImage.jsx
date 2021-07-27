@@ -48,7 +48,7 @@ const AddImage = ({ isOpen, onClose, submitCallback }) => {
         <FormControl mb={4}>
           <FileInput
             name="image"
-            label="Sélectionner une image"
+            label="Choisir une image"
             accept="image/*"
             ref={form.register({
               required: { value: true, message: 'Veuillez sélectionner une image' },
