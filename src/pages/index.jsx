@@ -69,7 +69,7 @@ export default function Home() {
           <Title emoji="📰">Derniers articles</Title>
           <div className={styles.articles}>
             {articles.length ? (
-              articles.map(article => <Article key={article.slug} article={article} />)
+              articles.map(article => <Article key={article.id} article={article} />)
             ) : articlesLoading ? (
               <p>Chargement des articles...</p>
             ) : errors.articles ? (
