@@ -14,11 +14,11 @@ import {
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react';
-import DeleteEvent from './modals/events/DeleteEvent';
-import AddEvent from './modals/events/AddEvent';
-import ViewEvent from './modals/events/ViewEvent';
+import DeleteEvent from './modals/DeleteEvent';
+import AddEvent from './modals/AddEvent';
+import ViewEvent from './modals/ViewEvent';
 import { formatDateRange } from '@/utils/date';
-import Actions from './Actions';
+import Actions from '../Actions';
 import EventService from '@/services/event.service';
 
 const Events = () => {
@@ -113,6 +113,8 @@ const Events = () => {
           ))}
         </Tbody>
       </Table>
+
+      {/* Modals */}
       <AddEvent
         submitCallback={currentEvent ? editEvent : addEvent}
         onClose={addEventModal.onClose}

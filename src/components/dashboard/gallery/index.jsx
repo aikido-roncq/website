@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import ImageCard from './ImageCard';
-import AddImage from './modals/gallery/AddImage';
+import AddImage from './modals/AddImage';
 
 const Gallery = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });

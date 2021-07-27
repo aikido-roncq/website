@@ -14,7 +14,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import Image from '../Image';
+import Image from '@/components/Image';
 
 const ImageCard = ({ image, onDelete }) => {
   const [isHovered, setIsHovered] = useBoolean(false);
