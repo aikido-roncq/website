@@ -19,8 +19,6 @@ import EventService from '@/services/event.service';
 import GalleryService from '@/services/gallery.service';
 import Error from '@/components/Error';
 
-const API_URL = process.env.API_URL;
-
 SwiperCore.use([Keyboard, Mousewheel, Autoplay, Pagination]);
 
 export default function Home() {
@@ -40,7 +38,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    ArticleService.getArticles()
+    ArticleService.getArticles(3)
       .then(setArticles)
       .catch(() => setErrors(e => ({ ...e, articles: true })))
       .finally(setArticlesLoading.off);
@@ -57,7 +55,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout maxWidth={70}>
+    <Layout maxWidth={60}>
       <Head
         title="Accueil"
         description={
