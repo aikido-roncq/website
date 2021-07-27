@@ -1,5 +1,5 @@
 import { ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/modal';
-import { Button, FormControl, FormLabel, Input, Textarea } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Textarea, useToast } from '@chakra-ui/react';
 import Modal from '@/components/Modal';
 import strftime from 'strftime';
 import { useForm } from 'react-hook-form';
@@ -15,12 +15,29 @@ const AddEvent = ({ isOpen, onClose, submitCallback, event }) => {
   const [submitting, setSubmitting] = useState(false);
   const form = useForm({ shouldUnregister: false, shouldFocusError: false });
   const startDate = form.watch('start_date', strftime(DATE_FORMAT));
+  const toast = useToast();
 
   const onSubmit = async data => {
     setSubmitting(true);
     const posted = await submitCallback(data);
     if (posted) {
       form.reset();
+      onClose();
+      toast({
+        title: `Événement ${edit ? 'édité' : 'ajouté'}`,
+        description: `L'événement a été ${edit ? 'édité' : 'ajouté'} avec succès !`,
+        status: 'success',
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: `Événement non ${edit ? 'édité' : 'ajouté'}`,
+        description: `Une erreur est survenue lors de ${
+          edit ? `l'édition` : `l'ajout`
+        } de l'événément.`,
+        status: 'error',
+        isClosable: true,
+      });
     }
     setSubmitting(false);
   };

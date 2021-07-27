@@ -11,7 +11,6 @@ import {
   Tr,
   useBreakpointValue,
   useDisclosure,
-  useToast,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react';
@@ -26,7 +25,6 @@ const Events = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
   const [currentEvent, setCurrentEvent] = useState(null);
   const [events, setEvents] = useState([]);
-  const toast = useToast();
 
   const addEventModal = useDisclosure();
   const viewEventModal = useDisclosure();
@@ -41,39 +39,14 @@ const Events = () => {
     modal.onOpen();
   };
 
-  const handleAddButtonClick = () => {
-    if (currentEvent) {
-      setCurrentEvent(null);
-    }
-    addEventModal.onOpen();
-  };
-
   const addEvent = async event => {
     try {
       await EventService.postEvent(event);
-    } catch (e) {
-      toast({
-        title: 'Événement non ajouté',
-        description: "Une erreur est survenue lors de l'ajout de l'événément.",
-        status: 'error',
-        isClosable: true,
-      });
-
+    } catch {
       return false;
     }
 
-    const updatedEvents = await EventService.getEvents();
-    setEvents(updatedEvents);
-
-    addEventModal.onClose();
-
-    toast({
-      title: 'Événement ajouté',
-      description: "L'événement a été ajouté avec succès !",
-      status: 'success',
-      isClosable: true,
-    });
-
+    setEvents(await EventService.getEvents());
     return true;
   };
 
@@ -82,15 +55,8 @@ const Events = () => {
 
     try {
       editedEvent = await EventService.editEvent(event);
-    } catch (e) {
-      toast({
-        title: 'Événement non mis à jour',
-        description: "Une erreur est survenue lors de la mise à jour de l'événement.",
-        status: 'error',
-        isClosable: true,
-      });
-
-      return;
+    } catch {
+      return false;
     }
 
     const eventIndex = events.findIndex(e => e.id === event.id);
@@ -98,40 +64,18 @@ const Events = () => {
     newEvents[eventIndex] = editedEvent;
 
     setEvents(newEvents);
-    addEventModal.onClose();
-
-    toast({
-      title: 'Événément mis à jour',
-      description: "L'événément a été mis à jour avec succès !",
-      status: 'success',
-      isClosable: true,
-    });
+    return true;
   };
 
   const deleteEvent = async event => {
     try {
       await EventService.deleteEvent(event);
-    } catch (e) {
-      toast({
-        title: 'Événement non supprimé',
-        description: "Une erreur est survenue lors de la suppression de l'événément.",
-        status: 'error',
-        isClosable: true,
-      });
-      console.error(e);
-
-      return;
+    } catch {
+      return false;
     }
 
     setEvents(oldEvents => oldEvents.filter(e => e.id !== event.id));
-    deleteEventModal.onClose();
-
-    toast({
-      title: 'Événement supprimé',
-      description: "L'événement a été supprimé avec succès !",
-      status: 'success',
-      isClosable: true,
-    });
+    return true;
   };
 
   return (
@@ -140,7 +84,7 @@ const Events = () => {
         <Heading as="h2" size="lg" mb={4} mr={4}>
           📅 Événements
         </Heading>
-        <Button onClick={handleAddButtonClick} mb={2}>
+        <Button onClick={() => handleClick(null, addEventModal)} mb={2}>
           <AddIcon mr={3} /> Ajouter un événement
         </Button>
       </Flex>

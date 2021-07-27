@@ -1,5 +1,5 @@
 import { ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/modal';
-import { Button, FormControl, FormLabel, Input, useBoolean } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, useBoolean, useToast } from '@chakra-ui/react';
 import { useState } from 'react';
 import Modal from '@/components/Modal';
 import Spinner from '@/components/Spinner';
@@ -19,6 +19,7 @@ const AddArticle = ({ isOpen, onClose, submitCallback, article }) => {
   const [submitting, setSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useBoolean(true);
   const content = form.watch('content');
+  const toast = useToast();
 
   const validateContent = value => {
     const filtered = value.replaceAll(HTML_CHARS, '').trim();
@@ -32,7 +33,24 @@ const AddArticle = ({ isOpen, onClose, submitCallback, article }) => {
     const posted = await submitCallback(data);
     if (posted) {
       form.reset();
+      onClose();
+      toast({
+        title: `Article ${edit ? 'mis à jour' : 'ajouté'}`,
+        description: `L'article a été ${edit ? 'mis à jour' : 'ajouté'} avec succès !`,
+        status: 'success',
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: `Article non ${edit ? 'mis à jour' : 'ajouté'}`,
+        description: `Une erreur est survenue lors de ${
+          edit ? 'la mise à jour' : `l'ajout`
+        } de l'article.`,
+        status: 'error',
+        isClosable: true,
+      });
     }
+
     setSubmitting(false);
   };
 

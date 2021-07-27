@@ -1,6 +1,7 @@
 import Head from '@/components/layouts/Head';
 import Articles from './Articles';
 import Events from './Events';
+import Gallery from './Gallery';
 import Header from './Header';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -17,19 +18,22 @@ const TABS = [
     label: 'Événements',
     component: <Events />,
   },
+  {
+    key: 'gallery',
+    label: 'Galerie',
+    component: <Gallery />,
+  },
 ];
+
+const getTabIndex = router => {
+  const { tab } = router.query;
+  const index = TABS.findIndex(t => t.key === tab);
+  return index === -1 ? 0 : index;
+};
 
 const Dashboard = () => {
   const router = useRouter();
-  const [tabIndex, setTabIndex] = useState(0);
-
-  useEffect(() => {
-    const { tab } = router.query;
-    const index = TABS.findIndex(t => t.key === tab);
-    if (index !== -1) {
-      setTabIndex(index);
-    }
-  }, []);
+  const [tabIndex, setTabIndex] = useState(getTabIndex(router));
 
   useEffect(() => {
     router.push({

@@ -1,23 +1,23 @@
 .figure {
   position: relative;
   margin: 1em 0;
-}
 
-.figure img {
-  width: 100%;
-}
+  img {
+    width: 100%;
+  }
 
-.figure figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(black, 0.8);
-  opacity: 0.8;
-  color: white;
-  padding: 0.6em;
-  transform: translateY(-0.4em);
-  z-index: 1;
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(black, 0.8);
+    opacity: 0.8;
+    color: white;
+    padding: 0.6em;
+    transform: translateY(-0.4em);
+    z-index: 1;
+  }
 }
 
 @media (max-width: 480px) {

@@ -145,7 +145,7 @@ export default function Home() {
               {gallery.map(image => (
                 <SwiperSlide key={image.src}>
                   <Image
-                    src={`${API_URL}/${image.src}`}
+                    src={image.fullSrc}
                     caption={image.caption}
                     onError={() => removeImage(image)}
                   />
@@ -158,7 +158,7 @@ export default function Home() {
           ) : errors.gallery ? (
             <Error>Échec lors du chargement de la galerie</Error>
           ) : (
-            <p>Aucune photo.</p>
+            <p>Aucune image</p>
           )}
         </div>
       </div>

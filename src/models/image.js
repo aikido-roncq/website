@@ -16,6 +16,14 @@ class Image {
   static create(image) {
     return new Image(image);
   }
+
+  /**
+   * Get the full src of the image, which means the base api url concatenated with the image src
+   * @return {String} the full src
+   */
+  get fullSrc() {
+    return `${process.env.API_URL}/${this.src}`;
+  }
 }
 
 export default Image;

@@ -11,7 +11,6 @@ import {
   Tr,
   useBreakpointValue,
   useDisclosure,
-  useToast,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react';
@@ -26,7 +25,6 @@ const Articles = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
   const [currentArticle, setCurrentArticle] = useState(null);
   const [articles, setArticles] = useState([]);
-  const toast = useToast();
 
   const addArticleModal = useDisclosure();
   const viewArticleModal = useDisclosure();
@@ -41,37 +39,16 @@ const Articles = () => {
     modal.onOpen();
   };
 
-  const handleAddButtonClick = () => {
-    if (currentArticle) {
-      setCurrentArticle(null);
-    }
-    addArticleModal.onOpen();
-  };
-
   const addArticle = async article => {
-    try {
-      const newArticle = await ArticleService.postArticle(article);
-      setArticles(oldArticles => [newArticle, ...oldArticles]);
-    } catch (e) {
-      toast({
-        title: 'Article non ajouté',
-        description: "Une erreur est survenue lors de l'ajout de l'article.",
-        status: 'error',
-        isClosable: true,
-      });
+    let newArticle;
 
+    try {
+      newArticle = await ArticleService.postArticle(article);
+    } catch {
       return false;
     }
 
-    addArticleModal.onClose();
-
-    toast({
-      title: 'Article ajouté',
-      description: "L'article a été ajouté avec succès !",
-      status: 'success',
-      isClosable: true,
-    });
-
+    setArticles(oldArticles => [newArticle, ...oldArticles]);
     return true;
   };
 
@@ -80,15 +57,8 @@ const Articles = () => {
 
     try {
       updatedArticle = await ArticleService.editArticle(article);
-    } catch (e) {
-      toast({
-        title: 'Article non mis à jour',
-        description: "Une erreur est survenue lors de la mise à jour de l'article.",
-        status: 'error',
-        isClosable: true,
-      });
-
-      return;
+    } catch {
+      return false;
     }
 
     const articleIndex = articles.findIndex(a => a.id === updatedArticle.id);
@@ -96,40 +66,18 @@ const Articles = () => {
     newArticles[articleIndex] = updatedArticle;
 
     setArticles(newArticles);
-    addArticleModal.onClose();
-
-    toast({
-      title: 'Article mis à jour',
-      description: "L'article a été mis à jour avec succès !",
-      status: 'success',
-      isClosable: true,
-    });
+    return true;
   };
 
   const deleteArticle = async article => {
     try {
       await ArticleService.deleteArticle(article);
-    } catch (e) {
-      toast({
-        title: 'Article non supprimé',
-        description: "Une erreur est survenue lors de la suppression de l'article.",
-        status: 'error',
-        isClosable: true,
-      });
-      console.error(e);
-
-      return;
+    } catch {
+      return false;
     }
 
     setArticles(oldArticles => oldArticles.filter(a => a.id !== article.id));
-    deleteArticleModal.onClose();
-
-    toast({
-      title: 'Article supprimé',
-      description: "L'article a été supprimé avec succès !",
-      status: 'success',
-      isClosable: true,
-    });
+    return true;
   };
 
   return (
@@ -138,7 +86,7 @@ const Articles = () => {
         <Heading as="h2" size="lg" mb={4} mr={4}>
           📰 Articles
         </Heading>
-        <Button onClick={handleAddButtonClick} mb={2}>
+        <Button onClick={() => handleClick(null, addArticleModal)} mb={2}>
           <AddIcon mr={3} /> Ajouter un article
         </Button>
       </Flex>
