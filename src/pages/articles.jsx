@@ -28,7 +28,7 @@ const Articles = () => {
           <p>Chargement des articles...</p>
         ) : articles.length > 0 ? (
           articles?.map(article => (
-            <Article key={article.slug} article={article} className={styles.article} />
+            <Article key={article.id} article={article} className={styles.article} />
           ))
         ) : error ? (
           <Error>Une erreur est survenue. Veuillez réessayer plus tard.</Error>

@@ -14,10 +14,10 @@ import {
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react';
-import DeleteArticle from './modals/articles/DeleteArticle';
-import AddArticle from './modals/articles/AddArticle';
-import ViewArticle from './modals/articles/ViewArticle';
-import Actions from './Actions';
+import DeleteArticle from './modals/DeleteArticle';
+import AddArticle from './modals/AddArticle';
+import ViewArticle from './modals/ViewArticle';
+import Actions from '../Actions';
 import { relativeDateString } from '@/utils/date';
 import ArticleService from '@/services/article.service';
 

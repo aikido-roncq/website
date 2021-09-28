@@ -1,7 +1,7 @@
 import Head from '@/components/layouts/Head';
-import Articles from './Articles';
-import Events from './Events';
-import Gallery from './Gallery';
+import Articles from './articles';
+import Events from './events';
+import Gallery from './gallery';
 import Header from './Header';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { useRouter } from 'next/router';

@@ -38,6 +38,11 @@ $grid-gap: 1.5rem;
 .gallery {
   grid-column: span 2;
 
+  .swiper,
+  .image {
+    max-width: 60em;
+  }
+
   .pagination {
     display: flex;
     justify-content: center;
