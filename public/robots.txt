@@ -2,3 +2,4 @@ Sitemap: https://www.aikido-roncq.fr/sitemap.xml
 
 User-agent: *
 Disallow: /dashboard
+Disallow: /login
